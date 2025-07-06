@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useAboutSectionAnimations from "@/hooks/useAboutSectionAnimations";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Mock data untuk mata kuliah relevan
 const relevantCourses = [
@@ -15,11 +17,21 @@ const relevantCourses = [
 ];
 
 export default function EducationSection() {
+  useAboutSectionAnimations();
   const [showAllCourses, setShowAllCourses] = useState(false);
   const [showFullStory, setShowFullStory] = useState(false);
   const displayedCourses = showAllCourses
     ? relevantCourses
     : relevantCourses.slice(0, 4);
+
+  // Refresh ScrollTrigger when courses or story shown changes
+  useEffect(() => {
+    if (typeof window !== "undefined" && ScrollTrigger) {
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 50);
+    }
+  }, [displayedCourses.length, showFullStory]);
 
   return (
     <section className="mb-20 sm:mb-24">
@@ -37,9 +49,9 @@ export default function EducationSection() {
           {/* Left Column - Education Info & Courses */}
           <div className="space-y-8">
             {/* Education Info */}
-            <div className="relative">
+            <div className="relative" data-about-education>
               <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-sky-400 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 bg-sky-800/50 dark:bg-sky-400/50 rounded-xl flex items-center justify-center flex-shrink-0">
                   <svg
                     className="w-6 h-6 text-white"
                     fill="none"
@@ -64,7 +76,7 @@ export default function EducationSection() {
                   <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-neutral-100 mb-2">
                     D3 Manajemen Informatika
                   </h3>
-                  <p className="text-sky-600 dark:text-sky-400 font-semibold text-base sm:text-lg mb-1">
+                  <p className="text-sky-700 dark:text-sky-400 font-semibold text-base sm:text-lg mb-1">
                     Politeknik Negeri Bali
                   </p>
                   <p className="text-slate-500 dark:text-slate-400 text-sm">
@@ -75,7 +87,7 @@ export default function EducationSection() {
 
               {/* IPK Card */}
               <div className="mb-6">
-                <div className="flex items-center justify-between py-4 px-4 bg-white/50 dark:bg-slate-800/50 rounded-xl border border-slate-200/50">
+                <div className="flex items-center justify-between shadow-sm py-4 px-4 bg-white/50 dark:bg-slate-800/50 rounded-xl border border-slate-200/50 dark:border-slate-700/50">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
                     <span className="text-slate-700 dark:text-neutral-200 font-medium text-sm sm:text-base">
@@ -97,9 +109,9 @@ export default function EducationSection() {
             </div>
 
             {/* Relevant Courses */}
-            <div className="space-y-6">
+            <div className="space-y-6" data-about-education>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center">
+                <div className="w-12 h-12 bg-sky-800/50 dark:bg-sky-400/50 rounded-lg flex items-center justify-center">
                   <svg
                     className="w-6 h-6 text-white"
                     fill="none"
@@ -123,7 +135,7 @@ export default function EducationSection() {
                 {displayedCourses.map((course, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between py-3 px-4 bg-white/50 dark:bg-slate-800/50 rounded-xl border border-slate-200/50 dark:border-slate-700/50"
+                    className="flex items-center justify-between py-3 px-4 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm border border-slate-200/50 dark:border-slate-700/50"
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-sky-400 rounded-full"></div>
@@ -181,15 +193,26 @@ export default function EducationSection() {
 
           {/* Right Column - Academic Journey Story */}
           <div className="space-y-6">
-            <div className="relative bg-white/50 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50">
+            <div
+              className="relative bg-white/50 dark:bg-slate-800/50 rounded-2xl p-6 shadow-sm border border-slate-200/50 dark:border-slate-700/50"
+              data-about-education
+            >
               {/* Decorative elements */}
-              <div className="absolute top-4 right-4 w-8 h-8 opacity-30">
+              <div className="absolute top-4 right-4 w-8 h-8 opacity-50">
                 <svg
                   viewBox="0 0 24 24"
-                  className="w-full h-full text-yellow-500"
-                  fill="currentColor"
+                  className="w-full h-full text-sky-800 dark:text-sky-400"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
-                  <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  <circle cx="12" cy="12" r="10" />
+                  <ellipse cx="12" cy="12" rx="10" ry="4" />
+                  <path d="M2 12a10 10 0 0020 0" />
+                  <path d="M12 2a15.3 15.3 0 010 20" />
+                  <path d="M12 2a15.3 15.3 0 000 20" />
                 </svg>
               </div>
 

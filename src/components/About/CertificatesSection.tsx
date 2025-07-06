@@ -2,8 +2,10 @@
 
 import type { Certificate } from "@prisma/client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, Eye } from "lucide-react";
+import useAboutSectionAnimations from "@/hooks/useAboutSectionAnimations";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 interface CertificatesSectionProps {
   certificates: Certificate[];
@@ -55,6 +57,7 @@ const customScrollbarStyles = `
 export default function CertificatesSection({
   certificates,
 }: CertificatesSectionProps) {
+  useAboutSectionAnimations();
   const [showAll, setShowAll] = useState(false);
   const [selectedCertificate, setSelectedCertificate] =
     useState<Certificate | null>(null);
@@ -62,6 +65,15 @@ export default function CertificatesSection({
   const displayedCertificates = showAll
     ? certificates
     : certificates.slice(0, 3);
+
+  // Refresh ScrollTrigger when certificates shown changes
+  useEffect(() => {
+    if (typeof window !== "undefined" && ScrollTrigger) {
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 50);
+    }
+  }, [displayedCertificates.length]);
 
   const openModal = (cert: Certificate) => {
     setSelectedCertificate(cert);
@@ -90,6 +102,7 @@ export default function CertificatesSection({
               {displayedCertificates.map((cert: Certificate) => (
                 <div
                   key={cert.id}
+                  data-about-certificates
                   className="group relative bg-white/50 dark:bg-slate-800/50 rounded-2xl overflow-hidden shadow-md hover:shadow-lg hover:shadow-sky-400/40 border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02]"
                 >
                   {/* Corner borders */}

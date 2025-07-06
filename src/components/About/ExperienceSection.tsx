@@ -1,7 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import useAboutSectionAnimations from "@/hooks/useAboutSectionAnimations";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Experience {
   id: number;
@@ -21,8 +26,52 @@ interface ExperienceSectionProps {
 export default function ExperienceSection({
   experiences,
 }: ExperienceSectionProps) {
+  useAboutSectionAnimations();
   const [showAll, setShowAll] = useState(false);
   const displayedExperiences = showAll ? experiences : experiences.slice(0, 3);
+
+  // Refresh ScrollTrigger when experiences shown changes
+  useEffect(() => {
+    if (typeof window !== "undefined" && ScrollTrigger) {
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 50);
+    }
+  }, [displayedExperiences.length]);
+
+  // Timeline beam animation
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const beamRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!timelineRef.current || !beamRef.current) return;
+    const timeline = timelineRef.current;
+    const beam = beamRef.current;
+
+    gsap.set(beam, { height: 0 });
+
+    // Use quickTo for smooth, real-time height update
+    const setHeight = gsap.quickTo(beam, "height", {
+      duration: 0.12,
+      ease: "power1.out",
+    });
+
+    const st = ScrollTrigger.create({
+      trigger: timeline,
+      start: "top center",
+      end: "bottom center",
+      scrub: true,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const totalHeight = timeline.offsetHeight;
+        setHeight(totalHeight * progress);
+      },
+    });
+
+    return () => {
+      st.kill();
+    };
+  }, [displayedExperiences.length]);
 
   return (
     <section className="mb-20 sm:mb-24">
@@ -35,11 +84,26 @@ export default function ExperienceSection({
         </p>
       </div>
 
-      <div className="relative max-w-7xl mx-auto">
+      <div className="relative max-w-7xl mx-auto" ref={timelineRef}>
         {/* Timeline Line */}
-        <div className="absolute left-1/2 transform -translate-x-px h-full w-0.5 bg-gradient-to-b from-sky-400 to-blue-600"></div>
+        <div className="absolute left-1/2 transform -translate-x-px h-full w-0.5 bg-slate-400/20 z-0" />
+        {/* Timeline Beam */}
+        <div
+          ref={beamRef}
+          className="absolute left-1/2 transform -translate-x-px w-1 z-10 pointer-events-none"
+          style={{
+            top: 0,
+            height: 0,
+            background: "linear-gradient(to bottom, #0ea5e9 0%, #bae6fd 100%)",
+            borderRadius: "9999px",
+            boxShadow:
+              "0 0 8px 2px rgba(56,189,248,0.18), 0 0 16px 4px rgba(37,99,235,0.10)",
+            transition: undefined, // remove transition for real-time update
+            willChange: "height",
+          }}
+        />
 
-        <div className="space-y-12 sm:space-y-16">
+        <div className="space-y-12 sm:space-y-16 relative z-10">
           {displayedExperiences.map((exp, index) => (
             <div key={exp.id} className="relative">
               {/* Timeline Dot */}
@@ -47,6 +111,7 @@ export default function ExperienceSection({
 
               {/* Content */}
               <div
+                data-about-experience
                 className={`flex ${
                   index % 2 === 0 ? "justify-end" : "justify-start"
                 }`}
@@ -58,7 +123,7 @@ export default function ExperienceSection({
                       : "pl-8 sm:pl-16 lg:pl-20"
                   }`}
                 >
-                  <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl shadow-slate-200/50 dark:shadow-slate-900/50 border border-slate-200 dark:border-slate-700 hover:shadow-2xl transition-all duration-300">
+                  <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 sm:p-8 shadow-md border border-slate-200 dark:border-slate-700">
                     {/* Header with Logo and Title */}
                     <div className="flex items-start gap-4 mb-4">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center flex-shrink-0">
@@ -140,11 +205,11 @@ export default function ExperienceSection({
           <div className="text-center mt-8 relative z-10">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 dark:from-sky-500 dark:to-sky-400 dark:hover:from-sky-600 dark:hover:to-sky-500 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-sky-900/20 dark:shadow-sky-500/20 hover:shadow-xl hover:shadow-sky-900/30 dark:hover:shadow-sky-400/30 transform hover:-translate-y-1 text-sm sm:text-base"
+              className="inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 dark:from-sky-500 dark:to-sky-400 dark:hover:from-sky-600 dark:hover:to-sky-500 text-white font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-sky-400/40 text-sm sm:text-base"
             >
               {showAll
                 ? "Show Less"
-                : `View more experience (${experiences.length - 3})`}
+                : `View More Experience (${experiences.length - 3})`}
               <svg
                 className={`ml-2 w-3 h-3 sm:w-4 sm:h-4 transition-transform duration-300 ${
                   showAll ? "rotate-180" : ""

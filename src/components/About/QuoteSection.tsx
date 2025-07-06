@@ -1,20 +1,22 @@
 "use client";
 
 import type { About } from "@prisma/client";
+import useAboutSectionAnimations from "@/hooks/useAboutSectionAnimations";
 
 interface QuoteSectionProps {
   quote?: About;
 }
 
 export default function QuoteSection({ quote }: QuoteSectionProps) {
+  useAboutSectionAnimations();
   return (
     <section className="mb-12 sm:mb-16">
       <div className="relative max-w-4xl mx-auto">
-        <div className="text-center">
+        <div className="text-center" data-about-quote>
           {quote ? (
             <blockquote className="relative">
               <svg
-                className="w-10 h-10 sm:w-12 sm:h-12 text-sky-400 dark:text-sky-500 mb-6 sm:mb-8 mx-auto opacity-50"
+                className="w-10 h-10 sm:w-12 sm:h-12 text-sky-800/50 dark:text-sky-400/50 mb-6 sm:mb-8 mx-auto opacity-50"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
