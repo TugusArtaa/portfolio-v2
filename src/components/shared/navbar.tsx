@@ -151,7 +151,7 @@ export function Navbar({
               {/* Social Media Icons */}
               <div className="hidden sm:flex items-center space-x-2">
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/iputuagusseniartawan/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2.5 rounded-full bg-white/20 dark:bg-slate-800/40 backdrop-blur-sm border border-white/30 dark:border-slate-700/40 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/30 dark:hover:bg-slate-700/50 transition-all duration-300 hover:scale-110 hover:rotate-12 hover:shadow-lg hover:shadow-blue-500/25"
@@ -159,7 +159,7 @@ export function Navbar({
                   <LinkedInIcon className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/TugusArtaa"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2.5 rounded-full bg-white/20 dark:bg-slate-800/40 backdrop-blur-sm border border-white/30 dark:border-slate-700/40 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/30 dark:hover:bg-slate-700/50 transition-all duration-300 hover:scale-110 hover:rotate-12 hover:shadow-lg hover:shadow-slate-500/25"
@@ -167,7 +167,7 @@ export function Navbar({
                   <GitHubIcon className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/putuaguss?igsh=MWNldDl0MjYyN3o1MA=="
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2.5 rounded-full bg-white/20 dark:bg-slate-800/40 backdrop-blur-sm border border-white/30 dark:border-slate-700/40 text-slate-700 dark:text-slate-300 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-white/30 dark:hover:bg-slate-700/50 transition-all duration-300 hover:scale-110 hover:rotate-12 hover:shadow-lg hover:shadow-pink-500/25"
