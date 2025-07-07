@@ -104,13 +104,7 @@ export default function ContactSocialMedia({ contacts }: Props) {
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
-      className="relative z-20 mt-12 sm:mt-16"
-    >
+    <div data-contact-social className="relative z-20 mt-12 sm:mt-16">
       <div className="text-center mb-6 sm:mb-8">
         <h3 className="text-xl sm:text-xl lg:text-2xl font-semibold text-slate-700 dark:text-slate-200 mb-2">
           Let's Connect
@@ -156,6 +150,6 @@ export default function ContactSocialMedia({ contacts }: Props) {
             ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

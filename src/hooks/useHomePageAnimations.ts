@@ -42,8 +42,7 @@ export default function useHomePageAnimations() {
               trigger: el,
               start: isMobile ? "top 90%" : "top 80%",
               end: "bottom 20%",
-              toggleActions: "play reverse play reverse",
-              // markers: true,
+              toggleActions: "play none none none",
             },
           }
         );
@@ -65,7 +64,7 @@ export default function useHomePageAnimations() {
             trigger: "[data-hero-card]",
             start: isMobile ? "top 90%" : "top 80%",
             end: "bottom 20%",
-            toggleActions: "play reverse play reverse",
+            toggleActions: "play none none none",
           },
         }
       );
@@ -90,7 +89,7 @@ export default function useHomePageAnimations() {
             trigger: "[data-about-image]",
             start: isMobile ? "top 85%" : "top 75%",
             end: "bottom 25%",
-            toggleActions: "play reverse play reverse",
+            toggleActions: "play none none none",
           },
         }
       );
@@ -115,7 +114,7 @@ export default function useHomePageAnimations() {
                 trigger: el,
                 start: isMobile ? "top 85%" : "top 75%",
                 end: "bottom 25%",
-                toggleActions: "play reverse play reverse",
+                toggleActions: "play none none none",
               },
             }
           );
@@ -143,7 +142,7 @@ export default function useHomePageAnimations() {
                 trigger: el,
                 start: isMobile ? "top 85%" : "top 75%",
                 end: "bottom 25%",
-                toggleActions: "play reverse play reverse",
+                toggleActions: "play none none none",
               },
             }
           );
@@ -171,18 +170,18 @@ export default function useHomePageAnimations() {
                 trigger: el,
                 start: isMobile ? "top 85%" : "top 75%",
                 end: "bottom 25%",
-                toggleActions: "play reverse play reverse",
+                toggleActions: "play none none none",
               },
             }
           );
         });
 
-      // Connect Section Animation (fix: animasi hanya pada elemen yang tampil)
+      // Connect Section Animation
       const connectEls = gsap.utils.toArray(
         "[data-connect-content]"
       ) as HTMLElement[];
       connectEls.forEach((el: HTMLElement) => {
-        // Skip animasi jika elemen hidden di mobile (misal: <p className="hidden sm:block ...">)
+        // Skip animasi jika elemen hidden di mobile
         if (
           isMobile &&
           el.classList.contains("hidden") &&
@@ -209,7 +208,7 @@ export default function useHomePageAnimations() {
               trigger: el,
               start: isMobile ? "top 98%" : "top 90%",
               end: "bottom 20%",
-              toggleActions: "play reverse play reverse",
+              toggleActions: "play none none none",
             },
           }
         );

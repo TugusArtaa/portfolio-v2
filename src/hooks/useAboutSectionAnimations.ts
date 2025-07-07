@@ -38,7 +38,7 @@ export default function useAboutSectionAnimations() {
               trigger: el,
               start: isMobile ? "top 90%" : "top 80%",
               end: "bottom 20%",
-              toggleActions: "play reverse play reverse",
+              toggleActions: "play none none none",
             },
           }
         );
@@ -63,9 +63,9 @@ export default function useAboutSectionAnimations() {
             overwrite: "auto",
             scrollTrigger: {
               trigger: el,
-              start: isMobile ? "top 98%" : "top 85%", // ubah dari 92% ke 98%
+              start: isMobile ? "top 98%" : "top 85%",
               end: "bottom 20%",
-              toggleActions: "play reverse play reverse",
+              toggleActions: "play none none none",
             },
           }
         );
@@ -94,7 +94,7 @@ export default function useAboutSectionAnimations() {
                 trigger: el,
                 start: isMobile ? "top 92%" : "top 85%",
                 end: "bottom 20%",
-                toggleActions: "play reverse play reverse",
+                toggleActions: "play none none none",
               },
             }
           );
@@ -123,7 +123,7 @@ export default function useAboutSectionAnimations() {
                 trigger: el,
                 start: isMobile ? "top 92%" : "top 85%",
                 end: "bottom 20%",
-                toggleActions: "play reverse play reverse",
+                toggleActions: "play none none none",
               },
             }
           );
@@ -152,7 +152,7 @@ export default function useAboutSectionAnimations() {
                 trigger: el,
                 start: isMobile ? "top 95%" : "top 90%",
                 end: "bottom 20%",
-                toggleActions: "play reverse play reverse",
+                toggleActions: "play none none none",
               },
             }
           );
@@ -179,7 +179,7 @@ export default function useAboutSectionAnimations() {
               trigger: el,
               start: isMobile ? "top 95%" : "top 90%",
               end: "bottom 20%",
-              toggleActions: "play reverse play reverse",
+              toggleActions: "play none none none",
             },
           }
         );
@@ -208,7 +208,7 @@ export default function useAboutSectionAnimations() {
                 trigger: el,
                 start: isMobile ? "top 92%" : "top 85%",
                 end: "bottom 20%",
-                toggleActions: "play reverse play reverse",
+                toggleActions: "play none none none",
               },
             }
           );

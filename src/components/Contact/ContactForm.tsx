@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useToast } from "@/components/ui/toast";
 import { Button } from "@/components/ui/stateful-button";
 import { motion } from "framer-motion";
+import useContactSectionAnimations from "@/hooks/useContactSectionAnimations";
 
 // Helper validasi email
 function isValidEmail(email: string) {
@@ -10,6 +11,7 @@ function isValidEmail(email: string) {
 }
 
 export default function ContactForm() {
+  useContactSectionAnimations();
   const { addToast } = useToast();
   const [form, setForm] = useState({
     name: "",
@@ -109,6 +111,7 @@ export default function ContactForm() {
   return (
     <>
       <motion.div
+        data-contact-title
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -121,6 +124,7 @@ export default function ContactForm() {
         <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-sky-500 to-sky-400 rounded-full mx-auto lg:mx-0 mt-3 sm:mt-4"></div>
       </motion.div>
       <motion.div
+        data-contact-form
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
