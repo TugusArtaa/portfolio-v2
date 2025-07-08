@@ -2,12 +2,19 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export async function GET() {
-  const certificates = await prisma.certificate.findMany();
-  return NextResponse.json(certificates, {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
-  });
+  try {
+    const certificates = await prisma.certificate.findMany();
+    return NextResponse.json(certificates, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to fetch certificates." },
+      { status: 500 }
+    );
+  }
 }
 
 // Block all non-GET methods

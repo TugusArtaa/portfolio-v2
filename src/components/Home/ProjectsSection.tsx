@@ -22,7 +22,7 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
                     alt="Main Project"
                     width={500}
                     height={400}
-                    className="w-full h-full object-cover rounded-lg shadow-lg shadow-slate-400/30 dark:shadow-slate-900/50 grayscale hover:grayscale-0 transition-all duration-700 ease-out transform hover:scale-105 hover:shadow-2xl hover:shadow-sky-500/40 dark:hover:shadow-sky-400/50 active:scale-110 active:grayscale-0 active:shadow-2xl active:shadow-sky-600/50 dark:active:shadow-sky-300/60 cursor-pointer sm:active:scale-[1.15] sm:active:shadow-3xl"
+                    className="w-full h-full object-cover rounded-lg shadow-lg shadow-slate-400/30 grayscale hover:grayscale-0 transition-all duration-700 ease-out transform hover:scale-105 active:scale-110 active:grayscale-0 cursor-pointer sm:active:scale-[1.15]"
                   />
                 </div>
 
@@ -35,7 +35,7 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
                       alt="Project 2"
                       width={300}
                       height={200}
-                      className="w-full h-full object-cover rounded-lg shadow-md shadow-slate-400/25 dark:shadow-slate-900/40 grayscale hover:grayscale-0 transition-all duration-600 ease-out transform hover:scale-110 hover:rotate-2 hover:shadow-xl hover:shadow-sky-500/35 dark:hover:shadow-sky-400/45 active:scale-[1.2] active:grayscale-0 active:rotate-3 active:shadow-xl active:shadow-sky-600/45 dark:active:shadow-sky-300/55 cursor-pointer sm:active:scale-[1.25] sm:active:rotate-[5deg]"
+                      className="w-full h-full object-cover rounded-lg shadow-md shadow-slate-400/25 grayscale hover:grayscale-0 transition-all duration-600 ease-out transform hover:scale-110 hover:rotate-2 active:scale-[1.2] active:grayscale-0 active:rotate-3 cursor-pointer sm:active:scale-[1.25] sm:active:rotate-[5deg]"
                     />
                   </div>
 
@@ -46,7 +46,7 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
                       alt="Project 3"
                       width={300}
                       height={200}
-                      className="w-full h-full object-cover rounded-lg shadow-md shadow-slate-400/25 dark:shadow-slate-900/40 grayscale hover:grayscale-0 transition-all duration-600 ease-out transform hover:scale-110 hover:-rotate-2 hover:shadow-xl hover:shadow-sky-500/35 dark:hover:shadow-sky-400/45 active:scale-[1.2] active:grayscale-0 active:-rotate-3 active:shadow-xl active:shadow-sky-600/45 dark:active:shadow-sky-300/55 cursor-pointer sm:active:scale-[1.25] sm:active:-rotate-[5deg]"
+                      className="w-full h-full object-cover rounded-lg shadow-md shadow-slate-400/25 grayscale hover:grayscale-0 transition-all duration-600 ease-out transform hover:scale-110 hover:-rotate-2 active:scale-[1.2] active:grayscale-0 active:-rotate-3 cursor-pointer sm:active:scale-[1.25] sm:active:-rotate-[5deg]"
                     />
                   </div>
                 </div>
@@ -72,7 +72,7 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
             <div data-projects-content>
               <Link href="/projects" passHref>
                 <button
-                  className="inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-sky-400 to-sky-700 dark:bg-gradient-to-r dark:from-sky-400 dark:to-sky-500 hover:from-sky-500 hover:to-sky-800 dark:hover:from-sky-300 dark:hover:to-sky-400 text-white font-semibold rounded-lg transition-all duration-300 shadow-md shadow-sky-400/20 dark:shadow-sky-400/20 hover:shadow-lg hover:shadow-sky-900/30 dark:hover:shadow-sky-500/30 transform hover:-translate-y-0.5 text-left active:translate-y-1 active:scale-95"
+                  className="cursor-pointer inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 dark:from-sky-500 dark:to-sky-400 dark:hover:from-sky-600 dark:hover:to-sky-500 text-white font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-sky-400/40 transform hover:-translate-y-1 text-sm sm:text-base text-left active:translate-y-1 active:scale-95"
                   onClick={startLoading}
                 >
                   View Projects

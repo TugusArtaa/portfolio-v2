@@ -28,7 +28,7 @@ const AboutSection = forwardRef<HTMLElement>((props, ref) => {
                 displayOverlayContent={true}
                 overlayContent={
                   <p
-                    className="absolute top-6 left-6 px-6 py-2 rounded-2xl bg-gray-700/70 text-white text-xl font-bold shadow-lg"
+                    className="absolute top-4 left-4 px-3 py-1 sm:top-6 sm:left-6 sm:px-6 sm:py-2 rounded-2xl bg-gray-700/70 text-white text-base sm:text-xl font-bold shadow-lg"
                     style={{ backdropFilter: "blur(4px)" }}
                   >
                     Hello!
@@ -57,7 +57,7 @@ const AboutSection = forwardRef<HTMLElement>((props, ref) => {
             <div data-about-content>
               <Link href="/about" passHref>
                 <button
-                  className="inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-sky-700 to-sky-400 dark:bg-gradient-to-r dark:from-sky-500 dark:to-sky-400 hover:from-sky-800 hover:to-sky-500 dark:hover:from-sky-400 dark:hover:to-sky-300 text-white font-semibold rounded-lg transition-all duration-300 shadow-md shadow-sky-900/20 dark:shadow-sky-500/20 hover:shadow-lg hover:shadow-sky-900/30 dark:hover:shadow-sky-400/30 transform hover:-translate-y-0.5 text-left active:translate-y-1 active:scale-95"
+                  className="cursor-pointer inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 dark:from-sky-500 dark:to-sky-400 dark:hover:from-sky-600 dark:hover:to-sky-500 text-white font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-sky-400/40 transform hover:-translate-y-1 text-sm sm:text-base text-left active:translate-y-1 active:scale-95"
                   onClick={startLoading}
                 >
                   Learn More

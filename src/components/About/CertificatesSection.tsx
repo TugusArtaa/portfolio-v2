@@ -92,7 +92,7 @@ export default function CertificatesSection({
             Certificates & Achievements
           </h2>
           <p className="text-base sm:text-lg text-slate-600 dark:text-neutral-300">
-            Professional certifications and recognitions
+            Professional Certifications and Recognitions
           </p>
         </div>
 
@@ -134,7 +134,7 @@ export default function CertificatesSection({
                       <div className="hidden lg:flex absolute inset-0 bg-black/50 opacity-0 group-hover/image:opacity-100 transition-all duration-300 rounded-lg items-center justify-center">
                         <button
                           onClick={() => openModal(cert)}
-                          className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-full p-3 hover:bg-white/30 transition-all duration-200 transform hover:scale-110"
+                          className="cursor-pointer bg-white/20 backdrop-blur-sm border border-white/30 rounded-full p-3 hover:bg-white/30 transition-all duration-200 transform hover:scale-110"
                         >
                           <Eye className="w-6 h-6 text-white" />
                         </button>
@@ -182,7 +182,7 @@ export default function CertificatesSection({
               <div className="text-center">
                 <button
                   onClick={() => setShowAll(!showAll)}
-                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 dark:from-sky-500 dark:to-sky-400 dark:hover:from-sky-600 dark:hover:to-sky-500 text-white font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-sky-400/40 transform hover:-translate-y-1"
+                  className="cursor-pointer inline-flex items-center px-6 py-3 bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 dark:from-sky-500 dark:to-sky-400 dark:hover:from-sky-600 dark:hover:to-sky-500 text-white font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-sky-400/40 transform hover:-translate-y-1"
                 >
                   {showAll
                     ? "Show Less"
@@ -255,7 +255,7 @@ export default function CertificatesSection({
                 </div>
                 <button
                   onClick={closeModal}
-                  className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full transition-all duration-200 group"
+                  className="cursor-pointer p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full transition-all duration-200 group"
                 >
                   <X className="w-6 h-6 text-slate-600 dark:text-slate-400 group-hover:rotate-90 transition-transform duration-200" />
                 </button>

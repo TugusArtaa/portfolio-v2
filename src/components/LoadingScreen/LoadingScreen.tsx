@@ -1,13 +1,12 @@
 "use client";
-
-import React from "react";
+import type React from "react";
 import Lottie from "lottie-react";
 import { motion } from "framer-motion";
 import animationData from "../../../public/animations/Animation-Loading.json";
 
 const LoadingScreen: React.FC = () => (
   <motion.div
-    className="fixed inset-0 bg-white/95 dark:bg-slate-950/95 backdrop-blur-lg flex items-center justify-center z-[9999]"
+    className="fixed inset-0 bg-white/95 dark:bg-slate-950/95 backdrop-blur-lg flex items-center justify-center z-[9999] overflow-hidden"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
@@ -28,9 +27,107 @@ const LoadingScreen: React.FC = () => (
       }}
     />
 
+    {/* Title */}
+    <motion.div
+      className="absolute top-12 sm:top-16 left-1/2 transform -translate-x-1/2 px-4"
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -20, opacity: 0 }}
+      transition={{
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94],
+        delay: 0.3,
+      }}
+    >
+      <motion.div
+        className="flex items-center gap-3 sm:gap-4"
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 0.2 }}
+      >
+        {/* Left decoration */}
+        <motion.div
+          className="flex items-center gap-1 sm:gap-1.5"
+          initial={{ x: -5, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.4 }}
+        >
+          <motion.div
+            className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-sky-400 rounded-full"
+            animate={{
+              scale: [1, 1.3, 1],
+              y: [0, -2, 0],
+              opacity: [0.7, 1, 0.7],
+            }}
+            transition={{
+              duration: 2.5,
+              repeat: Number.POSITIVE_INFINITY,
+              delay: 0,
+              ease: "easeInOut",
+            }}
+          />
+          <motion.div
+            className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-blue-500 rounded-full"
+            animate={{
+              scale: [1, 1.4, 1],
+              y: [0, 2, 0],
+              opacity: [0.6, 1, 0.6],
+            }}
+            transition={{
+              duration: 2.5,
+              repeat: Number.POSITIVE_INFINITY,
+              delay: 0.4,
+              ease: "easeInOut",
+            }}
+          />
+        </motion.div>
+
+        {/* Main text */}
+        <h1 className="text-sm sm:text-base md:text-lg text-slate-700 dark:text-slate-200 text-center font-medium whitespace-nowrap">
+          Tuagus Portofolio
+        </h1>
+
+        {/* Right decoration */}
+        <motion.div
+          className="flex items-center gap-1 sm:gap-1.5"
+          initial={{ x: 5, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.4 }}
+        >
+          <motion.div
+            className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-blue-500 rounded-full"
+            animate={{
+              scale: [1, 1.4, 1],
+              y: [0, -2, 0],
+              opacity: [0.6, 1, 0.6],
+            }}
+            transition={{
+              duration: 2.5,
+              repeat: Number.POSITIVE_INFINITY,
+              delay: 0.8,
+              ease: "easeInOut",
+            }}
+          />
+          <motion.div
+            className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-sky-400 rounded-full"
+            animate={{
+              scale: [1, 1.3, 1],
+              y: [0, 2, 0],
+              opacity: [0.7, 1, 0.7],
+            }}
+            transition={{
+              duration: 2.5,
+              repeat: Number.POSITIVE_INFINITY,
+              delay: 1.2,
+              ease: "easeInOut",
+            }}
+          />
+        </motion.div>
+      </motion.div>
+    </motion.div>
+
     {/* Loading content container */}
     <motion.div
-      className="relative flex items-center justify-center"
+      className="relative flex items-center justify-center px-4"
       initial={{ y: 20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: -20, opacity: 0 }}
@@ -40,8 +137,28 @@ const LoadingScreen: React.FC = () => (
         delay: 0.1,
       }}
     >
-      {/* Lottie animation with smooth scale */}
+      {/* Subtle pulsing rings */}
+      {[...Array(2)].map((_, i) => (
+        <motion.div
+          key={`ring-${i}`}
+          className="absolute w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 xl:w-72 xl:h-72 rounded-full border border-sky-300/25 dark:border-sky-400/15 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{
+            scale: [0.9, 1.3 + i * 0.2, 0.9],
+            opacity: [0, 0.6, 0],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Number.POSITIVE_INFINITY,
+            delay: i * 0.6,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+
+      {/* Lottie animation with smooth interactions */}
       <motion.div
+        className="relative z-10"
         initial={{ scale: 0.3, rotate: -45 }}
         animate={{ scale: 1, rotate: 0 }}
         exit={{ scale: 0.3, rotate: 45 }}
@@ -52,13 +169,34 @@ const LoadingScreen: React.FC = () => (
           mass: 1,
           delay: 0.2,
         }}
+        whileHover={{
+          scale: 1.02,
+          transition: { duration: 0.2 },
+        }}
       >
         <Lottie
           animationData={animationData}
           loop
-          className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 drop-shadow-lg"
+          className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:w-64 xl:w-72 xl:h-72 drop-shadow-lg filter brightness-105"
         />
       </motion.div>
+    </motion.div>
+
+    {/* Copyright */}
+    <motion.div
+      className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 px-4"
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: 20, opacity: 0 }}
+      transition={{
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94],
+        delay: 0.4,
+      }}
+    >
+      <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 text-center font-medium">
+        © 2025 I Putu Agus Seniartawan. All rights reserved.
+      </p>
     </motion.div>
   </motion.div>
 );

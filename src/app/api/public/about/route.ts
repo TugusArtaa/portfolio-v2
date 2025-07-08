@@ -2,13 +2,20 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export async function GET() {
-  // Ganti 'about' dengan nama model/table sesuai skema Prisma Anda
-  const about = await prisma.about.findMany();
-  return NextResponse.json(about, {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
-  });
+  try {
+    // Ganti 'about' dengan nama model/table sesuai skema Prisma Anda
+    const about = await prisma.about.findMany();
+    return NextResponse.json(about, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to fetch about data." },
+      { status: 500 }
+    );
+  }
 }
 
 // Tolak method selain GET

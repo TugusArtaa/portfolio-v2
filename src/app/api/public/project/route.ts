@@ -2,13 +2,20 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export async function GET() {
-  // Ganti 'project' dengan nama model/table sesuai skema Prisma Anda
-  const projects = await prisma.project.findMany();
-  return NextResponse.json(projects, {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
-  });
+  try {
+    // Ganti 'project' dengan nama model/table sesuai skema Prisma Anda
+    const projects = await prisma.project.findMany();
+    return NextResponse.json(projects, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to fetch projects." },
+      { status: 500 }
+    );
+  }
 }
 
 // Block all non-GET methods

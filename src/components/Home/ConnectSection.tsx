@@ -10,7 +10,7 @@ const ConnectSection = forwardRef<HTMLElement>((props, ref) => {
         <div className="text-center">
           <h2
             data-connect-content
-            className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-6 text-sky-900 dark:text-white"
+            className="text-xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-6 text-sky-900 dark:text-white"
           >
             Let's Connect
           </h2>
@@ -24,7 +24,7 @@ const ConnectSection = forwardRef<HTMLElement>((props, ref) => {
           <div data-connect-content>
             <Link href="/contact" passHref>
               <button
-                className="inline-flex items-center px-8 sm:px-12 font-bold rounded-lg transition-all duration-300 shadow-none text-3xl sm:text-2xl text-sky-600 dark:text-sky-400 focus:outline-none hover:text-sky-400 dark:hover:text-sky-300 hover:scale-105 group active:translate-y-1 active:scale-95"
+                className="cursor-pointer inline-flex items-center px-8 sm:px-12 font-bold rounded-lg transition-all duration-300 shadow-none text-2xl sm:text-2xl lg:text-2xl text-sky-600 dark:text-sky-400 focus:outline-none hover:text-sky-400 dark:hover:text-sky-300 hover:scale-105 group active:translate-y-1 active:scale-95"
                 onClick={startLoading}
               >
                 Get In Touch

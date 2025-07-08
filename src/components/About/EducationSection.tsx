@@ -40,7 +40,7 @@ export default function EducationSection() {
           Education
         </h2>
         <p className="text-base sm:text-lg text-slate-600 dark:text-neutral-300">
-          Academic background and relevant courses
+          Academic Background and Relevant Courses
         </p>
       </div>
 
@@ -165,7 +165,7 @@ export default function EducationSection() {
                 <div className="text-center pt-4">
                   <button
                     onClick={() => setShowAllCourses(!showAllCourses)}
-                    className="inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 dark:from-sky-500 dark:to-sky-400 dark:hover:from-sky-600 dark:hover:to-sky-500 text-white font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-sky-400/40 transform hover:-translate-y-1 text-sm sm:text-base"
+                    className="cursor-pointer inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 dark:from-sky-500 dark:to-sky-400 dark:hover:from-sky-600 dark:hover:to-sky-500 text-white font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-sky-400/40 transform hover:-translate-y-1 text-sm sm:text-base"
                   >
                     {showAllCourses
                       ? "Show Less"
