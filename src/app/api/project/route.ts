@@ -35,6 +35,7 @@ export async function POST(req: Request) {
       );
     }
 
+    // Validasi opsional: image1, image2, image3 boleh kosong/null
     const newProject = await prisma.project.create({
       data: {
         id: data.id,
@@ -45,6 +46,9 @@ export async function POST(req: Request) {
         coverImage: data.coverImage,
         url: data.url ?? null,
         userId: data.userId ?? null,
+        image1: data.image1 ?? null,
+        image2: data.image2 ?? null,
+        image3: data.image3 ?? null,
       },
     });
     return NextResponse.json(newProject, { status: 201 });

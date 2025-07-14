@@ -169,6 +169,141 @@ export const projectValidationRules: Record<string, ValidationRule> = {
     },
     maxLength: 255,
   },
+  image1: {
+    required: false,
+    maxLength: 255,
+    custom: (value: string) => {
+      if (!value) return null;
+      if (/\s/.test(value)) {
+        return "URL gambar tidak boleh mengandung spasi";
+      }
+      if (value !== value.trim()) {
+        return "URL gambar tidak boleh diawali atau diakhiri spasi";
+      }
+      // Local upload
+      if (
+        value.startsWith("/uploads/") ||
+        value.startsWith("./uploads/") ||
+        value.startsWith("../uploads/")
+      ) {
+        const validExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+        const hasValidExtension = validExtensions.some((ext) =>
+          value.toLowerCase().endsWith(ext)
+        );
+        if (!hasValidExtension) {
+          return "File gambar harus berformat jpg, jpeg, png, gif, atau webp";
+        }
+        return null;
+      }
+      // External URL
+      try {
+        const url = new URL(value);
+        if (!["http:", "https:"].includes(url.protocol)) {
+          return "URL gambar harus diawali dengan http:// atau https://";
+        }
+      } catch {
+        return "Format URL gambar tidak valid";
+      }
+      const validExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+      const hasValidExtension = validExtensions.some((ext) =>
+        value.toLowerCase().includes(ext)
+      );
+      if (!hasValidExtension) {
+        return "URL gambar harus mengarah ke file gambar (jpg, jpeg, png, gif, webp)";
+      }
+      return null;
+    },
+  },
+  image2: {
+    required: false,
+    maxLength: 255,
+    custom: (value: string) => {
+      if (!value) return null;
+      if (/\s/.test(value)) {
+        return "URL gambar tidak boleh mengandung spasi";
+      }
+      if (value !== value.trim()) {
+        return "URL gambar tidak boleh diawali atau diakhiri spasi";
+      }
+      // Local upload
+      if (
+        value.startsWith("/uploads/") ||
+        value.startsWith("./uploads/") ||
+        value.startsWith("../uploads/")
+      ) {
+        const validExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+        const hasValidExtension = validExtensions.some((ext) =>
+          value.toLowerCase().endsWith(ext)
+        );
+        if (!hasValidExtension) {
+          return "File gambar harus berformat jpg, jpeg, png, gif, atau webp";
+        }
+        return null;
+      }
+      // External URL
+      try {
+        const url = new URL(value);
+        if (!["http:", "https:"].includes(url.protocol)) {
+          return "URL gambar harus diawali dengan http:// atau https://";
+        }
+      } catch {
+        return "Format URL gambar tidak valid";
+      }
+      const validExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+      const hasValidExtension = validExtensions.some((ext) =>
+        value.toLowerCase().includes(ext)
+      );
+      if (!hasValidExtension) {
+        return "URL gambar harus mengarah ke file gambar (jpg, jpeg, png, gif, webp)";
+      }
+      return null;
+    },
+  },
+  image3: {
+    required: false,
+    maxLength: 255,
+    custom: (value: string) => {
+      if (!value) return null;
+      if (/\s/.test(value)) {
+        return "URL gambar tidak boleh mengandung spasi";
+      }
+      if (value !== value.trim()) {
+        return "URL gambar tidak boleh diawali atau diakhiri spasi";
+      }
+      // Local upload
+      if (
+        value.startsWith("/uploads/") ||
+        value.startsWith("./uploads/") ||
+        value.startsWith("../uploads/")
+      ) {
+        const validExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+        const hasValidExtension = validExtensions.some((ext) =>
+          value.toLowerCase().endsWith(ext)
+        );
+        if (!hasValidExtension) {
+          return "File gambar harus berformat jpg, jpeg, png, gif, atau webp";
+        }
+        return null;
+      }
+      // External URL
+      try {
+        const url = new URL(value);
+        if (!["http:", "https:"].includes(url.protocol)) {
+          return "URL gambar harus diawali dengan http:// atau https://";
+        }
+      } catch {
+        return "Format URL gambar tidak valid";
+      }
+      const validExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+      const hasValidExtension = validExtensions.some((ext) =>
+        value.toLowerCase().includes(ext)
+      );
+      if (!hasValidExtension) {
+        return "URL gambar harus mengarah ke file gambar (jpg, jpeg, png, gif, webp)";
+      }
+      return null;
+    },
+  },
   url: {
     required: false,
     custom: (value: string) => {

@@ -26,11 +26,17 @@ export default function ProjectForm({ existing, onSuccess }: ProjectFormProps) {
     techStack: "",
     coverImage: "",
     url: "",
+    image1: "",
+    image2: "",
+    image3: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
+  const [previewImage1, setPreviewImage1] = useState("");
+  const [previewImage2, setPreviewImage2] = useState("");
+  const [previewImage3, setPreviewImage3] = useState("");
   const { addToast } = useToast();
 
   useEffect(() => {
@@ -44,8 +50,14 @@ export default function ProjectForm({ existing, onSuccess }: ProjectFormProps) {
           : "",
         coverImage: existing.coverImage || "",
         url: existing.url ?? "",
+        image1: existing.image1 || "",
+        image2: existing.image2 || "",
+        image3: existing.image3 || "",
       });
       setPreviewImage(existing.coverImage || "");
+      setPreviewImage1(existing.image1 || "");
+      setPreviewImage2(existing.image2 || "");
+      setPreviewImage3(existing.image3 || "");
     }
   }, [existing]);
 
@@ -113,7 +125,7 @@ export default function ProjectForm({ existing, onSuccess }: ProjectFormProps) {
       const method = existing ? "PUT" : "POST";
       const url = existing ? `/api/project/${existing.id}` : "/api/project";
 
-      // Generate payload dengan id jika tambah baru
+      // Generate payload dengan field gambar tambahan
       const payload = {
         ...form,
         techStack: form.techStack
@@ -128,6 +140,9 @@ export default function ProjectForm({ existing, onSuccess }: ProjectFormProps) {
               .replace(/(^-|-$)/g, "") +
             "-" +
             Math.random().toString(36).slice(2, 8),
+        image1: form.image1 || null,
+        image2: form.image2 || null,
+        image3: form.image3 || null,
       };
 
       const response = await fetch(url, {
@@ -315,6 +330,46 @@ export default function ProjectForm({ existing, onSuccess }: ProjectFormProps) {
           }}
           onPreviewChange={setPreviewImage}
           error={touched.coverImage ? errors.coverImage : ""}
+        />
+      </div>
+
+      {/* Tambahkan tiga upload gambar baru dengan error & touched */}
+      <div className="space-y-2">
+        <ImageUpload
+          label="Gambar 1 (Opsional)"
+          value={form.image1}
+          onChange={(url) => {
+            setForm((prev) => ({ ...prev, image1: url }));
+            if (errors.image1) {
+              setErrors((prev) => ({ ...prev, image1: "" }));
+            }
+          }}
+          onPreviewChange={setPreviewImage1}
+          error={touched.image1 ? errors.image1 : ""}
+        />
+        <ImageUpload
+          label="Gambar 2 (Opsional)"
+          value={form.image2}
+          onChange={(url) => {
+            setForm((prev) => ({ ...prev, image2: url }));
+            if (errors.image2) {
+              setErrors((prev) => ({ ...prev, image2: "" }));
+            }
+          }}
+          onPreviewChange={setPreviewImage2}
+          error={touched.image2 ? errors.image2 : ""}
+        />
+        <ImageUpload
+          label="Gambar 3 (Opsional)"
+          value={form.image3}
+          onChange={(url) => {
+            setForm((prev) => ({ ...prev, image3: url }));
+            if (errors.image3) {
+              setErrors((prev) => ({ ...prev, image3: "" }));
+            }
+          }}
+          onPreviewChange={setPreviewImage3}
+          error={touched.image3 ? errors.image3 : ""}
         />
       </div>
 

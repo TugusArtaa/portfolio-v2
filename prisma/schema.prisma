@@ -63,6 +63,10 @@ model Project {
 
   userId      String?
   user        User?    @relation(fields: [userId], references: [id])
+
+  image1      String?
+  image2      String?
+  image3      String?
 }
 
 model Skill {

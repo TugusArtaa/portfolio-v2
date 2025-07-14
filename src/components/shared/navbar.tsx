@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import ThemeToggle from "../admin/ThemeToggle";
+import ThemeToggle from "./ThemeToggle";
 import { useState, useEffect } from "react";
 import { useLoading } from "@/context/LoadingContext";
 

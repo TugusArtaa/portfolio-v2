@@ -1,24 +1,9 @@
 "use client";
 
 import { useTheme } from "@/context/ThemeContext";
-import { useState, useEffect } from "react";
 
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  // Don't render anything until client-side
-  if (!isClient) {
-    return (
-      <div className="w-9 h-9 p-2 rounded-lg bg-slate-100 dark:bg-slate-700/50">
-        <div className="w-5 h-5 bg-slate-300 dark:bg-slate-600 rounded animate-pulse"></div>
-      </div>
-    );
-  }
 
   return (
     <button

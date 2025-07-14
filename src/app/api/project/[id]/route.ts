@@ -50,6 +50,9 @@ export async function PUT(
         techStack: data.techStack,
         coverImage: data.coverImage,
         url: data.url,
+        image1: data.image1 ?? null,
+        image2: data.image2 ?? null,
+        image3: data.image3 ?? null,
       },
     });
     return NextResponse.json(updated);

@@ -4,11 +4,11 @@ import { signOut } from "next-auth/react";
 import { useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import ThemeToggle from "./ThemeToggle";
+import ThemeToggle from "../shared/ThemeToggle";
 import UserMenu from "./UserMenu";
 import TimeDisplay from "./TimeDisplay";
 import { useSidebar } from "./AdminSidebar";
-import SplashScreen from "./SplashScreen";
+import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 import { Session } from "next-auth";
 
 interface AdminHeaderProps {
@@ -19,7 +19,7 @@ export default function AdminHeader({ session }: AdminHeaderProps) {
   const { isCollapsed } = useSidebar();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
-  const [showSplash, setShowSplash] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
 
   // Get page info based on pathname
   const getPageInfo = () => {
@@ -176,19 +176,14 @@ export default function AdminHeader({ session }: AdminHeaderProps) {
   const pageInfo = getPageInfo();
 
   const handleLogout = () => {
-    setShowSplash(true);
+    setShowLoading(true);
     setTimeout(() => {
       signOut({ callbackUrl: "/" });
     }, 4000);
   };
 
-  if (showSplash) {
-    return (
-      <SplashScreen
-        messages={["Terima", "Kasih", "Sampai", "Jumpa!"]}
-        duration={1500}
-      />
-    );
+  if (showLoading) {
+    return <LoadingScreen />;
   }
 
   return (

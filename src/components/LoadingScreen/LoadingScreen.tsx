@@ -27,104 +27,6 @@ const LoadingScreen: React.FC = () => (
       }}
     />
 
-    {/* Title */}
-    <motion.div
-      className="absolute top-12 sm:top-16 left-1/2 transform -translate-x-1/2 px-4"
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: -20, opacity: 0 }}
-      transition={{
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94],
-        delay: 0.3,
-      }}
-    >
-      <motion.div
-        className="flex items-center gap-3 sm:gap-4"
-        whileHover={{ scale: 1.05 }}
-        transition={{ duration: 0.2 }}
-      >
-        {/* Left decoration */}
-        <motion.div
-          className="flex items-center gap-1 sm:gap-1.5"
-          initial={{ x: -5, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.4 }}
-        >
-          <motion.div
-            className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-sky-400 rounded-full"
-            animate={{
-              scale: [1, 1.3, 1],
-              y: [0, -2, 0],
-              opacity: [0.7, 1, 0.7],
-            }}
-            transition={{
-              duration: 2.5,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: 0,
-              ease: "easeInOut",
-            }}
-          />
-          <motion.div
-            className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-blue-500 rounded-full"
-            animate={{
-              scale: [1, 1.4, 1],
-              y: [0, 2, 0],
-              opacity: [0.6, 1, 0.6],
-            }}
-            transition={{
-              duration: 2.5,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: 0.4,
-              ease: "easeInOut",
-            }}
-          />
-        </motion.div>
-
-        {/* Main text */}
-        <h1 className="text-sm sm:text-base md:text-lg text-slate-700 dark:text-slate-200 text-center font-medium whitespace-nowrap">
-          Tuagus Portofolio
-        </h1>
-
-        {/* Right decoration */}
-        <motion.div
-          className="flex items-center gap-1 sm:gap-1.5"
-          initial={{ x: 5, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.4 }}
-        >
-          <motion.div
-            className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-blue-500 rounded-full"
-            animate={{
-              scale: [1, 1.4, 1],
-              y: [0, -2, 0],
-              opacity: [0.6, 1, 0.6],
-            }}
-            transition={{
-              duration: 2.5,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: 0.8,
-              ease: "easeInOut",
-            }}
-          />
-          <motion.div
-            className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-sky-400 rounded-full"
-            animate={{
-              scale: [1, 1.3, 1],
-              y: [0, 2, 0],
-              opacity: [0.7, 1, 0.7],
-            }}
-            transition={{
-              duration: 2.5,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: 1.2,
-              ease: "easeInOut",
-            }}
-          />
-        </motion.div>
-      </motion.div>
-    </motion.div>
-
     {/* Loading content container */}
     <motion.div
       className="relative flex items-center justify-center px-4"
@@ -177,7 +79,7 @@ const LoadingScreen: React.FC = () => (
         <Lottie
           animationData={animationData}
           loop
-          className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:w-64 xl:w-72 xl:h-72 drop-shadow-lg filter brightness-105"
+          className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 xl:w-72 xl:h-72 drop-shadow-lg filter brightness-105"
         />
       </motion.div>
     </motion.div>
