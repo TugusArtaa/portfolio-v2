@@ -96,8 +96,9 @@ const LoadingScreen: React.FC = () => (
         delay: 0.4,
       }}
     >
-      <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 text-center font-medium">
-        © 2025 I Putu Agus Seniartawan. All rights reserved.
+      <p className="text-[10px] sm:text-xs md:text-sm lg:text-base text-slate-500 dark:text-slate-400 text-center font-medium px-2 break-words max-w-xs sm:max-w-sm md:max-w-md mx-auto">
+        <span className="block sm:inline">© 2025 I Putu Agus Seniartawan.</span>
+        <span className="block sm:inline sm:ml-1">All rights reserved.</span>
       </p>
     </motion.div>
   </motion.div>
