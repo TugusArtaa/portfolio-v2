@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLoading } from "@/context/LoadingContext";
 import useProjectSectionAnimations from "@/hooks/useProjectSectionAnimations";
+import dynamic from "next/dynamic";
+import { useTheme } from "@/context/ThemeContext";
 
 type ProjectPublic = {
   title: string;
@@ -19,6 +21,10 @@ interface ProjectSectionProps {
   projects: ProjectPublic[];
 }
 
+const GitHubCalendar = dynamic(() => import("react-github-calendar"), {
+  ssr: false,
+});
+
 export default function ProjectSection({ projects }: ProjectSectionProps) {
   const [displayedProjects, setDisplayedProjects] = useState<ProjectPublic[]>(
     []
@@ -27,6 +33,7 @@ export default function ProjectSection({ projects }: ProjectSectionProps) {
   const { startLoading } = useLoading();
   const sectionRef = useRef<HTMLElement>(null) as React.RefObject<HTMLElement>;
   useProjectSectionAnimations(sectionRef);
+  const { theme } = useTheme();
 
   const MAX_PROJECTS = 6;
 
@@ -54,6 +61,7 @@ export default function ProjectSection({ projects }: ProjectSectionProps) {
       className="max-w-6xl mx-auto py-12 px-4"
       data-projects-section
     >
+      {/* Header Section */}
       <div className="text-center mb-8 sm:mb-12">
         <h2
           className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-sky-900 dark:text-white"
@@ -62,11 +70,38 @@ export default function ProjectSection({ projects }: ProjectSectionProps) {
           My Projects
         </h2>
         <p
-          className="text-base sm:text-lg text-slate-600 dark:text-neutral-300"
+          className="text-base sm:text-lg text-slate-600 dark:text-neutral-300 mb-8"
           data-projects-content
         >
           List of my projects that I have done and currently working on.
         </p>
+      </div>
+
+      {/* Github Contribution Calendar Section */}
+      <div className="w-full flex justify-center mb-8">
+        <div className="w-full max-w-6xl bg-white/50 dark:bg-slate-800/50 rounded-xl p-0 border border-slate-200 dark:border-slate-700 shadow-md backdrop-blur-sm overflow-x-auto flex justify-center items-center">
+          <div className="w-full px-4 py-6 sm:px-8 sm:py-8 flex justify-center items-center">
+            <GitHubCalendar
+              username="TugusArtaa"
+              blockSize={15}
+              blockMargin={4}
+              fontSize={12}
+              hideTotalCount={false}
+              hideColorLegend={false}
+              showWeekdayLabels={true}
+              maxLevel={4}
+              colorScheme={theme === "dark" ? "dark" : "light"}
+              theme={{
+                light: ["#fefefe", "#7dd3fc", "#38bdf8", "#0ea5e9", "#0369a1"],
+                dark: ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
+              }}
+              labels={{
+                totalCount:
+                  "{{count}} contributions in the last year (Public Repo)",
+              }}
+            />
+          </div>
+        </div>
       </div>
 
       {projects.length === 0 ? (
