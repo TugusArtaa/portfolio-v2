@@ -17,7 +17,7 @@ async function getData(endpoint: string) {
   return res.json();
 }
 
-// Mock data untuk experience (nanti bisa diganti dengan data dari API)
+// Mock data untuk experience
 const experiences = [
   {
     id: 1,

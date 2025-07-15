@@ -111,7 +111,7 @@ export function Navbar({
                     />
                   </svg>
                 </div>
-                <span className="text-lg font-extrabold md:font-bold bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent group-hover:from-sky-500 group-hover:to-sky-400 dark:group-hover:from-sky-500 dark:group-hover:to-sky-400 transition-all duration-300">
+                <span className="text-lg font-bold bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent group-hover:from-sky-500 group-hover:to-sky-400 dark:group-hover:from-sky-500 dark:group-hover:to-sky-400 transition-all duration-300">
                   Tuagus
                 </span>
               </Link>
