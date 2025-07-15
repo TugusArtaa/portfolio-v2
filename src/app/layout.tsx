@@ -23,6 +23,12 @@ function GlobalLoading() {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="id">
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body>
         <LoadingProvider>
           <GlobalLoading />
