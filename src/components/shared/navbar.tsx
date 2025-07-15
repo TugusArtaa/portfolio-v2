@@ -81,37 +81,37 @@ export function Navbar({
                 className="flex items-center space-x-2 group"
                 onClick={() => startLoading()}
               >
-                <div className="w-8 h-8 bg-gradient-to-r from-sky-500 to-sky-400 rounded-lg flex items-center justify-center transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 ease-out shadow-lg shadow-purple-500/25">
+                <div className="w-8 h-8 flex items-center justify-center transform group-hover:rotate-6 group-hover:scale-110 transition-all duration-500 ease-out">
                   <svg
-                    className="w-8 h-8 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 ease-out"
+                    className="w-8 h-8 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 ease-out text-slate-900 dark:text-white group-hover:text-sky-500 dark:group-hover:text-sky-400"
                     viewBox="0 0 64 64"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
                       d="M20 24L8 32L20 40"
-                      stroke="white"
+                      stroke="currentColor"
                       strokeWidth="4"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                     <path
                       d="M44 24L56 32L44 40"
-                      stroke="white"
+                      stroke="currentColor"
                       strokeWidth="4"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                     <path
                       d="M28 48L36 16"
-                      stroke="white"
+                      stroke="currentColor"
                       strokeWidth="4"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                   </svg>
                 </div>
-                <span className="text-lg font-bold bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent group-hover:from-sky-500 group-hover:to-sky-400 dark:group-hover:from-sky-500 dark:group-hover:to-sky-400 transition-all duration-300">
+                <span className="text-lg font-extrabold md:font-bold bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent group-hover:from-sky-500 group-hover:to-sky-400 dark:group-hover:from-sky-500 dark:group-hover:to-sky-400 transition-all duration-300">
                   Tuagus
                 </span>
               </Link>
