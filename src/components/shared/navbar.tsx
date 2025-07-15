@@ -79,7 +79,9 @@ export function Navbar({
               <Link
                 href="/"
                 className="flex items-center space-x-2 group"
-                onClick={() => startLoading()}
+                onClick={() => {
+                  if (pathname !== "/") startLoading();
+                }}
               >
                 <div className="w-8 h-8 flex items-center justify-center transform group-hover:rotate-6 group-hover:scale-110 transition-all duration-500 ease-out">
                   <svg
@@ -125,7 +127,9 @@ export function Navbar({
                     <Link
                       key={link.href}
                       href={link.href}
-                      onClick={() => startLoading()}
+                      onClick={() => {
+                        if (pathname !== link.href) startLoading();
+                      }}
                       className={cn(
                         "px-4 py-2 rounded-full text-sm font-medium transition-all duration-500 ease-out relative overflow-hidden group",
                         pathname === link.href
@@ -251,7 +255,9 @@ export function Navbar({
                 <Link
                   key={link.href}
                   href={link.href}
-                  onClick={() => startLoading()}
+                  onClick={() => {
+                    if (pathname !== link.href) startLoading();
+                  }}
                   className={cn(
                     "block px-6 py-3 rounded-full text-center font-medium transition-all duration-500 ease-out transform hover:scale-105 relative overflow-hidden group",
                     pathname === link.href
