@@ -1,4 +1,3 @@
-// filepath: c:\laragon\www\portofolio-web\src\components\shared\InfoCard.tsx
 "use client";
 import React from "react";
 
