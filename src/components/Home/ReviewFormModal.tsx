@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useToast } from "@/components/UI/Toast";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { Button } from "@/components/UI/StatefulButton";
+import { useSound } from "react-sounds";
 
 interface Props {
   open: boolean;
@@ -105,6 +106,7 @@ const ReviewFormModal: React.FC<Props> = ({ open, onClose, onSuccess }) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const { addToast } = useToast();
+  const { play: playError } = useSound("notification/error");
 
   if (!open) return null;
 
@@ -130,6 +132,7 @@ const ReviewFormModal: React.FC<Props> = ({ open, onClose, onSuccess }) => {
     const errs = validate();
     if (Object.keys(errs).length) {
       setErrors(errs);
+      playError();
       return;
     }
     setLoading(true);
@@ -146,6 +149,7 @@ const ReviewFormModal: React.FC<Props> = ({ open, onClose, onSuccess }) => {
       setTimeout(() => setSuccess(false), 2000);
       onSuccess();
     } catch {
+      playError();
       addToast({
         type: "error",
         title: "Failed to submit review",

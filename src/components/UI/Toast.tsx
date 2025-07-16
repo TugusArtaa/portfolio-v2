@@ -8,6 +8,7 @@ import {
   ReactNode,
   useEffect,
 } from "react";
+import { useSound } from "react-sounds";
 
 interface Toast {
   id: string;
@@ -109,6 +110,36 @@ function ToastItem({
 }) {
   const [isVisible, setIsVisible] = useState(false);
   const [progress, setProgress] = useState(100);
+
+  // Sound hooks for each notification type
+  const { play: playSuccess } = useSound("notification/completed");
+  const { play: playError } = useSound("notification/error");
+  const { play: playInfo } = useSound("notification/info");
+  const { play: playWarning } = useSound("notification/warning");
+
+  useEffect(() => {
+    if (isVisible) return;
+    const timer = setTimeout(() => setIsVisible(true), 50);
+    // Play sound after a short delay
+    setTimeout(() => {
+      switch (toast.type) {
+        case "success":
+          playSuccess();
+          break;
+        case "error":
+          playError();
+          break;
+        case "warning":
+          playWarning();
+          break;
+        case "info":
+        default:
+          playInfo();
+          break;
+      }
+    }, 60);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     // Animate in
