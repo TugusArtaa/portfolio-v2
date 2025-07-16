@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import ProjectForm from "../../_form";
 import React from "react";
-import LoadingSkeleton from "@/components/shared/LoadingSkeleton";
+import LoadingSkeleton from "@/components/Shared/LoadingSkeleton";
 import { Project } from "@prisma/client";
 
 export default function EditProjectPage({

@@ -2,9 +2,9 @@
 
 import type React from "react";
 import { usePathname } from "next/navigation";
-import { Navbar } from "@/components/shared/navbar";
-import { Footer } from "@/components/shared/footer";
-import GridBackground from "@/components/ui/grid-background";
+import { Navbar } from "@/components/Shared/Navbar";
+import { Footer } from "@/components/Shared/Footer";
+import GridBackground from "@/components/UI/GridBackground";
 import { useLoading } from "@/context/LoadingContext";
 import { useEffect, useRef } from "react";
 

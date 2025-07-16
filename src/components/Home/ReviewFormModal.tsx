@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useToast } from "@/components/ui/toast";
+import { useToast } from "@/components/UI/Toast";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
-import { Button } from "@/components/ui/stateful-button";
+import { Button } from "@/components/UI/StatefulButton";
 
 interface Props {
   open: boolean;

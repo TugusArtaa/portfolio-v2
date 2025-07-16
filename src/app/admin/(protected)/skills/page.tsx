@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useToast } from "@/components/ui/toast";
-import DeleteConfirmationModal from "@/components/shared/DeleteConfirmationModal";
-import PageHeader from "@/components/shared/PageHeader";
-import LoadingSkeleton from "@/components/shared/LoadingSkeleton";
-import EmptyState from "@/components/shared/EmptyState";
-import Pagination from "@/components/shared/Pagination";
+import { useToast } from "@/components/UI/Toast";
+import DeleteConfirmationModal from "@/components/Shared/DeleteConfirmationModal";
+import PageHeader from "@/components/Shared/PageHeader";
+import LoadingSkeleton from "@/components/Shared/LoadingSkeleton";
+import EmptyState from "@/components/Shared/EmptyState";
+import Pagination from "@/components/Shared/Pagination";
 import { useRouter } from "next/navigation";
-import SkillsCard from "@/components/shared/SkillsCard";
+import SkillsCard from "@/components/Shared/SkillsCard";
 import { Skill } from "@prisma/client";
 
 export default function SkillsPage() {

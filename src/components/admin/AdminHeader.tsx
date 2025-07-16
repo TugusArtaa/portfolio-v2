@@ -4,7 +4,7 @@ import { signOut } from "next-auth/react";
 import { useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import ThemeToggle from "../shared/ThemeToggle";
+import ThemeToggle from "../Shared/ThemeToggle";
 import UserMenu from "./UserMenu";
 import TimeDisplay from "./TimeDisplay";
 import { useSidebar } from "./AdminSidebar";

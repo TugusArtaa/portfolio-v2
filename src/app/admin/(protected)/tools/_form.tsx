@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import FormLayout from "@/components/shared/FormLayout";
-import FormInput from "@/components/shared/FormInput";
-import ImageUpload from "@/components/shared/ImageUpload";
-import ToolsPreview from "@/components/shared/ToolsPreview";
-import LevelPicker from "@/components/shared/LevelPicker";
-import { useToast } from "@/components/ui/toast";
+import FormLayout from "@/components/Shared/FormLayout";
+import FormInput from "@/components/Shared/FormInput";
+import ImageUpload from "@/components/Shared/ImageUpload";
+import ToolsPreview from "@/components/Shared/ToolsPreview";
+import LevelPicker from "@/components/Shared/LevelPicker";
+import { useToast } from "@/components/UI/Toast";
 import {
   validateForm,
   validateField,

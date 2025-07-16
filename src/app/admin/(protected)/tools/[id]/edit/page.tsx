@@ -2,7 +2,7 @@
 
 import { useEffect, useState, use } from "react";
 import ToolForm from "../../_form";
-import LoadingSkeleton from "@/components/shared/LoadingSkeleton";
+import LoadingSkeleton from "@/components/Shared/LoadingSkeleton";
 import { Tool } from "@prisma/client";
 
 export default function EditToolPage({

@@ -2,9 +2,9 @@
 
 import "@/styles/globals.css";
 import React, { ReactNode } from "react";
-import ConditionalLayout from "@/components/shared/ConditionalLayout";
+import ConditionalLayout from "@/components/Shared/ConditionalLayout";
 import { ThemeProvider } from "@/context/ThemeContext";
-import { ToastProvider } from "@/components/ui/toast";
+import { ToastProvider } from "@/components/UI/Toast";
 import { LoadingProvider, useLoading } from "@/context/LoadingContext";
 import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 import { AnimatePresence } from "framer-motion";

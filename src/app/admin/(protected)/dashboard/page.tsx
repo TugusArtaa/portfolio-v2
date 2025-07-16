@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import WelcomeSection from "@/components/shared/WelcomeSection";
-import LoadingSkeleton from "@/components/shared/LoadingSkeleton";
-import DashboardCard from "@/components/shared/DashboardCard";
-import QuickActionCard from "@/components/shared/QuickActionCard";
-import InfoCard from "@/components/shared/InfoCard";
+import WelcomeSection from "@/components/Shared/WelcomeSection";
+import LoadingSkeleton from "@/components/Shared/LoadingSkeleton";
+import DashboardCard from "@/components/Shared/DashboardCard";
+import QuickActionCard from "@/components/Shared/QuickActionCard";
+import InfoCard from "@/components/Shared/InfoCard";
 
 const DASHBOARD_CARDS = [
   {

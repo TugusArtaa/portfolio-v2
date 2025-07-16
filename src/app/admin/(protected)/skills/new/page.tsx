@@ -2,7 +2,7 @@
 
 import SkillForm from "../_form";
 import { useState, useEffect } from "react";
-import LoadingSkeleton from "@/components/shared/LoadingSkeleton";
+import LoadingSkeleton from "@/components/Shared/LoadingSkeleton";
 
 export default function NewSkillPage() {
   const [isLoading, setIsLoading] = useState(true);

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { useToast } from "@/components/ui/toast";
-import { Button } from "@/components/ui/stateful-button";
+import { useToast } from "@/components/UI/Toast";
+import { Button } from "@/components/UI/StatefulButton";
 import { motion } from "framer-motion";
 import useContactSectionAnimations from "@/hooks/useContactSectionAnimations";
 

@@ -3,8 +3,8 @@
 import { signIn } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/components/UI/Button";
+import { Input } from "@/components/UI/Input";
 import { useTheme } from "@/context/ThemeContext";
 import { validateLoginForm } from "@/lib/validation";
 import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";

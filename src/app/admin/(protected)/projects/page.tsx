@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import DeleteConfirmationModal from "@/components/shared/DeleteConfirmationModal";
-import ProjectCard from "@/components/shared/ProjectCard";
-import PageHeader from "@/components/shared/PageHeader";
-import LoadingSkeleton from "@/components/shared/LoadingSkeleton";
-import EmptyState from "@/components/shared/EmptyState";
-import Pagination from "@/components/shared/Pagination";
-import { useToast } from "@/components/ui/toast";
+import DeleteConfirmationModal from "@/components/Shared/DeleteConfirmationModal";
+import ProjectCard from "@/components/Shared/ProjectCard";
+import PageHeader from "@/components/Shared/PageHeader";
+import LoadingSkeleton from "@/components/Shared/LoadingSkeleton";
+import EmptyState from "@/components/Shared/EmptyState";
+import Pagination from "@/components/Shared/Pagination";
+import { useToast } from "@/components/UI/Toast";
 import { Project } from "@prisma/client";
 
 export default function ProjectListPage() {

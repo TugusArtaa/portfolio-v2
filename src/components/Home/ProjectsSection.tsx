@@ -22,7 +22,8 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
                     alt="Main Project"
                     width={500}
                     height={400}
-                    className="w-full h-full object-cover rounded-lg shadow-lg shadow-slate-400/30 grayscale hover:grayscale-0 transition-all duration-700 ease-out transform hover:scale-105 active:scale-110 active:grayscale-0 cursor-pointer sm:active:scale-[1.15]"
+                    priority
+                    className="w-full h-full object-cover rounded-lg shadow-lg shadow-slate-400/30 grayscale hover:grayscale-0 transition-all duration-700 ease-out transform hover:scale-105 active:scale-110 active:grayscale-0 sm:active:scale-[1.15]"
                   />
                 </div>
 
@@ -35,7 +36,7 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
                       alt="Project 2"
                       width={300}
                       height={200}
-                      className="w-full h-full object-cover rounded-lg shadow-md shadow-slate-400/25 grayscale hover:grayscale-0 transition-all duration-600 ease-out transform hover:scale-110 hover:rotate-2 active:scale-[1.2] active:grayscale-0 active:rotate-3 cursor-pointer sm:active:scale-[1.25] sm:active:rotate-[5deg]"
+                      className="w-full h-full object-cover rounded-lg shadow-md shadow-slate-400/25 grayscale hover:grayscale-0 transition-all duration-600 ease-out transform hover:scale-110 hover:rotate-2 active:scale-[1.2] active:grayscale-0 active:rotate-3 sm:active:scale-[1.25] sm:active:rotate-[5deg]"
                     />
                   </div>
 
@@ -46,7 +47,7 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
                       alt="Project 3"
                       width={300}
                       height={200}
-                      className="w-full h-full object-cover rounded-lg shadow-md shadow-slate-400/25 grayscale hover:grayscale-0 transition-all duration-600 ease-out transform hover:scale-110 hover:-rotate-2 active:scale-[1.2] active:grayscale-0 active:-rotate-3 cursor-pointer sm:active:scale-[1.25] sm:active:-rotate-[5deg]"
+                      className="w-full h-full object-cover rounded-lg shadow-md shadow-slate-400/25 grayscale hover:grayscale-0 transition-all duration-600 ease-out transform hover:scale-110 hover:-rotate-2 active:scale-[1.2] active:grayscale-0 active:-rotate-3 sm:active:scale-[1.25] sm:active:-rotate-[5deg]"
                     />
                   </div>
                 </div>

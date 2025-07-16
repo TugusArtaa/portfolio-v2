@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import FormLayout from "@/components/shared/FormLayout";
-import FormInput from "@/components/shared/FormInput";
-import SertifikatPreview from "@/components/shared/SertifikatPreview";
-import ImageUpload from "@/components/shared/ImageUpload";
-import { useToast } from "@/components/ui/toast";
+import FormLayout from "@/components/Shared/FormLayout";
+import FormInput from "@/components/Shared/FormInput";
+import SertifikatPreview from "@/components/Shared/SertifikatPreview";
+import ImageUpload from "@/components/Shared/ImageUpload";
+import { useToast } from "@/components/UI/Toast";
 import {
   validateForm,
   validateField,

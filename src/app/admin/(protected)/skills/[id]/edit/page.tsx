@@ -2,7 +2,7 @@
 
 import { useEffect, useState, use } from "react";
 import SkillForm from "../../_form";
-import LoadingSkeleton from "@/components/shared/LoadingSkeleton";
+import LoadingSkeleton from "@/components/Shared/LoadingSkeleton";
 import { Skill } from "@prisma/client";
 
 export default function EditSkillPage({
