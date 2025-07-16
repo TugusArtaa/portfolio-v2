@@ -185,10 +185,11 @@ function ToastItem({
   const styles = getToastStyles();
 
   const baseClasses = `
-    relative border backdrop-blur-xl rounded-2xl overflow-hidden pointer-events-auto
+    relative border rounded-lg overflow-hidden pointer-events-auto
     transform transition-all duration-500 ease-out
-    ${styles.bg} ${styles.border} ${styles.shadow}
-    ${mobile ? "mx-auto max-w-lg shadow-xl" : "w-full shadow-lg"}
+    bg-white dark:bg-slate-950
+    ${styles.border} ${styles.shadow}
+    ${mobile ? "mx-auto max-w-md shadow-lg" : "w-full shadow-md"}
     ${
       isVisible
         ? "translate-x-0 opacity-100 scale-100"
@@ -196,105 +197,105 @@ function ToastItem({
         ? "translate-y-[-100%] opacity-0 scale-95"
         : "translate-x-full opacity-0 scale-95"
     }
-    hover:scale-[1.02] hover:shadow-lg
+    hover:scale-[1.01] hover:shadow-md
+    group
   `
     .trim()
     .replace(/\s+/g, " ");
 
   return (
     <div className={baseClasses}>
+      {/* Close Button (X) */}
+      <button
+        onClick={onClose}
+        className={`
+          absolute top-2 right-2 z-10
+          flex-shrink-0 rounded-full
+          hover:bg-slate-100/80 dark:hover:bg-slate-800/80
+          active:scale-95
+          p-1
+        `}
+        aria-label="Close"
+        tabIndex={0}
+      >
+        <svg
+          className={`
+            text-slate-400 hover:text-slate-600 dark:hover:text-slate-300
+            transition-colors duration-200
+            w-4 h-4
+          `}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          strokeWidth={2}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+
+      <div
+        className={
+          mobile
+            ? "p-3 sm:p-4 flex items-center"
+            : "p-3 lg:p-4 flex items-center"
+        }
+      >
+        {/* Icon */}
+        <div
+          className={`
+            ${styles.iconBg}
+            rounded-full flex items-center justify-center
+            ${mobile ? "w-6 h-6 mr-3" : "w-7 h-7 mr-3"}
+            flex-shrink-0
+          `}
+        >
+          <svg
+            className={`${styles.icon} ${mobile ? "w-3.5 h-3.5" : "w-4 h-4"}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d={styles.iconPath}
+            />
+          </svg>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          <h4
+            className={`
+              font-bold text-slate-900 dark:text-white leading-tight
+              ${mobile ? "text-xs" : "text-sm"}
+            `}
+          >
+            {toast.title}
+          </h4>
+          {toast.message && (
+            <p
+              className={`
+                text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed
+                ${mobile ? "text-[10px]" : "text-xs"}
+              `}
+            >
+              {toast.message}
+            </p>
+          )}
+        </div>
+      </div>
       {/* Progress Bar */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-slate-200/30 dark:bg-slate-700/30">
+      <div className="w-full h-1 bg-slate-200/30 dark:bg-slate-700/30">
         <div
           className={`h-full transition-all duration-75 ease-linear rounded-r-full ${styles.progressBar}`}
           style={{ width: `${progress}%` }}
         />
-      </div>
-
-      <div className={mobile ? "p-4 sm:p-5" : "p-4 lg:p-5"}>
-        <div className="flex items-start gap-4">
-          {/* Enhanced Icon */}
-          <div
-            className={`
-            ${styles.iconBg}
-            rounded-xl p-2.5 flex-shrink-0 shadow-lg
-            transform transition-transform duration-300 hover:scale-110
-            ${mobile ? "w-10 h-10" : "w-11 h-11"}
-          `}
-          >
-            <svg
-              className={`${styles.icon} ${mobile ? "w-5 h-5" : "w-6 h-6"}`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              strokeWidth={2.5}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d={styles.iconPath}
-              />
-            </svg>
-          </div>
-
-          {/* Content */}
-          <div className="flex-1 min-w-0">
-            <h4
-              className={`
-              font-bold text-slate-900 dark:text-white leading-tight
-              ${mobile ? "text-sm" : "text-sm lg:text-base"}
-            `}
-            >
-              {toast.title}
-            </h4>
-            {toast.message && (
-              <p
-                className={`
-                text-slate-600 dark:text-slate-400 mt-1 leading-relaxed
-                ${mobile ? "text-xs" : "text-xs lg:text-sm"}
-              `}
-              >
-                {toast.message}
-              </p>
-            )}
-          </div>
-
-          {/* Enhanced Close Button */}
-          <button
-            onClick={onClose}
-            className={`
-              flex-shrink-0 rounded-lg transition-all duration-200
-              hover:bg-slate-100/80 dark:hover:bg-slate-700/80
-              active:scale-95 group
-              ${mobile ? "p-1.5" : "p-2"}
-            `}
-          >
-            <svg
-              className={`
-                text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300
-                transition-colors duration-200
-                ${mobile ? "w-4 h-4" : "w-4 h-4 lg:w-5 lg:h-5"}
-              `}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </div>
-
-        {/* Decorative Elements */}
-        <div className="absolute top-0 right-0 w-16 h-16 opacity-10">
-          <div
-            className={`w-full h-full ${styles.iconBg} rounded-full blur-xl transform translate-x-8 -translate-y-8`}
-          />
-        </div>
       </div>
     </div>
   );

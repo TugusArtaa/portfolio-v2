@@ -4,15 +4,27 @@ import AnimatedTitle from "@/components/AnimatedTitle/AnimatedTitle";
 import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
 import { useLoading } from "@/context/LoadingContext";
+import { useToast } from "@/components/UI/Toast";
 
 const HeroSection = forwardRef<HTMLElement>((props, ref) => {
   const { startLoading } = useLoading();
+  const { addToast } = useToast();
 
   // Handler for Contact Me button (left)
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
     startLoading();
     window.location.href = "/contact";
+  };
+
+  // Handler for Download CV button
+  const handleDownloadClick = () => {
+    addToast({
+      type: "success",
+      title: "Download Started",
+      message: "Your CV download has started successfully.",
+      duration: 3000,
+    });
   };
 
   return (
@@ -78,6 +90,7 @@ const HeroSection = forwardRef<HTMLElement>((props, ref) => {
               href="/cv/CV_ATS_Putu_Aguss.pdf"
               download
               className="group relative overflow-hidden bg-gradient-to-r from-sky-700 to-sky-400 hover:from-transparent hover:to-transparent dark:bg-gradient-to-r dark:from-sky-500 dark:to-sky-400 dark:hover:from-transparent dark:hover:to-transparent text-white hover:text-sky-900 dark:hover:text-sky-400 font-semibold border-2 border-sky-400 dark:border-sky-400 hover:border-sky-400 hover:dark:border-sky-400 px-4 py-2 sm:px-6 sm:py-3 rounded-xl shadow-md hover:shadow-lg hover:shadow-sky-400/40 transform hover:-translate-y-0.5 transition-all duration-300 text-sm sm:text-base text-left active:translate-y-1 active:scale-95"
+              onClick={handleDownloadClick}
             >
               <span className="relative z-10">Download CV</span>
             </a>

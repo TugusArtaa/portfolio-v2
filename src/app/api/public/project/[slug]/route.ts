@@ -3,8 +3,10 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   _: Request,
-  { params }: { params: { slug: string } }
+  context: { params: Promise<{ slug: string }> }
 ) {
+  const params = await context.params;
+
   try {
     const project = await prisma.project.findFirst({
       where: { slug: params.slug },
