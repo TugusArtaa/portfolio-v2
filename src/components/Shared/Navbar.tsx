@@ -43,6 +43,7 @@ export function Navbar({
 }) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const { startLoading } = useLoading();
 
   // GSAP refs
@@ -150,10 +151,13 @@ export function Navbar({
 
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
+      setShowMobileMenu(true); // pastikan overlay terlihat sebelum animasi
       timelineRef.current.play();
     } else {
       document.body.style.overflow = "unset";
-      timelineRef.current.reverse();
+      timelineRef.current.reverse().then(() => {
+        setShowMobileMenu(false); // sembunyikan overlay setelah animasi tutup selesai
+      });
     }
 
     return () => {
@@ -195,6 +199,12 @@ export function Navbar({
         startLoading();
       }, 100);
     }
+  };
+
+  // --- Tambahkan handler toggle menu ---
+  const handleMobileMenuToggle = () => {
+    if (!isMobileMenuOpen) setShowMobileMenu(true);
+    setIsMobileMenuOpen((v) => !v);
   };
 
   return (
@@ -325,7 +335,7 @@ export function Navbar({
 
               {/* Mobile Menu Button */}
               <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                onClick={handleMobileMenuToggle}
                 className="md:hidden p-2.5 rounded-full bg-white/20 dark:bg-slate-800/40 backdrop-blur-sm border border-white/30 dark:border-slate-700/40 text-slate-700 dark:text-slate-300 hover:bg-white/30 dark:hover:bg-slate-700/50 transition-all duration-300 hover:scale-110"
               >
                 <div className="relative w-5 h-5">
@@ -355,7 +365,13 @@ export function Navbar({
       </header>
 
       {/* Mobile Menu Overlay */}
-      <div ref={mobileMenuRef} className="fixed inset-0 z-40 md:hidden">
+      <div
+        ref={mobileMenuRef}
+        className={cn(
+          "fixed inset-0 z-40 md:hidden",
+          !showMobileMenu && "hidden"
+        )}
+      >
         {/* Backdrop */}
         <div
           ref={backdropRef}
