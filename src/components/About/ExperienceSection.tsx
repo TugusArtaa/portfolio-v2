@@ -76,11 +76,11 @@ export default function ExperienceSection({
   return (
     <section className="mb-20 sm:mb-24">
       <div className="text-center mb-12 sm:mb-16">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-sky-900 dark:text-white">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-sky-900 dark:text-white">
           My Experience
         </h2>
-        <p className="text-base sm:text-lg text-slate-600 dark:text-neutral-300">
-          Technologies and Frameworks I Work With
+        <p className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-neutral-300">
+          Where I Learn, Build, and Contribute
         </p>
       </div>
 
@@ -98,7 +98,7 @@ export default function ExperienceSection({
             borderRadius: "9999px",
             boxShadow:
               "0 0 8px 2px rgba(56,189,248,0.18), 0 0 16px 4px rgba(37,99,235,0.10)",
-            transition: undefined, // remove transition for real-time update
+            transition: undefined,
             willChange: "height",
           }}
         />
@@ -130,16 +130,16 @@ export default function ExperienceSection({
                         <Image
                           src={exp.logo || "/placeholder.svg"}
                           alt={exp.company}
-                          width={28}
-                          height={28}
+                          width={34}
+                          height={34}
                           className="rounded-full"
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-neutral-100 leading-tight mb-1">
+                        <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-800 dark:text-neutral-100 leading-tight mb-1">
                           {exp.title}
                         </h3>
-                        <p className="text-sky-600 dark:text-sky-400 font-semibold text-base sm:text-lg">
+                        <p className="text-sm sm:text-base lg:text-lg text-sky-600 dark:text-sky-400 font-medium">
                           {exp.company}
                         </p>
                       </div>
@@ -161,7 +161,7 @@ export default function ExperienceSection({
                             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                           />
                         </svg>
-                        <span className="text-sm font-medium text-sky-700 dark:text-sky-300">
+                        <span className="text-xs sm:text-sm lg:text-base font-medium text-sky-700 dark:text-sky-300">
                           {exp.startDate} - {exp.endDate}
                         </span>
                       </div>
@@ -185,14 +185,14 @@ export default function ExperienceSection({
                             d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                           />
                         </svg>
-                        <span className="text-sm font-medium text-slate-600 dark:text-slate-300">
+                        <span className="text-xs sm:text-sm lg:text-base font-medium text-slate-600 dark:text-slate-300">
                           {exp.location}
                         </span>
                       </div>
                     </div>
 
                     {/* Description */}
-                    <p className="text-slate-600 dark:text-neutral-300 leading-relaxed text-sm sm:text-base">
+                    <p className="text-xs sm:text-sm lg:text-base text-slate-600 dark:text-neutral-300 leading-relaxed text-justify">
                       {exp.description}
                     </p>
                   </div>
@@ -205,13 +205,13 @@ export default function ExperienceSection({
           <div className="text-center mt-8 relative z-10">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="cursor-pointer inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 dark:from-sky-500 dark:to-sky-400 dark:hover:from-sky-600 dark:hover:to-sky-500 text-white font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-sky-400/40 text-sm sm:text-base"
+              className="cursor-pointer inline-flex items-center px-3 py-2 sm:px-4 sm:py-3 lg:px-6 lg:py-4 bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 dark:from-sky-500 dark:to-sky-400 dark:hover:from-sky-600 dark:hover:to-sky-500 text-white font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-sky-400/40 text-xs sm:text-sm lg:text-base"
             >
               {showAll
                 ? "Show Less"
                 : `View More Experience (${experiences.length - 3})`}
               <svg
-                className={`ml-2 w-3 h-3 sm:w-4 sm:h-4 transition-transform duration-300 ${
+                className={`ml-2 w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 transition-transform duration-300 ${
                   showAll ? "rotate-180" : ""
                 }`}
                 fill="none"

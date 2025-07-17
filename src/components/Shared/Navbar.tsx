@@ -4,8 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "./ThemeToggle";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLoading } from "@/context/LoadingContext";
+import { gsap } from "gsap";
 
 const links = [
   { href: "/", label: "Home" },
@@ -44,23 +45,157 @@ export function Navbar({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { startLoading } = useLoading();
 
-  // Close mobile menu when route changes
+  // GSAP refs
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const backdropRef = useRef<HTMLDivElement>(null);
+  const menuContainerRef = useRef<HTMLDivElement>(null);
+  const menuItemsRef = useRef<(HTMLAnchorElement | null)[]>([]);
+  const socialIconsRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
+
+  // Close mobile menu when route changes - remove loading dependency
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
-  // Prevent body scroll when mobile menu is open
+  // GSAP Animation Setup
   useEffect(() => {
+    if (!mobileMenuRef.current) return;
+
+    const tl = gsap.timeline({ paused: true });
+    timelineRef.current = tl;
+
+    // Set initial states
+    gsap.set(mobileMenuRef.current, { autoAlpha: 0 });
+    gsap.set(backdropRef.current, { autoAlpha: 0 });
+    gsap.set(menuContainerRef.current, {
+      y: -30,
+      scale: 0.9,
+      autoAlpha: 0,
+      rotationX: -15,
+    });
+    gsap.set(menuItemsRef.current, {
+      y: 20,
+      autoAlpha: 0,
+      scale: 0.8,
+    });
+    gsap.set(socialIconsRef.current, {
+      y: 15,
+      autoAlpha: 0,
+      scale: 0.9,
+    });
+
+    // Animation timeline
+    tl.to(mobileMenuRef.current, {
+      autoAlpha: 1,
+      duration: 0.1,
+      ease: "power2.out",
+    })
+      .to(
+        backdropRef.current,
+        {
+          autoAlpha: 1,
+          duration: 0.4,
+          ease: "power2.out",
+        },
+        0
+      )
+      .to(
+        menuContainerRef.current,
+        {
+          y: 0,
+          scale: 1,
+          autoAlpha: 1,
+          rotationX: 0,
+          duration: 0.6,
+          ease: "back.out(1.7)",
+        },
+        0.1
+      )
+      .to(
+        menuItemsRef.current,
+        {
+          y: 0,
+          autoAlpha: 1,
+          scale: 1,
+          duration: 0.5,
+          stagger: {
+            amount: 0.3,
+            ease: "power2.out",
+          },
+          ease: "back.out(1.4)",
+        },
+        0.3
+      )
+      .to(
+        socialIconsRef.current,
+        {
+          y: 0,
+          autoAlpha: 1,
+          scale: 1,
+          duration: 0.5,
+          ease: "back.out(1.2)",
+        },
+        0.6
+      );
+
+    return () => {
+      timelineRef.current?.kill();
+    };
+  }, []);
+
+  // Handle menu toggle
+  useEffect(() => {
+    if (!timelineRef.current) return;
+
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
+      timelineRef.current.play();
     } else {
       document.body.style.overflow = "unset";
+      timelineRef.current.reverse();
     }
 
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [isMobileMenuOpen]);
+
+  // Menu item hover animations
+  const handleMenuItemHover = (index: number, isEntering: boolean) => {
+    const item = menuItemsRef.current[index];
+    if (!item) return;
+
+    if (isEntering) {
+      gsap.to(item, {
+        scale: 1.05,
+        y: -2,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    } else {
+      gsap.to(item, {
+        scale: 1,
+        y: 0,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    }
+  };
+
+  // Handle navigation click - close menu immediately and then start loading
+  const handleNavClick = (href: string) => {
+    // Close mobile menu immediately for smooth UX
+    setIsMobileMenuOpen(false);
+
+    // Start loading only if navigating to different page
+    if (pathname !== href) {
+      // Small delay to allow menu close animation to start
+      setTimeout(() => {
+        startLoading();
+      }, 100);
+    }
+  };
 
   return (
     <>
@@ -79,9 +214,7 @@ export function Navbar({
               <Link
                 href="/"
                 className="flex items-center space-x-2 group"
-                onClick={() => {
-                  if (pathname !== "/") startLoading();
-                }}
+                onClick={() => handleNavClick("/")}
               >
                 <div className="w-8 h-8 flex items-center justify-center transform group-hover:rotate-6 group-hover:scale-110 transition-all duration-500 ease-out">
                   <svg
@@ -127,9 +260,7 @@ export function Navbar({
                     <Link
                       key={link.href}
                       href={link.href}
-                      onClick={() => {
-                        if (pathname !== link.href) startLoading();
-                      }}
+                      onClick={() => handleNavClick(link.href)}
                       className={cn(
                         "px-4 py-2 rounded-full text-sm font-medium transition-all duration-500 ease-out relative overflow-hidden group",
                         pathname === link.href
@@ -224,57 +355,43 @@ export function Navbar({
       </header>
 
       {/* Mobile Menu Overlay */}
-      <div
-        className={cn(
-          "fixed inset-0 z-40 md:hidden transition-all duration-500 ease-in-out",
-          isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        )}
-      >
+      <div ref={mobileMenuRef} className="fixed inset-0 z-40 md:hidden">
         {/* Backdrop */}
         <div
-          className={cn(
-            "fixed inset-0 bg-black/50 backdrop-blur-sm transition-all duration-500 ease-in-out",
-            isMobileMenuOpen ? "opacity-100" : "opacity-0"
-          )}
+          ref={backdropRef}
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm"
           onClick={() => setIsMobileMenuOpen(false)}
         />
 
         {/* Mobile Navigation */}
-        <div
-          className={cn(
-            "fixed top-20 left-4 right-4 transform transition-all duration-500 ease-out",
-            isMobileMenuOpen
-              ? "translate-y-0 opacity-100 scale-100"
-              : "-translate-y-8 opacity-0 scale-95"
-          )}
-        >
+        <div className="fixed top-20 left-4 right-4">
           {/* Mobile Menu Container */}
-          <div className="bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl border border-sky-400/40 dark:border-sky-400/40 rounded-2xl shadow-2xl p-6 transform-gpu">
+          <div
+            ref={menuContainerRef}
+            className="bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl border border-sky-400/40 dark:border-sky-400/40 rounded-2xl shadow-2xl p-6 transform-gpu"
+          >
             <div className="space-y-2">
               {links.map((link, index) => (
                 <Link
                   key={link.href}
-                  href={link.href}
-                  onClick={() => {
-                    if (pathname !== link.href) startLoading();
+                  ref={(el) => {
+                    menuItemsRef.current[index] = el;
                   }}
+                  href={link.href}
+                  onClick={() => handleNavClick(link.href)}
+                  onMouseEnter={() => handleMenuItemHover(index, true)}
+                  onMouseLeave={() => handleMenuItemHover(index, false)}
                   className={cn(
-                    "block px-6 py-3 rounded-full text-center font-medium transition-all duration-500 ease-out transform hover:scale-105 relative overflow-hidden group",
+                    "block px-6 py-3 rounded-full text-center font-medium transition-colors duration-300 relative overflow-hidden group",
                     pathname === link.href
                       ? "bg-sky-500 text-white shadow-lg shadow-sky-500/30"
                       : "text-sky-900 dark:text-white hover:text-sky-900 dark:hover:text-white hover:bg-sky-400/10 dark:hover:bg-sky-400/10"
                   )}
-                  style={{
-                    animationDelay: `${index * 100 + 200}ms`,
-                    animation: isMobileMenuOpen
-                      ? `slideInUp 0.6s ease-out ${index * 100 + 200}ms both`
-                      : "none",
-                  }}
                 >
                   {/* Always render the background div for hover effect */}
                   <div
                     className={cn(
-                      "absolute inset-0 rounded-full pointer-events-none transition-opacity duration-500 ease-out",
+                      "absolute inset-0 rounded-full pointer-events-none transition-opacity duration-300",
                       pathname === link.href
                         ? "opacity-0"
                         : "bg-sky-400/10 opacity-0 group-hover:opacity-100"
@@ -288,12 +405,8 @@ export function Navbar({
 
             {/* Mobile Social Media Icons */}
             <div
+              ref={socialIconsRef}
               className="flex justify-center space-x-4 pt-6 mt-6 border-t border-slate-200/50 dark:border-slate-700/50"
-              style={{
-                animation: isMobileMenuOpen
-                  ? "slideInUp 0.6s ease-out 600ms both"
-                  : "none",
-              }}
             >
               <a
                 href="https://www.linkedin.com/in/iputuagusseniartawan/"
@@ -326,20 +439,6 @@ export function Navbar({
 
       {/* Spacer for fixed navbar */}
       <div className="h-20" />
-
-      {/* Custom CSS for animations */}
-      <style jsx>{`
-        @keyframes slideInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </>
   );
 }
