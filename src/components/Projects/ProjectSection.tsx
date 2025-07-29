@@ -142,7 +142,7 @@ export default function ProjectSection({ projects }: ProjectSectionProps) {
   return (
     <section
       ref={sectionRef}
-      className="max-w-7xl mx-auto py-8 px-4"
+      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 gap-8 lg:gap-12"
       data-projects-section
     >
       {/* Header Section with Two Column Layout */}

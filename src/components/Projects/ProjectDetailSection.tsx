@@ -77,43 +77,69 @@ export default function ProjectDetailSection({
           </Link>
         </div>
 
+        {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 pb-8 sm:pb-12 lg:pb-16">
-          {/* Images (Client Component) */}
+          {/* Images Section */}
           <div className="lg:col-span-3">
             <ProjectImages images={allImages} title={project.title} />
           </div>
 
-          {/* Right Column - Project Info */}
-          <div className="lg:col-span-2 flex flex-col space-y-4 sm:space-y-6">
-            {/* Header Section */}
-            <div className="space-y-3 sm:space-y-4">
-              <h1 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-sky-900 dark:text-white leading-tight">
-                {project.title}
-              </h1>
-              {/* Status Badge */}
-              <div className="flex items-center">
-                <span
-                  className={`inline-flex items-center gap-2 px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-full ${
+          {/* Project Info Section */}
+          <div className="lg:col-span-2 flex flex-col space-y-4">
+            {/* Title */}
+            <h1 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-sky-900 dark:text-white leading-tight">
+              {project.title}
+            </h1>
+
+            {/* Status Badge */}
+            <div className="flex">
+              <span
+                className={`inline-flex items-center gap-2 px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-full ${
+                  project.url
+                    ? project.url.includes("github.com") ||
+                      project.url.includes("gitlab.com")
+                      ? "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400"
+                      : "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400"
+                    : "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400"
+                }`}
+              >
+                <div
+                  className={`w-2 h-2 rounded-full ${
                     project.url
-                      ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400"
-                      : "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400"
+                      ? project.url.includes("github.com") ||
+                        project.url.includes("gitlab.com")
+                        ? "bg-amber-500 animate-pulse"
+                        : "bg-green-500 animate-pulse"
+                      : "bg-amber-500 animate-pulse"
                   }`}
-                >
-                  <div
-                    className={`w-2 h-2 rounded-full ${
-                      project.url
-                        ? "bg-green-500 animate-pulse"
-                        : "bg-amber-500 animate-pulse"
-                    }`}
-                  />
-                  {project.url ? "Live Project" : "Local Project"}
-                </span>
+                />
+                {project.url
+                  ? project.url.includes("github.com") ||
+                    project.url.includes("gitlab.com")
+                    ? "Local Project"
+                    : "Live Project"
+                  : "Local Project"}
+              </span>
+            </div>
+
+            {/* Divider */}
+            <div className="w-full h-px bg-gradient-to-r from-sky-200 to-transparent dark:from-sky-800 dark:to-transparent" />
+
+            {/* About This Project */}
+            <div className="space-y-3">
+              <h2 className="text-sm sm:text-base lg:text-lg font-bold text-sky-900 dark:text-sky-300">
+                About This Project
+              </h2>
+              <div className="prose prose-slate dark:prose-invert max-w-none">
+                <p className="text-sm sm:text-md lg:text-base text-slate-600 dark:text-slate-300 leading-relaxed text-justify">
+                  {project.description}
+                </p>
               </div>
             </div>
 
-            {/* Technologies Section */}
+            {/* Built With */}
             {project.techStack && project.techStack.length > 0 && (
-              <div className="space-y-3 sm:space-y-4">
+              <div className="space-y-3">
                 <h3 className="text-sm sm:text-base lg:text-lg font-bold text-sky-900 dark:text-sky-300">
                   Built with
                 </h3>
@@ -121,62 +147,74 @@ export default function ProjectDetailSection({
                   {project.techStack.map((tech, index) => (
                     <span
                       key={index}
-                      className="group relative px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-sky-50 to-sky-100/80 dark:from-sky-900/40 dark:to-sky-800/30 text-sky-700 dark:text-sky-300 text-xs sm:text-sm font-semibold rounded-lg sm:rounded-xl border border-sky-200/60 dark:border-sky-700/50 hover:from-sky-100 hover:to-sky-50 dark:hover:from-sky-800/60 dark:hover:to-sky-700/40 hover:border-sky-300 dark:hover:border-sky-600 hover:text-sky-800 dark:hover:text-sky-200 transition-all duration-300 cursor-default"
+                      className="group relative px-1.5 py-1 sm:px-2 sm:py-1 bg-gradient-to-r from-sky-50 to-sky-100/80 dark:from-sky-900/40 dark:to-sky-800/30 text-sky-700 dark:text-sky-300 text-xs sm:text-sm font-semibold rounded-lg sm:rounded-xl border border-sky-200/60 dark:border-sky-700/50 hover:from-sky-100 hover:to-sky-50 dark:hover:from-sky-800/60 dark:hover:to-sky-700/40 hover:border-sky-300 dark:hover:border-sky-600 hover:text-sky-800 dark:hover:text-sky-200 transition-all duration-300 cursor-default"
                     >
                       <span className="relative z-10">{tech}</span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-sky-400/10 to-sky-300/10 dark:from-sky-500/10 dark:to-sky-400/10 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-sky-400/10 to-sky-300/10 dark:from-sky-500/10 dark:to-sky-400/10 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </span>
                   ))}
                 </div>
               </div>
             )}
 
-            {/* CTA Button */}
+            {/* Project Links */}
             {project.url && (
-              <div className="pt-1 sm:pt-2">
+              <div className="space-y-3">
+                <h3 className="text-sm sm:text-base lg:text-lg font-bold text-sky-900 dark:text-sky-300">
+                  Project Links
+                </h3>
                 <a
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2.5 sm:px-6 sm:py-3 bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 dark:from-sky-500 dark:to-sky-400 dark:hover:from-sky-600 dark:hover:to-sky-500 text-white font-semibold rounded-lg shadow-md hover:shadow-lg hover:shadow-sky-400/25 transform hover:-translate-y-0.5 transition-all duration-300 group text-sm sm:text-base w-full sm:w-auto justify-center sm:justify-start"
                 >
-                  <span>View Live Project</span>
-                  <svg
-                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
+                  <span>
+                    {project.url &&
+                    (project.url.includes("github.com") ||
+                      project.url.includes("gitlab.com"))
+                      ? "View Source Code"
+                      : "Live Project"}
+                  </span>
+                  {project.url &&
+                  (project.url.includes("github.com") ||
+                    project.url.includes("gitlab.com")) ? (
+                    // GitHub icon
+                    <svg
+                      className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.867 8.184 6.839 9.525.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.004.071 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.833.091-.646.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.254-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.338 1.909-1.295 2.747-1.025 2.747-1.025.546 1.378.202 2.396.099 2.65.64.7 1.028 1.595 1.028 2.688 0 3.847-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .268.18.579.688.481C19.135 20.2 22 16.447 22 12.021 22 6.484 17.523 2 12 2z" />
+                    </svg>
+                  ) : (
+                    // External link icon
+                    <svg
+                      className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  )}
                 </a>
               </div>
             )}
-
-            {/* Description Section */}
-            <div className="flex-1 pt-4 sm:pt-6 border-t border-slate-200 dark:border-slate-800">
-              <h2 className="text-sm sm:text-base lg:text-lg font-bold text-sky-900 dark:text-sky-300 mb-3 sm:mb-4">
-                About This Project
-              </h2>
-              <div className="prose prose-slate dark:prose-invert max-w-none">
-                <p className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-                  {project.description}
-                </p>
-              </div>
-            </div>
           </div>
         </div>
 
         {/* Another Projects Section */}
         {anotherProjects.length > 0 && (
-          <div className="mt-8 sm:mt-12">
+          <div className="mt-8 sm:mt-12 space-y-6 sm:space-y-8">
             {/* Pagination */}
-            <div className="flex items-center justify-between mb-6 sm:mb-8 gap-2 sm:gap-4">
+            <div className="flex items-center justify-between gap-2 sm:gap-4">
               {/* Previous Button */}
               <div>
                 {prevProject ? (
@@ -293,11 +331,11 @@ export default function ProjectDetailSection({
             </div>
 
             {/* Section Title */}
-            <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+            <div className="flex items-center gap-3 sm:gap-4">
               <h3 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-sky-900 dark:text-white">
                 Another Projects
               </h3>
-              <div className="flex-1 h-px bg-gradient-to-r from-sky-200 to-transparent dark:from-sky-800 dark:to-transparent"></div>
+              <div className="flex-1 h-px bg-gradient-to-r from-sky-200 to-transparent dark:from-sky-800 dark:to-transparent" />
             </div>
 
             {/* Projects Grid */}
@@ -313,6 +351,7 @@ export default function ProjectDetailSection({
                   <div className="absolute top-0 right-0 w-6 h-6 sm:w-8 sm:h-8 lg:w-12 lg:h-12 border-t-2 border-r-2 rounded-tr-xl sm:rounded-tr-2xl transition-all duration-300 border-muted-foreground/30 group-hover:border-sky-500 group-hover:w-8 group-hover:h-8 sm:group-hover:w-12 sm:group-hover:h-12 lg:group-hover:w-16 lg:group-hover:h-16 z-10" />
                   <div className="absolute bottom-0 left-0 w-6 h-6 sm:w-8 sm:h-8 lg:w-12 lg:h-12 border-b-2 border-l-2 rounded-bl-xl sm:rounded-bl-2xl transition-all duration-300 border-muted-foreground/30 group-hover:border-sky-500 group-hover:w-8 group-hover:h-8 sm:group-hover:w-12 sm:group-hover:h-12 lg:group-hover:w-16 lg:group-hover:h-16 z-10" />
 
+                  {/* Image Container */}
                   <div className="p-2.5 sm:p-3 lg:p-4 xl:p-5">
                     <div className="relative aspect-video bg-gradient-to-br from-slate-900 to-black rounded-md sm:rounded-lg overflow-hidden">
                       {/* Mobile-only clickable icon button */}
@@ -322,7 +361,6 @@ export default function ProjectDetailSection({
                         aria-label="View Project"
                         tabIndex={-1}
                       >
-                        {/* Eye icon */}
                         <svg
                           className="w-4 h-4 sm:w-5 sm:h-5 text-sky-600 dark:text-sky-400"
                           fill="none"
@@ -352,11 +390,12 @@ export default function ProjectDetailSection({
                     </div>
                   </div>
 
-                  <div className="px-2.5 sm:px-3 lg:px-4 xl:px-5 pb-2.5 sm:pb-3 lg:pb-4 xl:pb-5 flex flex-col flex-grow">
-                    <h4 className="font-bold text-xs sm:text-sm lg:text-xs xl:text-sm text-slate-800 dark:text-neutral-100 line-clamp-1 group-hover:text-sky-700 dark:group-hover:text-sky-400 transition-colors duration-300 mb-1.5 sm:mb-2">
+                  {/* Project Info */}
+                  <div className="px-2.5 sm:px-3 lg:px-4 xl:px-5 pb-2.5 sm:pb-3 lg:pb-4 xl:pb-5 flex flex-col flex-grow space-y-1.5 sm:space-y-2">
+                    <h4 className="font-bold text-xs sm:text-sm lg:text-xs xl:text-sm text-slate-800 dark:text-neutral-100 line-clamp-1 group-hover:text-sky-700 dark:group-hover:text-sky-400 transition-colors duration-300">
                       {p.title}
                     </h4>
-                    <p className="text-[10px] sm:text-xs lg:text-[10px] xl:text-xs text-slate-600 dark:text-neutral-400 line-clamp-2 mb-1.5 sm:mb-2">
+                    <p className="text-[10px] sm:text-xs lg:text-[10px] xl:text-xs text-slate-600 dark:text-neutral-400 line-clamp-2">
                       {p.description}
                     </p>
                   </div>

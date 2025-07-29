@@ -228,12 +228,12 @@ export default function EducationSection() {
                   <div className="block lg:hidden">
                     <p>
                       <span className="font-semibold text-sky-700 dark:text-sky-400">
-                        Aspiring to become a professional Frontend Developer
+                        Aspiring to become a professional UI/UX designer
                       </span>{" "}
-                      with a strong foundation in UI/UX design, I recently
-                      completed my Diploma in Informatics Management at
-                      Politeknik Negeri Bali (2022–2025), graduated with a GPA
-                      of 3.98.
+                      with a strong foundation in front-end development, I
+                      recently completed my Diploma in Informatics Management at
+                      Bali State Polytechnic, graduating with a GPA of 3.98
+                      (2022–2025).
                       {!showFullStory && (
                         <>
                           {" "}
@@ -255,29 +255,27 @@ export default function EducationSection() {
                             deep passion for designing user-centric digital
                             products
                           </span>{" "}
-                          that not only function smoothly but also feel
-                          intuitive and visually compelling. Rather than
-                          treating design and development as separate silos, I
-                          see them as a continuous creative process — one that
-                          transforms ideas into interactive, meaningful
-                          experiences.
+                          that are not only functional but also intuitive and
+                          visually compelling. I view design and development as
+                          an integrated creative process, transforming ideas
+                          into interactive and meaningful experiences.
                         </p>
 
                         <p>
                           Throughout my studies, I've worked on various{" "}
                           <span className="font-semibold text-slate-700 dark:text-slate-300">
                             real-world projects and design prototypes
-                          </span>{" "}
-                          that emphasized responsiveness, accessibility, and
+                          </span>
+                          , emphasizing responsiveness, accessibility, and
                           clarity. This experience, combined with a strong
                           design sense and problem-solving mindset, has driven
-                          me to explore the intersection between frontend
+                          me to explore the intersection of front-end
                           engineering and human-centered design.
                         </p>
 
                         <p>
-                          I'm continuously learning, experimenting, and building
-                          — excited to bring ideas to life, improve the way
+                          I'm continuously learning, experimenting, and
+                          building, eager to bring ideas to life, improve how
                           people interact with technology, and{" "}
                           <span className="font-semibold text-slate-700 dark:text-slate-300">
                             shape digital experiences that truly matter.
@@ -297,12 +295,12 @@ export default function EducationSection() {
                   <div className="hidden lg:block space-y-4">
                     <p>
                       <span className="font-semibold text-sky-700 dark:text-sky-400">
-                        Aspiring to become a professional Frontend Developer
+                        Aspiring to become a professional UI/UX designer
                       </span>{" "}
-                      with a strong foundation in UI/UX design, I recently
-                      completed my Diploma in Informatics Management at
-                      Politeknik Negeri Bali (2022–2025), graduated with a GPA
-                      of 3.98.
+                      with a strong foundation in front-end development, I
+                      recently completed my Diploma in Informatics Management at
+                      Bali State Polytechnic, graduating with a GPA of 3.98
+                      (2022–2025).
                     </p>
 
                     <p>
@@ -310,29 +308,28 @@ export default function EducationSection() {
                       <span className="font-semibold text-slate-700 dark:text-slate-300">
                         deep passion for designing user-centric digital products
                       </span>{" "}
-                      that not only function smoothly but also feel intuitive
-                      and visually compelling. Rather than treating design and
-                      development as separate silos, I see them as a continuous
-                      creative process — one that transforms ideas into
-                      interactive, meaningful experiences.
+                      that are not only functional but also intuitive and
+                      visually compelling. I view design and development as an
+                      integrated creative process, transforming ideas into
+                      interactive and meaningful experiences.
                     </p>
 
                     <p>
                       Throughout my studies, I've worked on various{" "}
                       <span className="font-semibold text-slate-700 dark:text-slate-300">
                         real-world projects and design prototypes
-                      </span>{" "}
-                      that emphasized responsiveness, accessibility, and
-                      clarity. This experience, combined with a strong design
-                      sense and problem-solving mindset, has driven me to
-                      explore the intersection between frontend engineering and
-                      human-centered design.
+                      </span>
+                      , emphasizing responsiveness, accessibility, and clarity.
+                      This experience, combined with a strong design sense and
+                      problem-solving mindset, has driven me to explore the
+                      intersection of front-end engineering and human-centered
+                      design.
                     </p>
 
                     <p>
-                      I'm continuously learning, experimenting, and building —
-                      excited to bring ideas to life, improve the way people
-                      interact with technology, and{" "}
+                      I'm continuously learning, experimenting, and building,
+                      eager to bring ideas to life, improve how people interact
+                      with technology, and{" "}
                       <span className="font-semibold text-slate-700 dark:text-slate-300">
                         shape digital experiences that truly matter
                       </span>

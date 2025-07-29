@@ -54,13 +54,13 @@ const HeroSection = forwardRef<HTMLElement>((props, ref) => {
               <strong className="text-sky-900 dark:text-white">
                 Hi! I'm Putu Agus
               </strong>{" "}
-              — Junior front-end developer, UI/UX designer, and graphic
-              designer. I love turning ideas into lively, neat, and
-              user-friendly web displays. Coding and design are my way of
-              telling stories in the digital world{" "}
+              — a tech enthusiast with a strong interest in UI/UX design,
+              front-end development, and graphic design. I enjoy turning ideas
+              into clean, functional, and user-centered digital experiences that
+              feel{" "}
               <TypeAnimation
                 sequence={[
-                  "inspiring.",
+                  "intuitive.",
                   1200,
                   "",
                   200,
@@ -68,7 +68,7 @@ const HeroSection = forwardRef<HTMLElement>((props, ref) => {
                   1200,
                   "",
                   200,
-                  "impressive.",
+                  "engaging.",
                   1200,
                   "",
                   200,

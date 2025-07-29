@@ -3,8 +3,10 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
-    // Ganti 'project' dengan nama model/table sesuai skema Prisma Anda
-    const projects = await prisma.project.findMany();
+    // Urutkan project dari terbaru ke terlama
+    const projects = await prisma.project.findMany({
+      orderBy: { createdAt: "desc" },
+    });
     return NextResponse.json(projects, {
       headers: {
         "Access-Control-Allow-Origin": "*",

@@ -121,12 +121,12 @@ const experiences = [
   {
     id: 10,
     title: "PKL Management Web Application Developer",
-    company: "Personal Project (Freelance Service)",
+    company: "Personal - Freelance",
     startDate: "May 2025",
     endDate: "May 2025",
     location: "Bali, Indonesia",
     description:
-      "Developed a web application to streamline the internship (PKL) management process for the Department of Information Technology at Politeknik Negeri Bali. The system covers PKL registration, guidance submission, report upload, and final assessment by supervisors. Built with Laravel 11, Laravel Breeze (Auth), Tailwind CSS, Vite, and MySQL.",
+      "Developed a web application to simplify the internship (PKL) management process on campus. This system includes PKL registration, submission of guidelines, report upload, and final assessment by the supervising lecturer. The system was built using Laravel 11, Laravel Breeze (Auth), Tailwind CSS, Vite, and MySQL.",
     logo: "/logo/Web-logo.svg",
   },
 ];
