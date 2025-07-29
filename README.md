@@ -3,7 +3,7 @@
 A modern, responsive, and interactive personal portfolio website built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), and [Prisma](https://www.prisma.io/).  
 Showcase your projects, skills, certificates, and more – with beautiful UI, smooth animations, and a delightful user experience.
 
----
+> Dibuat sebagai proyek pribadi.
 
 ## ✨ Features
 
@@ -18,16 +18,12 @@ Showcase your projects, skills, certificates, and more – with beautiful UI, sm
 - **Downloadable CV** – Let recruiters download your resume
 - **Accessible & SEO-friendly**
 
----
-
 ## 🛠️ Tech Stack
 
 - **Frontend:** Next.js, React 19, Tailwind CSS, Framer Motion, Lottie
 - **Backend:** Next.js API routes, Prisma, PostgreSQL
 - **Auth:** NextAuth.js (optional)
 - **Other:** Howler, React Sounds, Zustand, GSAP, Three.js
-
----
 
 ## 🚦 Getting Started
 
@@ -60,8 +56,6 @@ Showcase your projects, skills, certificates, and more – with beautiful UI, sm
 
 5. **Open [http://localhost:3000](http://localhost:3000) in your browser.**
 
----
-
 ## 📦 Deployment
 
 - **Vercel:**  
@@ -69,14 +63,10 @@ Showcase your projects, skills, certificates, and more – with beautiful UI, sm
 - **Other:**  
   Works on any Node.js hosting with PostgreSQL.
 
----
-
 ## 📄 License
 
 MIT License.  
 Buy to use, modify, and no share!
-
----
 
 ## Credits
 
@@ -87,7 +77,5 @@ Buy to use, modify, and no share!
 - [Lottie](https://lottiefiles.com/)
 - [Howler.js](https://howlerjs.com/)
 - [React Sounds](https://www.npmjs.com/package/react-sounds)
-
----
 
 > Made by [Putu Agus Seniartawan](mailto:ptaguss2@gmail.com)
