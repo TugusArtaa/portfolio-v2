@@ -14,7 +14,7 @@ const AboutSection = forwardRef<HTMLElement>((props, ref) => {
           <div data-about-image className="w-full lg:w-1/2 flex justify-center">
             <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[400px] lg:h-[400px]">
               <TiltedCard
-                imageSrc="/photo/about_photo.svg"
+                imageSrc="/photo/about_photo.webp"
                 altText="About Me"
                 captionText="This is me!"
                 containerHeight="100%"

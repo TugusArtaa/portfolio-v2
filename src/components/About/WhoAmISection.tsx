@@ -50,15 +50,15 @@ export default function WhoAmISection({ whoAmI }: WhoAmISectionProps) {
 
   const images = [
     {
-      src: "/photo/about_hero_1.svg",
+      src: "/photo/about_hero_1.webp",
       alt: "Profile Image 1",
     },
     {
-      src: "/photo/about_hero_2.svg",
+      src: "/photo/about_hero_2.webp",
       alt: "Profile Image 2",
     },
     {
-      src: "/photo/about_hero_3.svg",
+      src: "/photo/about_hero_3.webp",
       alt: "Profile Image 3",
     },
   ];

@@ -505,7 +505,10 @@ export default function Chatbot() {
                   transition={{ delay: 0.2, duration: 0.3 }}
                   className="p-3 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 rounded-b-3xl"
                 >
-                  <form onSubmit={handleSubmit} className="flex gap-3">
+                  <form
+                    onSubmit={handleSubmit}
+                    className="flex sm:flex-nowrap flex-wrap gap-3 w-full"
+                  >
                     <motion.input
                       ref={inputRef}
                       type="text"
@@ -513,7 +516,7 @@ export default function Chatbot() {
                       onChange={(e) => setInput(e.target.value)}
                       placeholder="Ask me anything about Tuagus..."
                       disabled={loading}
-                      className="flex-1 px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl text-sm text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500 dark:focus:ring-sky-400 focus:border-sky-300 dark:focus:border-sky-600 transition-all duration-300 disabled:opacity-50 shadow-sm cursor-text"
+                      className="flex-1 min-w-0 max-w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl text-sm text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500 dark:focus:ring-sky-400 focus:border-sky-300 dark:focus:border-sky-600 transition-all duration-300 disabled:opacity-50 shadow-sm cursor-text"
                       whileFocus={{ scale: 1.01 }}
                       transition={{
                         type: "spring",
@@ -525,7 +528,7 @@ export default function Chatbot() {
                     <motion.button
                       type="submit"
                       disabled={loading || !input.trim()}
-                      className="px-4 py-3 bg-sky-600 hover:bg-sky-700 dark:bg-sky-600 dark:hover:bg-sky-500 disabled:bg-slate-300 dark:disabled:bg-slate-700 text-white rounded-2xl transition-all duration-300 disabled:cursor-not-allowed flex items-center justify-center min-w-[52px] shadow-lg hover:shadow-xl cursor-pointer"
+                      className="px-4 py-3 bg-sky-600 hover:bg-sky-700 dark:bg-sky-600 dark:hover:bg-sky-500 disabled:bg-slate-300 dark:disabled:bg-slate-700 text-white rounded-2xl transition-all duration-300 disabled:cursor-not-allowed flex items-center justify-center min-w-[52px] max-w-full shadow-lg hover:shadow-xl cursor-pointer"
                       aria-label="Send message"
                       whileHover={{ scale: 1.05, rotate: 5 }}
                       whileTap={{ scale: 0.95, rotate: -5 }}

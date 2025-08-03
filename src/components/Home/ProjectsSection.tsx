@@ -18,7 +18,7 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
                 {/* Gambar Besar - Kiri */}
                 <div data-projects-images className="flex-1">
                   <Image
-                    src="/photo/photo_project_left.svg"
+                    src="/photo/photo_project_left.webp"
                     alt="Main Project"
                     width={500}
                     height={400}
@@ -32,7 +32,7 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
                   {/* Gambar Kecil Atas */}
                   <div data-projects-images className="flex-1">
                     <Image
-                      src="/photo/photo_project_right_1.svg"
+                      src="/photo/photo_project_right_1.webp"
                       alt="Project 2"
                       width={300}
                       height={200}
@@ -43,7 +43,7 @@ const ProjectsSection = forwardRef<HTMLElement>((props, ref) => {
                   {/* Gambar Kecil Bawah */}
                   <div data-projects-images className="flex-1">
                     <Image
-                      src="/photo/photo_project_right_2.svg"
+                      src="/photo/photo_project_right_2.webp"
                       alt="Project 3"
                       width={300}
                       height={200}

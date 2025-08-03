@@ -114,8 +114,8 @@ const HeroSection = forwardRef<HTMLElement>((props, ref) => {
                 status="Simplicity."
                 contactText="Contact Me"
                 iconUrl="/photo/iconpattern.png"
-                avatarUrl="/photo/tuagus_photo.svg"
-                miniAvatarUrl="/photo/tuagus_profil.svg"
+                avatarUrl="/photo/tuagus_photo.webp"
+                miniAvatarUrl="/photo/tuagus_profil.webp"
                 behindGradient="to-br from-blue-400 via-purple-500 to-pink-600"
                 innerGradient="to-r from-blue-500 to-purple-500"
                 showUserInfo={true}
