@@ -1,7 +1,6 @@
 import React, { forwardRef } from "react";
 import ProfileCard from "@/components/ProfileCard/ProfileCard";
 import AnimatedTitle from "@/components/AnimatedTitle/AnimatedTitle";
-import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
 import { useLoading } from "@/context/LoadingContext";
 import { useToast } from "@/components/UI/Toast";
@@ -57,27 +56,7 @@ const HeroSection = forwardRef<HTMLElement>((props, ref) => {
               — a tech enthusiast with a strong interest in UI/UX design,
               front-end development, and graphic design. I enjoy turning ideas
               into clean, functional, and user-centered digital experiences that
-              feel{" "}
-              <TypeAnimation
-                sequence={[
-                  "intuitive.",
-                  1200,
-                  "",
-                  200,
-                  "interactive.",
-                  1200,
-                  "",
-                  200,
-                  "engaging.",
-                  1200,
-                  "",
-                  200,
-                ]}
-                wrapper="span"
-                speed={50}
-                repeat={Infinity}
-                className="text-slate-600 dark:text-neutral-300"
-              />
+              feel intuitive, interactive, and engaging.
             </p>
           </div>
 
@@ -111,7 +90,7 @@ const HeroSection = forwardRef<HTMLElement>((props, ref) => {
           >
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span>Available for projects</span>
+              <span>Available for work</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-sky-400 rounded-full"></div>

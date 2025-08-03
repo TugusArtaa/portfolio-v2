@@ -7,6 +7,7 @@ import { Footer } from "@/components/Shared/Footer";
 import GridBackground from "@/components/UI/GridBackground";
 import { useLoading } from "@/context/LoadingContext";
 import { useEffect, useRef } from "react";
+import Chatbot from "@/components/Chatbot/Chatbot";
 
 export default function ConditionalLayout({
   children,
@@ -41,6 +42,7 @@ export default function ConditionalLayout({
         <Navbar className="" />
         <main className="px-4">{children}</main>
         <Footer />
+        <Chatbot />
       </div>
     </>
   );
