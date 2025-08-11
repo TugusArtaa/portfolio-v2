@@ -66,7 +66,7 @@ const HeroSection = forwardRef<HTMLElement>((props, ref) => {
             className="flex flex-row gap-3 sm:gap-4 pt-4 items-start"
           >
             <a
-              href="/cv/CV_ATS_Putu_Aguss.pdf"
+              href="/cv/CV_IPutuAgusSeniartawan.pdf"
               download
               className="group relative overflow-hidden bg-gradient-to-r from-sky-700 to-sky-400 hover:from-transparent hover:to-transparent dark:bg-gradient-to-r dark:from-sky-500 dark:to-sky-400 dark:hover:from-transparent dark:hover:to-transparent text-white hover:text-sky-900 dark:hover:text-sky-400 font-semibold border-2 border-sky-400 dark:border-sky-400 hover:border-sky-400 hover:dark:border-sky-400 px-4 py-2 sm:px-6 sm:py-3 rounded-xl shadow-md hover:shadow-lg hover:shadow-sky-400/40 transform hover:-translate-y-0.5 transition-all duration-300 text-sm sm:text-base text-left active:translate-y-1 active:scale-95"
               onClick={handleDownloadClick}
