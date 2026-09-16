@@ -22,7 +22,6 @@ Showcase your projects, skills, certificates, and more – with clean light mono
 
 - **Frontend:** Next.js 15, React 19, Tailwind CSS, Framer Motion, Lottie, GSAP, Three.js
 - **Contact:** Nodemailer (SMTP)
-- **Other:** Howler, React Sounds, Zustand
 
 ## 🚦 Getting Started
 
