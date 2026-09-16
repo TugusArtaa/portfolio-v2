@@ -27,16 +27,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap"
           rel="stylesheet"
         />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                document.documentElement.classList.remove('dark');
-                localStorage.removeItem('theme');
-              } catch (_) {}
-            `,
-          }}
-        />
       </head>
       <body>
         <LoadingProvider>

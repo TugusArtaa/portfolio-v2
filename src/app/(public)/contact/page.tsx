@@ -1,19 +1,14 @@
 "use client";
-import React, { useState } from "react";
-import type { About } from "@prisma/client";
+import React from "react";
+import { aboutEntries } from "@/data/portfolio-data";
+import type { About } from "@/data/portfolio-data";
 import Lanyard from "@/components/Lanyard/Lanyard";
 import { motion } from "framer-motion";
 import ContactForm from "@/components/Contact/ContactForm";
 import ContactSocialMedia from "@/components/Contact/ContactSocialMedia";
 
-async function getContactAbout(): Promise<About[]> {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL || ""}/api/public/about`,
-    { cache: "no-store" }
-  );
-  if (!res.ok) throw new Error("Failed to fetch about");
-  const about: About[] = await res.json();
-  // Filter hanya contact
+export default function ContactPage() {
+  // Filter hanya kontak social media
   const contactIds = [
     "gmail",
     "whatsapp",
@@ -22,21 +17,9 @@ async function getContactAbout(): Promise<About[]> {
     "github",
     "discord",
   ];
-  return Array.isArray(about)
-    ? about.filter((item) => contactIds.includes(item.id))
-    : [];
-}
-
-export default function ContactPage() {
-  const [contacts, setContacts] = useState<About[]>([]);
-  const [contactsLoading, setContactsLoading] = useState(true);
-
-  React.useEffect(() => {
-    getContactAbout()
-      .then((data) => setContacts(data))
-      .catch(() => setContacts([]))
-      .finally(() => setContactsLoading(false));
-  }, []);
+  const contacts: About[] = aboutEntries.filter((item) =>
+    contactIds.includes(item.id)
+  );
 
   return (
     <section className="min-h-screen relative overflow-hidden">

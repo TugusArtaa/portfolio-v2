@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
-import type { About } from "@prisma/client";
+import type { About } from "@/data/portfolio-data";
 
 type ContactAbout = About & {
   value?: string;

@@ -1,5 +1,5 @@
 "use client";
-import type { About } from "@prisma/client";
+import type { About } from "@/data/portfolio-data";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

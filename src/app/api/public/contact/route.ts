@@ -130,7 +130,7 @@ Portfolio Contact Form
     });
 
     return NextResponse.json({ ok: true });
-  } catch (err) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to send email." },
       { status: 500 }

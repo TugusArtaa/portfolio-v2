@@ -1,6 +1,6 @@
 "use client";
 
-import type { Certificate } from "@prisma/client";
+import type { Certificate } from "@/data/portfolio-data";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { X, Eye } from "lucide-react";

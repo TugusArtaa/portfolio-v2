@@ -24,7 +24,7 @@ export default function useHomePageAnimations() {
       };
 
       // Hero Section Animation
-      gsap.utils.toArray("[data-hero-text]").forEach((el: any, i: number) => {
+      gsap.utils.toArray("[data-hero-text]").forEach((el: any) => {
         gsap.fromTo(
           el,
           {
@@ -214,54 +214,6 @@ export default function useHomePageAnimations() {
         );
       });
 
-      // Review Section Animation
-      gsap.fromTo(
-        "[data-review-lottie]",
-        {
-          opacity: 0,
-          y: mobileSettings.yOffset,
-          scale: mobileSettings.scale,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: mobileSettings.duration,
-          ease: mobileSettings.ease,
-          scrollTrigger: {
-            trigger: "[data-review-lottie]",
-            start: isMobile ? "top 90%" : "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
-      gsap.utils
-        .toArray("[data-review-content] > *")
-        .forEach((el: any, i: number) => {
-          gsap.fromTo(
-            el,
-            {
-              opacity: 0,
-              y: mobileSettings.yOffset,
-              scale: mobileSettings.scale,
-            },
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: mobileSettings.duration * 0.9,
-              ease: mobileSettings.ease,
-              delay: i * (mobileSettings.stagger * 1.2),
-              scrollTrigger: {
-                trigger: el,
-                start: isMobile ? "top 90%" : "top 80%",
-                end: "bottom 20%",
-                toggleActions: "play none none none",
-              },
-            }
-          );
-        });
 
       // Mobile-specific performance optimization
       if (isMobile) {

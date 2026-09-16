@@ -1,6 +1,6 @@
 "use client";
 
-import type { About } from "@prisma/client";
+import type { About } from "@/data/portfolio-data";
 import useAboutSectionAnimations from "@/hooks/useAboutSectionAnimations";
 
 interface QuoteSectionProps {

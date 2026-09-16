@@ -49,7 +49,7 @@ export default function ProjectSection({ projects }: ProjectSectionProps) {
           const data = await response.json();
           setAnimationData(data);
         }
-      } catch (error) {
+      } catch {
         console.log("Animation file not found, using fallback");
       }
     };
@@ -325,10 +325,7 @@ export default function ProjectSection({ projects }: ProjectSectionProps) {
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mt-8">
             {displayedProjects.map(
-              (
-                { title, slug, description, techStack, coverImage, url },
-                idx
-              ) => (
+              ({ title, slug, description, techStack, coverImage }) => (
                 <div
                   key={slug}
                   className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-zinc-200 transition-all duration-300 hover:-translate-y-1.5 flex flex-col h-full"

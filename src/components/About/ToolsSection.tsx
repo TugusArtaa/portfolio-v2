@@ -1,6 +1,6 @@
 "use client";
 
-import type { Tool } from "@prisma/client";
+import type { Tool } from "@/data/portfolio-data";
 import { useState, useEffect } from "react";
 import useAboutSectionAnimations from "@/hooks/useAboutSectionAnimations";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
