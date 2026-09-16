@@ -60,10 +60,10 @@ export const InfiniteMovingCards = ({
         {rollingReviews.map((review, idx) => (
           <li
             key={review.id + "-" + idx}
-            className="relative flex flex-col bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-300 dark:border-slate-700 px-4 py-4 w-[220px] sm:w-[260px] md:w-[300px] lg:w-[320px] xl:w-[340px] h-[180px] sm:h-[190px] md:h-[200px] lg:h-[210px] xl:h-[220px] max-w-full shrink-0"
+            className="relative flex flex-col bg-white rounded-2xl shadow-sm border border-zinc-200 px-4 py-4 w-[220px] sm:w-[260px] md:w-[300px] lg:w-[320px] xl:w-[340px] h-[180px] sm:h-[190px] md:h-[200px] lg:h-[210px] xl:h-[220px] max-w-full shrink-0"
           >
             {/* Tanggal */}
-            <span className="absolute top-3 right-4 text-xs text-slate-600 dark:text-slate-300 z-10">
+            <span className="absolute top-3 right-4 text-xs text-zinc-500 z-10">
               {new Date(review.createdAt).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "short",
@@ -71,27 +71,27 @@ export const InfiniteMovingCards = ({
               })}
             </span>
             {/* Ikon Kutipan */}
-            <div className="absolute top-3 left-4 text-sky-400 dark:text-sky-500 z-10">
+            <div className="absolute top-3 left-4 text-zinc-400 z-10">
               <Quote className="h-5 w-5" />
             </div>
 
             {/* Teks Ulasan */}
             <div className="flex-grow flex items-center justify-center px-2 mb-4">
-              <p className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 leading-relaxed overflow-hidden text-ellipsis line-clamp-5 text-center">
+              <p className="text-xs sm:text-sm font-medium text-zinc-700 leading-relaxed overflow-hidden text-ellipsis line-clamp-5 text-center">
                 “{review.review}”
               </p>
             </div>
 
             {/* Avatar, Nama & Asal */}
             <div className="absolute bottom-2 left-2 flex items-center gap-1 max-w-[75%]">
-              <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center font-bold text-xs shadow ring-2 ring-offset-1 ring-slate-400/60 dark:ring-slate-500/60 bg-slate-200 text-slate-800 dark:bg-slate-800 dark:text-slate-200 mr-1">
+              <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center font-bold text-xs shadow-sm ring-1 ring-zinc-300 bg-zinc-100 text-zinc-900 mr-1">
                 {review.name.charAt(0).toUpperCase()}
               </div>
               <div className="flex flex-col min-w-0">
-                <span className="font-semibold text-[0.7rem] sm:text-xs text-slate-800 dark:text-slate-200 truncate max-w-[200px] sm:max-w-[200px]">
+                <span className="font-semibold text-[0.7rem] sm:text-xs text-zinc-900 truncate max-w-[200px] sm:max-w-[200px]">
                   {review.name}
                 </span>
-                <span className="text-[0.65rem] sm:text-xs text-slate-500 dark:text-slate-400 truncate max-w-[220px] sm:max-w-[220px]">
+                <span className="text-[0.65rem] sm:text-xs text-zinc-500 truncate max-w-[220px] sm:max-w-[220px]">
                   {review.origin}
                 </span>
               </div>

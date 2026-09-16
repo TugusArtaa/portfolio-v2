@@ -23,7 +23,7 @@ export const Button = ({
       layout
       layoutId="button"
       className={cn(
-        "flex min-w-[120px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-sky-600 to-sky-500 dark:from-sky-500 dark:to-sky-400 text-white px-4 py-2 font-medium ring-offset-2 transition duration-200 hover:ring-2 hover:ring-sky-400 dark:ring-offset-black",
+        "flex min-w-[120px] cursor-pointer items-center justify-center gap-2 rounded-xl bg-zinc-900 hover:bg-black text-white px-4 py-2 font-medium ring-offset-2 transition duration-200 hover:ring-2 hover:ring-zinc-400 shadow-md",
         className
       )}
       disabled={props.disabled || loading}

@@ -3,7 +3,6 @@
 import "@/styles/globals.css";
 import React, { ReactNode } from "react";
 import ConditionalLayout from "@/components/Shared/ConditionalLayout";
-import { ThemeProvider } from "@/context/ThemeContext";
 import { ToastProvider } from "@/components/UI/Toast";
 import { LoadingProvider, useLoading } from "@/context/LoadingContext";
 import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
@@ -28,18 +27,25 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap"
           rel="stylesheet"
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                document.documentElement.classList.remove('dark');
+                localStorage.removeItem('theme');
+              } catch (_) {}
+            `,
+          }}
+        />
       </head>
       <body>
         <LoadingProvider>
           <GlobalLoading />
-          {/* Provider untuk tema dark/light */}
-          <ThemeProvider>
-            {/* Provider untuk notifikasi toast */}
-            <ToastProvider>
-              {/* Layout bersyarat untuk halaman tertentu */}
-              <ConditionalLayout>{children}</ConditionalLayout>
-            </ToastProvider>
-          </ThemeProvider>
+          {/* Provider untuk notifikasi toast */}
+          <ToastProvider>
+            {/* Layout bersyarat untuk halaman tertentu */}
+            <ConditionalLayout>{children}</ConditionalLayout>
+          </ToastProvider>
         </LoadingProvider>
       </body>
     </html>

@@ -36,10 +36,10 @@ export default function EducationSection() {
   return (
     <section className="mb-20 sm:mb-24">
       <div className="text-center mb-12 sm:mb-16">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-sky-900 dark:text-white">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-zinc-900">
           Education
         </h2>
-        <p className="text-base sm:text-lg text-slate-600 dark:text-neutral-300">
+        <p className="text-base sm:text-lg text-zinc-600">
           Academic Background and Relevant Courses
         </p>
       </div>
@@ -51,9 +51,9 @@ export default function EducationSection() {
             {/* Education Info */}
             <div className="relative" data-about-education>
               <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 bg-sky-800/50 dark:bg-sky-400/50 rounded-xl flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 bg-zinc-900 text-white rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm">
                   <svg
-                    className="w-6 h-6 text-white"
+                    className="w-6 h-6"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -73,13 +73,13 @@ export default function EducationSection() {
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-neutral-100 mb-2">
+                  <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 mb-2">
                     D3 Manajemen Informatika
                   </h3>
-                  <p className="text-sky-700 dark:text-sky-400 font-semibold text-base sm:text-lg mb-1">
+                  <p className="text-zinc-700 font-semibold text-base sm:text-lg mb-1">
                     Politeknik Negeri Bali
                   </p>
-                  <p className="text-slate-500 dark:text-slate-400 text-sm">
+                  <p className="text-zinc-500 text-sm">
                     2022 - 2025
                   </p>
                 </div>
@@ -87,19 +87,19 @@ export default function EducationSection() {
 
               {/* IPK Card */}
               <div className="mb-6">
-                <div className="flex items-center justify-between shadow-sm py-4 px-4 bg-white/50 dark:bg-slate-800/50 rounded-xl border border-slate-200/50 dark:border-slate-700/50">
+                <div className="flex items-center justify-between shadow-sm py-4 px-4 bg-white rounded-xl border border-zinc-200">
                   <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
-                    <span className="text-slate-700 dark:text-neutral-200 font-medium text-sm sm:text-base">
+                    <div className="w-2 h-2 bg-zinc-900 rounded-full"></div>
+                    <span className="text-zinc-700 font-medium text-sm sm:text-base">
                       Indeks Prestasi Kumulatif (IPK)
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="flex items-baseline gap-1">
-                      <span className="text-xl font-bold text-slate-800 dark:text-neutral-100">
+                      <span className="text-xl font-bold text-zinc-900">
                         3.98
                       </span>
-                      <span className="text-xs text-slate-500 dark:text-slate-400">
+                      <span className="text-xs text-zinc-500">
                         / 4.00
                       </span>
                     </div>
@@ -111,9 +111,9 @@ export default function EducationSection() {
             {/* Relevant Courses */}
             <div className="space-y-6" data-about-education>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-sky-800/50 dark:bg-sky-400/50 rounded-lg flex items-center justify-center">
+                <div className="w-12 h-12 bg-zinc-900 text-white rounded-lg flex items-center justify-center shadow-sm">
                   <svg
-                    className="w-6 h-6 text-white"
+                    className="w-6 h-6"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -126,7 +126,7 @@ export default function EducationSection() {
                     />
                   </svg>
                 </div>
-                <h4 className="text-xl font-bold text-slate-800 dark:text-neutral-100">
+                <h4 className="text-xl font-bold text-zinc-900">
                   Relevant Courses
                 </h4>
               </div>
@@ -135,24 +135,16 @@ export default function EducationSection() {
                 {displayedCourses.map((course, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between py-3 px-4 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm border border-slate-200/50 dark:border-slate-700/50"
+                    className="flex items-center justify-between py-3 px-4 bg-white rounded-xl shadow-sm border border-zinc-200"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-sky-400 rounded-full"></div>
-                      <span className="text-slate-700 dark:text-neutral-200 font-medium text-sm sm:text-base">
+                      <div className="w-2 h-2 bg-zinc-800 rounded-full"></div>
+                      <span className="text-zinc-800 font-medium text-sm sm:text-base">
                         {course.name}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span
-                        className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                          course.grade === "A"
-                            ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
-                            : course.grade === "A-"
-                            ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
-                            : "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400"
-                        }`}
-                      >
+                      <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-zinc-100 text-zinc-800 border border-zinc-200">
                         {course.grade}
                       </span>
                     </div>
@@ -165,7 +157,7 @@ export default function EducationSection() {
                 <div className="text-center pt-4">
                   <button
                     onClick={() => setShowAllCourses(!showAllCourses)}
-                    className="cursor-pointer inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 dark:from-sky-500 dark:to-sky-400 dark:hover:from-sky-600 dark:hover:to-sky-500 text-white font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-sky-400/40 transform hover:-translate-y-1 text-sm sm:text-base"
+                    className="cursor-pointer inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-zinc-900 hover:bg-zinc-800 text-white font-semibold rounded-xl transition-all duration-300 shadow-md transform hover:-translate-y-0.5 text-sm sm:text-base"
                   >
                     {showAllCourses
                       ? "Show Less"
@@ -194,14 +186,14 @@ export default function EducationSection() {
           {/* Right Column - Academic Journey Story */}
           <div className="space-y-6">
             <div
-              className="relative bg-white/50 dark:bg-slate-800/50 rounded-2xl p-6 shadow-sm border border-slate-200/50 dark:border-slate-700/50"
+              className="relative bg-white rounded-2xl p-6 shadow-sm border border-zinc-200"
               data-about-education
             >
               {/* Decorative elements */}
-              <div className="absolute top-4 right-4 w-8 h-8 opacity-50">
+              <div className="absolute top-4 right-4 w-8 h-8 opacity-40">
                 <svg
                   viewBox="0 0 24 24"
-                  className="w-full h-full text-sky-800 dark:text-sky-400"
+                  className="w-full h-full text-zinc-400"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth={1.5}
@@ -218,16 +210,16 @@ export default function EducationSection() {
 
               <div className="relative space-y-4">
                 <div className="flex items-center gap-2 mb-4">
-                  <h4 className="text-lg font-bold text-slate-800 dark:text-neutral-100">
+                  <h4 className="text-lg font-bold text-zinc-900">
                     My Academic Journey
                   </h4>
                 </div>
 
-                <div className="space-y-4 text-slate-600 dark:text-neutral-300 leading-relaxed">
+                <div className="space-y-4 text-zinc-600 leading-relaxed">
                   {/* Mobile: Truncated version with inline learn more */}
                   <div className="block lg:hidden">
                     <p>
-                      <span className="font-semibold text-sky-700 dark:text-sky-400">
+                      <span className="font-semibold text-zinc-900">
                         Aspiring to become a professional UI/UX designer
                       </span>{" "}
                       with a strong foundation in front-end development, I
@@ -239,7 +231,7 @@ export default function EducationSection() {
                           {" "}
                           <button
                             onClick={() => setShowFullStory(true)}
-                            className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 font-medium underline underline-offset-2 transition-colors duration-200"
+                            className="text-zinc-900 hover:underline font-medium underline underline-offset-2 transition-colors duration-200"
                           >
                             Learn more
                           </button>
@@ -251,7 +243,7 @@ export default function EducationSection() {
                       <div className="mt-4 space-y-4">
                         <p>
                           My academic journey has been shaped by a{" "}
-                          <span className="font-semibold text-slate-700 dark:text-slate-300">
+                          <span className="font-semibold text-zinc-800">
                             deep passion for designing user-centric digital
                             products
                           </span>{" "}
@@ -263,7 +255,7 @@ export default function EducationSection() {
 
                         <p>
                           Throughout my studies, I've worked on various{" "}
-                          <span className="font-semibold text-slate-700 dark:text-slate-300">
+                          <span className="font-semibold text-zinc-800">
                             real-world projects and design prototypes
                           </span>
                           , emphasizing responsiveness, accessibility, and
@@ -277,12 +269,12 @@ export default function EducationSection() {
                           I'm continuously learning, experimenting, and
                           building, eager to bring ideas to life, improve how
                           people interact with technology, and{" "}
-                          <span className="font-semibold text-slate-700 dark:text-slate-300">
+                          <span className="font-semibold text-zinc-800">
                             shape digital experiences that truly matter.
                           </span>{" "}
                           <button
                             onClick={() => setShowFullStory(false)}
-                            className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 font-medium underline underline-offset-2 transition-colors duration-200"
+                            className="text-zinc-900 hover:underline font-medium underline underline-offset-2 transition-colors duration-200"
                           >
                             Show less
                           </button>
@@ -294,7 +286,7 @@ export default function EducationSection() {
                   {/* Desktop: Full version */}
                   <div className="hidden lg:block space-y-4">
                     <p>
-                      <span className="font-semibold text-sky-700 dark:text-sky-400">
+                      <span className="font-semibold text-zinc-900">
                         Aspiring to become a professional UI/UX designer
                       </span>{" "}
                       with a strong foundation in front-end development, I
@@ -305,7 +297,7 @@ export default function EducationSection() {
 
                     <p>
                       My academic journey has been shaped by a{" "}
-                      <span className="font-semibold text-slate-700 dark:text-slate-300">
+                      <span className="font-semibold text-zinc-800">
                         deep passion for designing user-centric digital products
                       </span>{" "}
                       that are not only functional but also intuitive and
@@ -316,7 +308,7 @@ export default function EducationSection() {
 
                     <p>
                       Throughout my studies, I've worked on various{" "}
-                      <span className="font-semibold text-slate-700 dark:text-slate-300">
+                      <span className="font-semibold text-zinc-800">
                         real-world projects and design prototypes
                       </span>
                       , emphasizing responsiveness, accessibility, and clarity.
@@ -330,7 +322,7 @@ export default function EducationSection() {
                       I'm continuously learning, experimenting, and building,
                       eager to bring ideas to life, improve how people interact
                       with technology, and{" "}
-                      <span className="font-semibold text-slate-700 dark:text-slate-300">
+                      <span className="font-semibold text-zinc-800">
                         shape digital experiences that truly matter
                       </span>
                       .
@@ -339,26 +331,26 @@ export default function EducationSection() {
                     {/* Key highlights - Desktop */}
                     <div className="grid grid-cols-2 gap-3 mt-6">
                       <div className="flex items-center gap-2 text-sm">
-                        <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
-                        <span className="text-slate-600 dark:text-slate-400">
+                        <div className="w-2 h-2 bg-zinc-800 rounded-full"></div>
+                        <span className="text-zinc-600">
                           User-Centric Design
                         </span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
-                        <div className="w-2 h-2 bg-sky-400 rounded-full"></div>
-                        <span className="text-slate-600 dark:text-slate-400">
+                        <div className="w-2 h-2 bg-zinc-800 rounded-full"></div>
+                        <span className="text-zinc-600">
                           Frontend Development
                         </span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
-                        <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                        <span className="text-slate-600 dark:text-slate-400">
+                        <div className="w-2 h-2 bg-zinc-800 rounded-full"></div>
+                        <span className="text-zinc-600">
                           Real-world Projects
                         </span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
-                        <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
-                        <span className="text-slate-600 dark:text-slate-400">
+                        <div className="w-2 h-2 bg-zinc-800 rounded-full"></div>
+                        <span className="text-zinc-600">
                           Problem Solving
                         </span>
                       </div>

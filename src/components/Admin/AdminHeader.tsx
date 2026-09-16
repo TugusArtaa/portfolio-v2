@@ -4,7 +4,6 @@ import { signOut } from "next-auth/react";
 import { useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import ThemeToggle from "../Shared/ThemeToggle";
 import UserMenu from "./UserMenu";
 import TimeDisplay from "./TimeDisplay";
 import { useSidebar } from "./AdminSidebar";
@@ -189,7 +188,7 @@ export default function AdminHeader({ session }: AdminHeaderProps) {
   return (
     <>
       <header
-        className={`sticky top-0 z-10 h-[73px] bg-white/40 dark:bg-slate-800/40 backdrop-blur-xl border-b border-white/20 dark:border-slate-700/50 ${
+        className={`sticky top-0 z-10 h-[73px] bg-white/80 backdrop-blur-xl border-b border-black/10 ${
           isCollapsed ? "left-16" : "left-64"
         } lg:left-${isCollapsed ? "16" : "64"}`}
       >
@@ -202,7 +201,7 @@ export default function AdminHeader({ session }: AdminHeaderProps) {
 
               {/* Mobile title - only visible on mobile */}
               <div className="md:hidden">
-                <h1 className="text-lg font-bold text-slate-900 dark:text-white">
+                <h1 className="text-lg font-bold text-black">
                   Halaman Admin
                 </h1>
               </div>
@@ -213,7 +212,7 @@ export default function AdminHeader({ session }: AdminHeaderProps) {
                   <div key={item.href} className="flex items-center">
                     {index > 0 && (
                       <svg
-                        className="w-4 h-4 text-slate-400 mx-2"
+                        className="w-4 h-4 text-zinc-400 mx-2"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -227,13 +226,13 @@ export default function AdminHeader({ session }: AdminHeaderProps) {
                       </svg>
                     )}
                     {index === pageInfo.breadcrumb.length - 1 ? (
-                      <span className="text-slate-900 dark:text-white font-semibold text-lg">
+                      <span className="text-black font-semibold text-lg">
                         {item.name}
                       </span>
                     ) : (
                       <Link
                         href={item.href}
-                        className="text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 transition-colors font-medium"
+                        className="text-zinc-500 hover:text-black transition-colors font-medium"
                       >
                         {item.name}
                       </Link>
@@ -246,7 +245,6 @@ export default function AdminHeader({ session }: AdminHeaderProps) {
             {/* Actions */}
             <div className="flex items-center gap-2 lg:gap-4">
               <TimeDisplay />
-              <ThemeToggle />
               <UserMenu session={session} onLogout={handleLogout} />
             </div>
           </div>

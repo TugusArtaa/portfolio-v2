@@ -18,70 +18,61 @@ const ABOUT_IDS = [
     value: "who_am_i",
     label: "Who Am I",
     icon: "👤",
-    color:
-      "bg-blue-100 dark:bg-blue-900/30 border-blue-300 dark:border-blue-600",
+    color: "bg-zinc-100 border-zinc-300",
   },
   {
     value: "education",
     label: "Education",
     icon: "🎓",
-    color:
-      "bg-green-100 dark:bg-green-900/30 border-green-300 dark:border-green-600",
+    color: "bg-zinc-100 border-zinc-300",
   },
   {
     value: "quote",
     label: "Quote",
     icon: "💭",
-    color:
-      "bg-purple-100 dark:bg-purple-900/30 border-purple-300 dark:border-purple-600",
+    color: "bg-zinc-100 border-zinc-300",
   },
   {
     value: "whatsapp",
     label: "WhatsApp",
     icon: "📱",
-    color:
-      "bg-emerald-100 dark:bg-emerald-900/30 border-emerald-300 dark:border-emerald-600",
+    color: "bg-zinc-100 border-zinc-300",
   },
   {
     value: "gmail",
     label: "Gmail",
     icon: "✉️",
-    color: "bg-red-100 dark:bg-red-900/30 border-red-300 dark:border-red-600",
+    color: "bg-zinc-100 border-zinc-300",
   },
   {
     value: "instagram",
     label: "Instagram",
     icon: "📸",
-    color:
-      "bg-pink-100 dark:bg-pink-900/30 border-pink-300 dark:border-pink-600",
+    color: "bg-zinc-100 border-zinc-300",
   },
   {
     value: "github",
     label: "GitHub",
     icon: "💻",
-    color:
-      "bg-gray-100 dark:bg-gray-900/30 border-gray-300 dark:border-gray-600",
+    color: "bg-zinc-100 border-zinc-300",
   },
   {
     value: "linkedin",
     label: "LinkedIn",
     icon: "🔗",
-    color:
-      "bg-indigo-100 dark:bg-indigo-900/30 border-indigo-300 dark:border-indigo-600",
+    color: "bg-zinc-100 border-zinc-300",
   },
   {
     value: "discord",
     label: "Discord",
     icon: "🎮",
-    color:
-      "bg-violet-100 dark:bg-violet-900/30 border-violet-300 dark:border-violet-600",
+    color: "bg-zinc-100 border-zinc-300",
   },
   {
     value: "call_to_action",
     label: "Call To Action",
     icon: "🚀",
-    color:
-      "bg-orange-100 dark:bg-orange-900/30 border-orange-300 dark:border-orange-600",
+    color: "bg-zinc-100 border-zinc-300",
   },
 ] as const;
 

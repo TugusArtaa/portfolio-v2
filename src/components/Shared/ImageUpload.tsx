@@ -68,9 +68,9 @@ export default function ImageUpload({
 
   return (
     <div className="space-y-2">
-      <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
+      <label className="flex items-center gap-2 text-sm font-semibold text-zinc-700">
         <svg
-          className="w-4 h-4 text-pink-500"
+          className="w-4 h-4 text-black"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -90,10 +90,10 @@ export default function ImageUpload({
         <button
           type="button"
           onClick={() => setUploadMethod("upload")}
-          className={`px-3 py-1 text-xs font-medium rounded-lg transition-colors duration-200 ${
+          className={`px-3 py-1 text-xs font-semibold rounded-lg transition-colors duration-200 ${
             uploadMethod === "upload"
-              ? "bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 border border-pink-200 dark:border-pink-700"
-              : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-600"
+              ? "bg-black text-white"
+              : "bg-zinc-100 text-zinc-600 border border-black/5"
           }`}
         >
           Upload File
@@ -101,10 +101,10 @@ export default function ImageUpload({
         <button
           type="button"
           onClick={() => setUploadMethod("url")}
-          className={`px-3 py-1 text-xs font-medium rounded-lg transition-colors duration-200 ${
+          className={`px-3 py-1 text-xs font-semibold rounded-lg transition-colors duration-200 ${
             uploadMethod === "url"
-              ? "bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 border border-pink-200 dark:border-pink-700"
-              : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-600"
+              ? "bg-black text-white"
+              : "bg-zinc-100 text-zinc-600 border border-black/5"
           }`}
         >
           URL
@@ -121,11 +121,11 @@ export default function ImageUpload({
               disabled={isUploading}
               className="hidden"
             />
-            <div className="w-full px-4 py-3 bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm border border-slate-300/50 dark:border-slate-600/50 rounded-xl focus:border-pink-500 dark:focus:border-pink-400 transition-all duration-200 flex items-center justify-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-600/80">
+            <div className="w-full px-4 py-3 bg-white border border-black/10 rounded-xl focus:border-black transition-all duration-200 flex items-center justify-center gap-2 hover:bg-zinc-50">
               {isUploading ? (
                 <>
                   <svg
-                    className="animate-spin w-4 h-4 text-pink-500"
+                    className="animate-spin w-4 h-4 text-black"
                     fill="none"
                     viewBox="0 0 24 24"
                   >
@@ -143,14 +143,14 @@ export default function ImageUpload({
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                   </svg>
-                  <span className="text-pink-600 dark:text-pink-400 text-sm font-medium">
+                  <span className="text-black text-sm font-medium">
                     Uploading...
                   </span>
                 </>
               ) : (
                 <>
                   <svg
-                    className="w-4 h-4 text-pink-500"
+                    className="w-4 h-4 text-zinc-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -162,14 +162,14 @@ export default function ImageUpload({
                       d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                     />
                   </svg>
-                  <span className="text-slate-700 dark:text-slate-300 text-sm font-medium">
+                  <span className="text-zinc-700 text-sm font-medium">
                     {value ? "Change Image" : "Upload Image"}
                   </span>
                 </>
               )}
             </div>
           </label>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+          <p className="text-xs text-zinc-500 mt-1">
             Supports JPG, PNG, JPEG up to 5MB
           </p>
         </div>
@@ -179,12 +179,12 @@ export default function ImageUpload({
           placeholder="https://example.com/image.jpg"
           value={value}
           onChange={handleUrlChange}
-          className="w-full px-4 py-3 bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm border border-slate-300/50 dark:border-slate-600/50 rounded-xl focus:border-pink-500 dark:focus:border-pink-400 focus:ring-2 focus:ring-pink-500/20 transition-all duration-200 text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400"
+          className="w-full px-4 py-3 bg-white border border-black/10 rounded-xl focus:border-black focus:ring-1 focus:ring-black transition-all duration-200 text-black placeholder-zinc-400"
         />
       )}
       {/* Tampilkan pesan error jika ada */}
       {error && (
-        <p className="text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
+        <p className="text-sm text-rose-600 flex items-center gap-1">
           <svg
             className="w-4 h-4"
             fill="none"

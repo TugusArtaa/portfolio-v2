@@ -30,7 +30,7 @@ export default function ProjectImages({
     <>
       <div className="lg:col-span-3 space-y-6">
         {/* Main Image */}
-        <div className="relative aspect-video bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 rounded-xl lg:rounded-2xl overflow-hidden shadow-lg ring-1 ring-slate-200 dark:ring-slate-700 group">
+        <div className="relative aspect-video bg-zinc-100 rounded-xl lg:rounded-2xl overflow-hidden shadow-lg ring-1 ring-zinc-200 group">
           <Image
             src={images[activeImageIndex] || "/placeholder.svg"}
             alt={title}
@@ -43,7 +43,7 @@ export default function ProjectImages({
           {/* Fullscreen Button */}
           <button
             onClick={() => setIsModalOpen(true)}
-            className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 p-2 sm:p-2.5 bg-sky-500/80 hover:bg-sky-600/90 text-white rounded-lg transition-all duration-300 hover:scale-110 shadow-lg backdrop-blur-sm"
+            className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 p-2 sm:p-2.5 bg-zinc-900/80 hover:bg-zinc-900 text-white rounded-lg transition-all duration-300 hover:scale-110 shadow-lg backdrop-blur-sm"
             type="button"
             aria-label="View fullscreen"
           >
@@ -72,8 +72,8 @@ export default function ProjectImages({
                 onClick={() => setActiveImageIndex(index)}
                 className={`relative flex-shrink-0 w-16 h-11 sm:w-18 sm:h-12 lg:w-20 lg:h-14 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ring-2 ${
                   index === activeImageIndex
-                    ? "ring-sky-500 ring-offset-2 dark:ring-offset-slate-900 scale-105"
-                    : "ring-transparent hover:ring-slate-300 dark:hover:ring-slate-600 hover:ring-offset-2 dark:hover:ring-offset-slate-900 hover:scale-105"
+                    ? "ring-zinc-900 ring-offset-2 scale-105"
+                    : "ring-transparent hover:ring-zinc-300 hover:ring-offset-2 hover:scale-105"
                 }`}
                 type="button"
               >

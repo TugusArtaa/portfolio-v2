@@ -26,11 +26,11 @@ const DASHBOARD_CARDS = [
         />
       </svg>
     ),
-    bgColor: "bg-gradient-to-br from-blue-500 to-blue-600",
-    glowColor: "shadow-blue-500/25",
-    hoverGlow: "group-hover:shadow-blue-500/40",
-    iconBg: "bg-blue-100 dark:bg-blue-900/30",
-    iconColor: "text-blue-600 dark:text-blue-400",
+    bgColor: "bg-black",
+    glowColor: "shadow-black/5",
+    hoverGlow: "group-hover:shadow-black/10",
+    iconBg: "bg-zinc-100",
+    iconColor: "text-black",
     link: "/admin/projects",
   },
   {
@@ -51,11 +51,11 @@ const DASHBOARD_CARDS = [
         />
       </svg>
     ),
-    bgColor: "bg-gradient-to-br from-amber-500 to-orange-600",
-    glowColor: "shadow-amber-500/25",
-    hoverGlow: "group-hover:shadow-amber-500/40",
-    iconBg: "bg-amber-100 dark:bg-amber-900/30",
-    iconColor: "text-amber-600 dark:text-amber-400",
+    bgColor: "bg-black",
+    glowColor: "shadow-black/5",
+    hoverGlow: "group-hover:shadow-black/10",
+    iconBg: "bg-zinc-100",
+    iconColor: "text-black",
     link: "/admin/skills",
   },
   {
@@ -76,11 +76,11 @@ const DASHBOARD_CARDS = [
         />
       </svg>
     ),
-    bgColor: "bg-gradient-to-br from-emerald-500 to-teal-600",
-    glowColor: "shadow-emerald-500/25",
-    hoverGlow: "group-hover:shadow-emerald-500/40",
-    iconBg: "bg-emerald-100 dark:bg-emerald-900/30",
-    iconColor: "text-emerald-600 dark:text-emerald-400",
+    bgColor: "bg-black",
+    glowColor: "shadow-black/5",
+    hoverGlow: "group-hover:shadow-black/10",
+    iconBg: "bg-zinc-100",
+    iconColor: "text-black",
     link: "/admin/sertifikat",
   },
   {
@@ -107,11 +107,11 @@ const DASHBOARD_CARDS = [
         />
       </svg>
     ),
-    bgColor: "bg-gradient-to-br from-purple-500 to-indigo-600",
-    glowColor: "shadow-purple-500/25",
-    hoverGlow: "group-hover:shadow-purple-500/40",
-    iconBg: "bg-purple-100 dark:bg-purple-900/30",
-    iconColor: "text-purple-600 dark:text-purple-400",
+    bgColor: "bg-black",
+    glowColor: "shadow-black/5",
+    hoverGlow: "group-hover:shadow-black/10",
+    iconBg: "bg-zinc-100",
+    iconColor: "text-black",
     link: "/admin/tools",
   },
   {
@@ -132,11 +132,11 @@ const DASHBOARD_CARDS = [
         />
       </svg>
     ),
-    bgColor: "bg-gradient-to-br from-pink-500 to-rose-600",
-    glowColor: "shadow-pink-500/25",
-    hoverGlow: "group-hover:shadow-pink-500/40",
-    iconBg: "bg-pink-100 dark:bg-pink-900/30",
-    iconColor: "text-pink-600 dark:text-pink-400",
+    bgColor: "bg-black",
+    glowColor: "shadow-black/5",
+    hoverGlow: "group-hover:shadow-black/10",
+    iconBg: "bg-zinc-100",
+    iconColor: "text-black",
     link: "/admin/about",
   },
 ];
@@ -187,7 +187,7 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-slate-900">
+      <div className="min-h-screen bg-zinc-50">
         <div className="px-4 sm:px-6 lg:px-8 pt-8 pb-8">
           <div className="max-w-7xl mx-auto">
             <LoadingSkeleton variant="header" />
@@ -211,7 +211,7 @@ export default function DashboardPage() {
             lastUpdated={lastUpdated}
             icon={
               <svg
-                className="w-16 h-16 text-blue-600 dark:text-blue-400"
+                className="w-16 h-16 text-black"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -250,7 +250,7 @@ export default function DashboardPage() {
           {/* Recent Activity Card */}
           <InfoCard
             icon={
-              <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
                 <svg
                   className="w-4 h-4 text-white"
                   fill="none"
@@ -269,8 +269,8 @@ export default function DashboardPage() {
             title="Aktivitas Terbaru"
             description={`Dashboard terakhir diperbarui pada ${lastUpdated}`}
             extra={
-              <div className="flex items-center text-xs text-slate-500 dark:text-slate-400">
-                <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+              <div className="flex items-center text-xs text-zinc-500">
+                <div className="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></div>
                 Sistem berjalan normal
               </div>
             }
@@ -279,7 +279,7 @@ export default function DashboardPage() {
           {/* Quick Stats Card */}
           <InfoCard
             icon={
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-zinc-800 rounded-lg flex items-center justify-center">
                 <svg
                   className="w-4 h-4 text-white"
                   fill="none"

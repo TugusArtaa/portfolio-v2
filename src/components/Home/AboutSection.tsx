@@ -42,13 +42,13 @@ const AboutSection = forwardRef<HTMLElement>((props, ref) => {
           <div className="w-full lg:w-1/2 text-left">
             <h2
               data-about-content
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-sky-900 dark:text-white text-left"
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-zinc-900 text-left"
             >
               About Me
             </h2>
             <p
               data-about-content
-              className="text-slate-600 dark:text-neutral-300 text-md sm:text-lg lg:text-xl leading-relaxed mb-8 text-left"
+              className="text-zinc-600 text-md sm:text-lg lg:text-xl leading-relaxed mb-8 text-left"
             >
               A brief introduction about me and my interest — including the
               skills I've learned, tools I use, and certifications that support
@@ -57,7 +57,7 @@ const AboutSection = forwardRef<HTMLElement>((props, ref) => {
             <div data-about-content>
               <Link href="/about" passHref>
                 <button
-                  className="cursor-pointer inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 dark:from-sky-500 dark:to-sky-400 dark:hover:from-sky-600 dark:hover:to-sky-500 text-white font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-sky-400/40 transform hover:-translate-y-1 text-sm sm:text-base text-left active:translate-y-1 active:scale-95"
+                  className="cursor-pointer inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-zinc-900 hover:bg-black text-white font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-zinc-500/20 transform hover:-translate-y-1 text-sm sm:text-base text-left active:translate-y-1 active:scale-95"
                   onClick={startLoading}
                 >
                   Learn More

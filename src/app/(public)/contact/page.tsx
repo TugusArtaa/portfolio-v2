@@ -48,7 +48,7 @@ export default function ContactPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="flex flex-col lg:flex-row min-h-[480px] bg-white/50 dark:bg-slate-950/50 border border-sky-200/50 dark:border-sky-400/50 rounded-2xl overflow-hidden"
+            className="flex flex-col lg:flex-row min-h-[480px] bg-white/50 border border-zinc-200 rounded-2xl overflow-hidden shadow-sm"
           >
             {/* Left Side - Lanyard */}
             <div className="hidden lg:flex w-full lg:w-1/2 items-center justify-center py-6 sm:py-10 lg:py-0 relative">

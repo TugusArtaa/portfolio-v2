@@ -6,7 +6,7 @@ import animationData from "../../../public/animations/Animation-Loading.json";
 
 const LoadingScreen: React.FC = () => (
   <motion.div
-    className="fixed inset-0 bg-white/95 dark:bg-slate-950/95 backdrop-blur-lg flex items-center justify-center z-[9999] overflow-hidden"
+    className="fixed inset-0 bg-white/95 backdrop-blur-lg flex items-center justify-center z-[9999] overflow-hidden"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
@@ -17,7 +17,7 @@ const LoadingScreen: React.FC = () => (
   >
     {/* Background blur effect */}
     <motion.div
-      className="absolute inset-0 bg-gradient-to-br from-sky-50/30 to-slate-100/30 dark:from-slate-900/30 dark:to-slate-800/30"
+      className="absolute inset-0 bg-gradient-to-br from-zinc-100/30 to-zinc-200/30"
       initial={{ scale: 0.8, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       exit={{ scale: 1.2, opacity: 0 }}
@@ -43,7 +43,7 @@ const LoadingScreen: React.FC = () => (
       {[...Array(2)].map((_, i) => (
         <motion.div
           key={`ring-${i}`}
-          className="absolute w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 xl:w-72 xl:h-72 rounded-full border border-sky-300/25 dark:border-sky-400/15 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          className="absolute w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 xl:w-72 xl:h-72 rounded-full border border-zinc-300/30 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{
             scale: [0.9, 1.3 + i * 0.2, 0.9],
@@ -96,7 +96,7 @@ const LoadingScreen: React.FC = () => (
         delay: 0.4,
       }}
     >
-      <p className="text-[10px] sm:text-xs md:text-sm lg:text-base text-slate-500 dark:text-slate-400 text-center font-medium px-2 mx-auto break-words max-w-xs sm:max-w-sm md:max-w-md flex flex-wrap justify-center gap-x-1">
+      <p className="text-[10px] sm:text-xs md:text-sm lg:text-base text-zinc-500 text-center font-medium px-2 mx-auto break-words max-w-xs sm:max-w-sm md:max-w-md flex flex-wrap justify-center gap-x-1">
         <span className="whitespace-nowrap">
           © 2025 I Putu Agus Seniartawan.
         </span>

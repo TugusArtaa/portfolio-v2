@@ -22,8 +22,8 @@ export interface Message {
 function BotAvatar() {
   return (
     <div className="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8 sm:w-9 sm:h-9">
-      <div className="rounded-full bg-sky-100 dark:bg-sky-900/50 border border-sky-200 dark:border-sky-700 p-1.5 flex items-center justify-center">
-        <Bot className="w-4 h-4 sm:w-5 sm:h-5 text-sky-600 dark:text-sky-400" />
+      <div className="rounded-full bg-zinc-100 border border-zinc-200 p-1.5 flex items-center justify-center">
+        <Bot className="w-4 h-4 sm:w-5 sm:h-5 text-zinc-900" />
       </div>
     </div>
   );
@@ -33,8 +33,8 @@ function BotAvatar() {
 function UserAvatar() {
   return (
     <div className="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8 sm:w-9 sm:h-9">
-      <div className="rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-600 p-1.5 flex items-center justify-center">
-        <User className="w-4 h-4 sm:w-5 sm:h-5 text-slate-600 dark:text-slate-400" />
+      <div className="rounded-full bg-zinc-200 border border-zinc-300 p-1.5 flex items-center justify-center">
+        <User className="w-4 h-4 sm:w-5 sm:h-5 text-zinc-700" />
       </div>
     </div>
   );
@@ -56,7 +56,7 @@ function TypingIndicator() {
     >
       <BotAvatar />
       <div className="flex flex-col">
-        <span className="text-xs font-medium text-sky-600 dark:text-sky-400 mb-2">
+        <span className="text-xs font-medium text-zinc-500 mb-2">
           TuagusBot
         </span>
         <motion.div
@@ -68,12 +68,12 @@ function TypingIndicator() {
             stiffness: 200,
             damping: 20,
           }}
-          className="relative flex items-center gap-3 bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-750 rounded-2xl rounded-tl-md px-4 py-3 shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden"
+          className="relative flex items-center gap-3 bg-zinc-100 rounded-2xl rounded-tl-md px-4 py-3 shadow-sm border border-zinc-200 overflow-hidden"
         >
           {/* Titik-titik animasi mengetik */}
           <div className="flex gap-1.5 relative z-10">
             <motion.div
-              className="w-2.5 h-2.5 bg-gradient-to-r from-sky-500 to-sky-600 dark:from-sky-400 dark:to-sky-500 rounded-full shadow-sm"
+              className="w-2.5 h-2.5 bg-zinc-800 rounded-full shadow-sm"
               animate={{
                 scale: [1, 1.3, 1],
                 opacity: [0.7, 1, 0.7],
@@ -86,7 +86,7 @@ function TypingIndicator() {
               }}
             />
             <motion.div
-              className="w-2.5 h-2.5 bg-gradient-to-r from-sky-500 to-sky-600 dark:from-sky-400 dark:to-sky-500 rounded-full shadow-sm"
+              className="w-2.5 h-2.5 bg-zinc-800 rounded-full shadow-sm"
               animate={{
                 scale: [1, 1.3, 1],
                 opacity: [0.7, 1, 0.7],
@@ -99,7 +99,7 @@ function TypingIndicator() {
               }}
             />
             <motion.div
-              className="w-2.5 h-2.5 bg-gradient-to-r from-sky-500 to-sky-600 dark:from-sky-400 dark:to-sky-500 rounded-full shadow-sm"
+              className="w-2.5 h-2.5 bg-zinc-800 rounded-full shadow-sm"
               animate={{
                 scale: [1, 1.3, 1],
                 opacity: [0.7, 1, 0.7],
@@ -112,7 +112,7 @@ function TypingIndicator() {
               }}
             />
           </div>
-          <span className="text-xs text-slate-600 dark:text-slate-300 font-medium relative z-10">
+          <span className="text-xs text-zinc-600 font-medium relative z-10">
             TuagusBot is typing...
           </span>
         </motion.div>
@@ -229,7 +229,7 @@ export default function Chatbot() {
             href={part}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 underline decoration-2 underline-offset-2 transition-colors duration-200 font-medium cursor-pointer"
+            className="text-zinc-900 hover:underline underline decoration-2 underline-offset-2 transition-colors duration-200 font-medium cursor-pointer"
           >
             {part}
           </a>
@@ -265,7 +265,7 @@ export default function Chatbot() {
       <div className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50">
         <motion.button
           onClick={() => setIsOpen(true)}
-          className="w-14 h-14 sm:w-16 sm:h-16 bg-sky-600 hover:bg-sky-700 dark:bg-sky-600 dark:hover:bg-sky-500 active:bg-sky-800 dark:active:bg-sky-700 text-white rounded-full shadow-lg hover:shadow-xl dark:shadow-sky-900/20 dark:hover:shadow-sky-900/30 flex items-center justify-center overflow-hidden cursor-pointer transition-colors duration-200"
+          className="w-14 h-14 sm:w-16 sm:h-16 bg-zinc-900 hover:bg-black active:bg-black text-white rounded-full shadow-lg hover:shadow-xl border border-zinc-700/40 flex items-center justify-center overflow-hidden cursor-pointer transition-colors duration-200"
           aria-label="Open TuagusBot Chat"
           whileHover={{
             scale: 1.05,
@@ -343,20 +343,20 @@ export default function Chatbot() {
               damping: 15,
             },
           }}
-          className={`bg-white dark:bg-slate-900 rounded-2xl shadow-2xl dark:shadow-black/20 border border-slate-200 dark:border-slate-700 overflow-hidden ${
+          className={`bg-white rounded-2xl shadow-2xl border border-zinc-200 overflow-hidden ${
             isMinimized ? "w-80 sm:w-96" : "w-80 sm:w-96"
           } max-w-[calc(100vw-2rem)] max-h-[calc(100vh-4rem)]`}
         >
           {/* Header chat */}
-          <motion.div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700 relative">
+          <motion.div className="flex items-center justify-between p-4 border-b border-zinc-200 relative">
             {/* Border animasi jika chat diminimize */}
             {isMinimized && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="absolute inset-0 rounded-xl bg-gradient-to-r from-sky-200 via-sky-300 to-sky-200 dark:from-sky-700 dark:via-sky-600 dark:to-sky-700 p-[2px]"
+                className="absolute inset-0 rounded-xl bg-gradient-to-r from-zinc-200 via-zinc-400 to-zinc-200 p-[2px]"
               >
-                <div className="w-full h-full bg-white dark:bg-slate-900 rounded-xl" />
+                <div className="w-full h-full bg-white rounded-xl" />
               </motion.div>
             )}
 
@@ -369,19 +369,19 @@ export default function Chatbot() {
                 <BotAvatar />
               </motion.div>
               <div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm">
+                <h3 className="font-bold text-zinc-900 text-sm">
                   TuagusBot
                 </h3>
                 <div className="flex items-center gap-1.5">
                   <motion.div
-                    className="w-2 h-2 bg-green-400 dark:bg-green-500 rounded-full"
+                    className="w-2 h-2 bg-emerald-500 rounded-full"
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{
                       duration: 2,
                       repeat: Number.POSITIVE_INFINITY,
                     }}
                   />
-                  <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+                  <p className="text-xs text-zinc-500 font-medium">
                     AI Assistant • Online
                   </p>
                 </div>
@@ -391,7 +391,7 @@ export default function Chatbot() {
             <div className="flex items-center gap-1 relative z-10">
               <motion.button
                 onClick={() => setIsMinimized(!isMinimized)}
-                className="p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl transition-all duration-200 cursor-pointer"
+                className="p-2 hover:bg-zinc-100 rounded-xl transition-all duration-200 cursor-pointer"
                 aria-label={isMinimized ? "Maximize chat" : "Minimize chat"}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
@@ -401,20 +401,20 @@ export default function Chatbot() {
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
                   {isMinimized ? (
-                    <Maximize2 className="w-4 h-4 text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400" />
+                    <Maximize2 className="w-4 h-4 text-zinc-600 hover:text-zinc-900" />
                   ) : (
-                    <Minimize2 className="w-4 h-4 text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400" />
+                    <Minimize2 className="w-4 h-4 text-zinc-600 hover:text-zinc-900" />
                   )}
                 </motion.div>
               </motion.button>
               <motion.button
                 onClick={() => setIsOpen(false)}
-                className="p-2 hover:bg-red-100 dark:hover:bg-red-900/30 rounded-xl transition-all duration-200 cursor-pointer"
+                className="p-2 hover:bg-red-100 rounded-xl transition-all duration-200 cursor-pointer"
                 aria-label="Close chat"
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <X className="w-4 h-4 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400" />
+                <X className="w-4 h-4 text-zinc-600 hover:text-red-600" />
               </motion.button>
             </div>
           </motion.div>
@@ -434,7 +434,7 @@ export default function Chatbot() {
                 className="overflow-hidden"
               >
                 {/* Container pesan chat */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50 dark:bg-slate-900/50 h-[380px] sm:h-[480px] scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-600 scrollbar-track-transparent">
+                <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-zinc-50/50 h-[380px] sm:h-[480px] scrollbar-thin scrollbar-thumb-zinc-300 scrollbar-track-transparent">
                   <AnimatePresence>
                     {messages.map((msg, index) => (
                       <motion.div
@@ -458,13 +458,13 @@ export default function Chatbot() {
                         <div
                           className={`max-w-[85%] sm:max-w-[80%] ${
                             msg.sender === "user"
-                              ? "bg-sky-600 dark:bg-sky-600 text-white rounded-2xl rounded-tr-md shadow-lg"
-                              : "bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 rounded-2xl rounded-tl-md shadow-sm border border-slate-200 dark:border-slate-700"
+                              ? "bg-zinc-900 text-white rounded-2xl rounded-tr-md shadow-md"
+                              : "bg-white text-zinc-900 rounded-2xl rounded-tl-md shadow-sm border border-zinc-200"
                           } px-4 py-3`}
                         >
                           {/* Nama bot pada pesan bot */}
                           {msg.sender === "bot" && (
-                            <div className="text-xs font-bold text-sky-600 dark:text-sky-400 mb-1 flex items-center gap-1">
+                            <div className="text-xs font-bold text-zinc-900 mb-1 flex items-center gap-1">
                               <Bot className="w-3 h-3" />
                               TuagusBot
                             </div>
@@ -477,8 +477,8 @@ export default function Chatbot() {
                           <div
                             className={`text-xs mt-2 opacity-70 ${
                               msg.sender === "user"
-                                ? "text-sky-100"
-                                : "text-slate-500 dark:text-slate-400"
+                                ? "text-zinc-300"
+                                : "text-zinc-500"
                             }`}
                           >
                             {msg.timestamp.toLocaleTimeString([], {
@@ -503,7 +503,7 @@ export default function Chatbot() {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2, duration: 0.3 }}
-                  className="p-3 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 rounded-b-3xl"
+                  className="p-3 border-t border-zinc-200 bg-white rounded-b-3xl"
                 >
                   <form
                     onSubmit={handleSubmit}
@@ -516,7 +516,7 @@ export default function Chatbot() {
                       onChange={(e) => setInput(e.target.value)}
                       placeholder="Ask me anything about Tuagus..."
                       disabled={loading}
-                      className="flex-1 min-w-0 max-w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl text-sm text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500 dark:focus:ring-sky-400 focus:border-sky-300 dark:focus:border-sky-600 transition-all duration-300 disabled:opacity-50 shadow-sm cursor-text"
+                      className="flex-1 min-w-0 max-w-full px-4 py-3 bg-zinc-50 border border-zinc-200 rounded-2xl text-sm text-zinc-900 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-zinc-400 transition-all duration-300 disabled:opacity-50 shadow-sm cursor-text"
                       whileFocus={{ scale: 1.01 }}
                       transition={{
                         type: "spring",
@@ -528,7 +528,7 @@ export default function Chatbot() {
                     <motion.button
                       type="submit"
                       disabled={loading || !input.trim()}
-                      className="px-4 py-3 bg-sky-600 hover:bg-sky-700 dark:bg-sky-600 dark:hover:bg-sky-500 disabled:bg-slate-300 dark:disabled:bg-slate-700 text-white rounded-2xl transition-all duration-300 disabled:cursor-not-allowed flex items-center justify-center min-w-[52px] max-w-full shadow-lg hover:shadow-xl cursor-pointer"
+                      className="px-4 py-3 bg-zinc-900 hover:bg-black disabled:bg-zinc-300 text-white rounded-2xl transition-all duration-300 disabled:cursor-not-allowed flex items-center justify-center min-w-[52px] max-w-full shadow-lg hover:shadow-xl cursor-pointer"
                       aria-label="Send message"
                       whileHover={{ scale: 1.05, rotate: 5 }}
                       whileTap={{ scale: 0.95, rotate: -5 }}

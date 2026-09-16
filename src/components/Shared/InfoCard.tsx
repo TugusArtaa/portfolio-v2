@@ -17,19 +17,19 @@ export default function InfoCard({
   extra,
 }: InfoCardProps) {
   return (
-    <div className="bg-white dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-200/50 dark:border-slate-700/50 shadow-md p-6">
+    <div className="bg-white rounded-2xl border border-black/10 shadow-sm p-6">
       <div className="flex items-center gap-3 mb-4">
         {icon}
-        <h3 className="text-lg font-semibold text-slate-800 dark:text-white">
+        <h3 className="text-lg font-semibold text-black">
           {title}
         </h3>
       </div>
       {value && (
-        <div className="text-2xl font-bold text-slate-800 dark:text-white mb-1">
+        <div className="text-2xl font-bold text-black mb-1">
           {value}
         </div>
       )}
-      <p className="text-slate-600 dark:text-slate-400 text-sm">
+      <p className="text-zinc-600 text-sm">
         {description}
       </p>
       {extra && <div className="mt-4">{extra}</div>}

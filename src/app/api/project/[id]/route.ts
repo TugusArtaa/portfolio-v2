@@ -3,11 +3,15 @@ import { NextResponse } from "next/server";
 import { requireAuth } from "@/lib/auth";
 
 // Handler GET: Mengambil data project berdasarkan id
-export async function GET(_: Request, { params }: { params: { id: string } }) {
+export async function GET(
+  _: Request,
+  context: { params: Promise<{ id: string }> }
+) {
+  const { id } = await context.params;
   try {
     await requireAuth();
     const project = await prisma.project.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
     if (!project) {
       return NextResponse.json({ message: "Not found" }, { status: 404 });
@@ -24,8 +28,9 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
 // Handler PUT: Memperbarui data project berdasarkan id
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params;
   try {
     await requireAuth();
     const data = await req.json();
@@ -42,7 +47,7 @@ export async function PUT(
     }
 
     const updated = await prisma.project.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         title: data.title,
         slug: data.slug,
@@ -67,11 +72,12 @@ export async function PUT(
 // Handler DELETE: Menghapus data project berdasarkan id
 export async function DELETE(
   _: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params;
   try {
     await requireAuth();
-    await prisma.project.delete({ where: { id: params.id } });
+    await prisma.project.delete({ where: { id } });
     return NextResponse.json({ message: "Project deleted" });
   } catch {
     return NextResponse.json(

@@ -12,34 +12,34 @@ interface ToolsPreviewProps {
 const getLevelConfig = (level: string) => {
   const configs = {
     Beginner: {
-      color: "from-emerald-400 to-green-500",
-      bgColor: "bg-emerald-50 dark:bg-emerald-900/20",
-      textColor: "text-emerald-700 dark:text-emerald-300",
-      borderColor: "border-emerald-200 dark:border-emerald-800",
+      color: "from-zinc-400 to-zinc-600",
+      bgColor: "bg-zinc-100",
+      textColor: "text-zinc-700",
+      borderColor: "border-zinc-200",
       progress: 25,
       emoji: "🌱",
     },
     Intermediate: {
-      color: "from-amber-400 to-yellow-500",
-      bgColor: "bg-amber-50 dark:bg-amber-900/20",
-      textColor: "text-amber-700 dark:text-amber-300",
-      borderColor: "border-amber-200 dark:border-amber-800",
+      color: "from-zinc-500 to-zinc-700",
+      bgColor: "bg-zinc-100",
+      textColor: "text-zinc-800",
+      borderColor: "border-zinc-200",
       progress: 50,
       emoji: "⚡",
     },
     Advanced: {
-      color: "from-blue-400 to-cyan-500",
-      bgColor: "bg-blue-50 dark:bg-blue-900/20",
-      textColor: "text-blue-700 dark:text-blue-300",
-      borderColor: "border-blue-200 dark:border-blue-800",
+      color: "from-zinc-600 to-zinc-800",
+      bgColor: "bg-zinc-100",
+      textColor: "text-zinc-900",
+      borderColor: "border-zinc-300",
       progress: 75,
       emoji: "🚀",
     },
     Expert: {
-      color: "from-purple-400 to-pink-500",
-      bgColor: "bg-purple-50 dark:bg-purple-900/20",
-      textColor: "text-purple-700 dark:text-purple-300",
-      borderColor: "border-purple-200 dark:border-purple-800",
+      color: "from-zinc-700 to-black",
+      bgColor: "bg-zinc-100",
+      textColor: "text-black font-bold",
+      borderColor: "border-zinc-300",
       progress: 100,
       emoji: "👑",
     },
@@ -52,15 +52,11 @@ export default function ToolsPreview({ name, level, icon }: ToolsPreviewProps) {
 
   return (
     <div className="group">
-      <div className="relative p-5 rounded-2xl bg-gradient-to-br from-white to-slate-50/50 dark:from-slate-800 dark:to-slate-900/50 border border-slate-200/80 dark:border-slate-700/80 shadow-md backdrop-blur-sm">
+      <div className="relative p-5 rounded-2xl bg-white border border-black/10 shadow-sm">
         <div className="flex items-center gap-4">
           {/* Icon Container */}
           <div className="relative flex-shrink-0">
-            {/* Glow Effect */}
-            <div
-              className={`absolute inset-0 bg-gradient-to-r ${levelConfig.color} opacity-10 rounded-xl blur-sm`}
-            ></div>
-            <div className="relative w-14 h-14 rounded-xl overflow-hidden bg-white border-2 border-slate-100 shadow-inner">
+            <div className="relative w-14 h-14 rounded-xl overflow-hidden bg-zinc-50 border border-black/10 shadow-sm">
               {icon ? (
                 icon.startsWith("http") ||
                 icon.startsWith("/uploads/") ||
@@ -81,9 +77,7 @@ export default function ToolsPreview({ name, level, icon }: ToolsPreviewProps) {
                   </div>
                 )
               ) : (
-                <div
-                  className={`w-full h-full flex items-center justify-center text-lg font-bold text-white bg-gradient-to-br ${levelConfig.color}`}
-                >
+                <div className="w-full h-full flex items-center justify-center text-lg font-bold text-white bg-black">
                   {name?.charAt(0).toUpperCase()}
                 </div>
               )}
@@ -92,18 +86,15 @@ export default function ToolsPreview({ name, level, icon }: ToolsPreviewProps) {
           {/* Content */}
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-2">
-              <h3 className="font-bold text-slate-900 dark:text-white truncate text-lg leading-tight">
+              <h3 className="font-bold text-black truncate text-lg leading-tight">
                 {name || "Nama Tool"}
               </h3>
-              {name && (
-                <div className="w-1 h-1 bg-slate-400 dark:bg-slate-500 rounded-full"></div>
-              )}
             </div>
             {/* Level Badge & Progress */}
             {level && (
               <div className="space-y-2">
                 <div
-                  className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold ${levelConfig.bgColor} ${levelConfig.textColor} ${levelConfig.borderColor} border backdrop-blur-sm shadow-sm`}
+                  className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold ${levelConfig.bgColor} ${levelConfig.textColor} ${levelConfig.borderColor} border`}
                 >
                   <span className="text-base leading-none">
                     {levelConfig.emoji}
@@ -112,13 +103,13 @@ export default function ToolsPreview({ name, level, icon }: ToolsPreviewProps) {
                 </div>
                 {/* Progress Bar */}
                 <div className="space-y-1">
-                  <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400">
+                  <div className="flex justify-between text-xs text-zinc-500">
                     <span>Tool Level</span>
-                    <span className="font-medium">{levelConfig.progress}%</span>
+                    <span className="font-medium text-black">{levelConfig.progress}%</span>
                   </div>
-                  <div className="w-full bg-slate-200 dark:bg-slate-600 rounded-full h-2 overflow-hidden shadow-inner">
+                  <div className="w-full bg-zinc-100 rounded-full h-2 overflow-hidden border border-black/5">
                     <div
-                      className={`h-full bg-gradient-to-r ${levelConfig.color} rounded-full transition-all duration-500 ease-out shadow-sm`}
+                      className="h-full bg-black rounded-full transition-all duration-500 ease-out"
                       style={{ width: `${levelConfig.progress}%` }}
                     ></div>
                   </div>
@@ -127,9 +118,6 @@ export default function ToolsPreview({ name, level, icon }: ToolsPreviewProps) {
             )}
           </div>
         </div>
-        {/* Decorative dots */}
-        <div className="absolute top-2 right-2 w-1 h-1 bg-blue-400/40 rounded-full opacity-100"></div>
-        <div className="absolute bottom-2 left-2 w-1 h-1 bg-purple-400/40 rounded-full opacity-100"></div>
       </div>
     </div>
   );

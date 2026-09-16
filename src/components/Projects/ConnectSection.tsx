@@ -16,21 +16,21 @@ export default function ConnectSection() {
         <div className="text-center">
           <h2
             data-connect-content
-            className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 text-sky-900 dark:text-white"
+            className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 text-zinc-900"
           >
-            Want something like this?
+            Let's Connect
           </h2>
           <p
             data-connect-content
-            className="hidden sm:block text-slate-600 dark:text-neutral-300 text-md sm:text-lg lg:text-xl leading-relaxed mb-8 max-w-full mx-auto"
+            className="hidden sm:block text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed mb-6 max-w-xl mx-auto"
           >
-            Let's collaborate and bring your ideas to life. Reach out and let's
-            discuss your next project!
+            Ready to bring your ideas to life? Let's discuss your next project
+            and create something amazing together.
           </p>
           <div data-connect-content>
-            <Link href="/contact">
+            <Link href="/contact" passHref>
               <button
-                className="cursor-pointer inline-flex items-center px-8 sm:px-12 font-bold rounded-lg transition-all duration-300 shadow-none text-2xl sm:text-2xl lg:text-2xl text-sky-600 dark:text-sky-400 focus:outline-none hover:text-sky-400 dark:hover:text-sky-300 hover:scale-105 group active:translate-y-1 active:scale-95"
+                className="cursor-pointer inline-flex items-center px-8 sm:px-12 font-bold rounded-lg transition-all duration-300 shadow-none text-2xl sm:text-2xl lg:text-2xl text-zinc-900 focus:outline-none hover:text-zinc-600 hover:scale-105 group active:translate-y-1 active:scale-95"
                 onClick={startLoading}
               >
                 Get In Touch

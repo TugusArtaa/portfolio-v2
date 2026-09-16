@@ -134,74 +134,74 @@ const THEME_COLORS: Record<
   { bg: string; icon: string; border: string; text: string; accent: string }
 > = {
   who_am_i: {
-    bg: "from-blue-500/5 via-blue-400/3 to-blue-300/5",
-    icon: "bg-gradient-to-br from-blue-500 to-blue-600",
-    border: "border-blue-200/50 dark:border-blue-800/30",
-    text: "text-blue-700 dark:text-blue-300",
-    accent: "bg-blue-50 dark:bg-blue-950/50",
+    bg: "bg-white",
+    icon: "bg-black",
+    border: "border-black/10",
+    text: "text-black",
+    accent: "bg-zinc-100",
   },
   education: {
-    bg: "from-indigo-500/5 via-indigo-400/3 to-indigo-300/5",
-    icon: "bg-gradient-to-br from-indigo-500 to-indigo-600",
-    border: "border-indigo-200/50 dark:border-indigo-800/30",
-    text: "text-indigo-700 dark:text-indigo-300",
-    accent: "bg-indigo-50 dark:bg-indigo-950/50",
+    bg: "bg-white",
+    icon: "bg-black",
+    border: "border-black/10",
+    text: "text-black",
+    accent: "bg-zinc-100",
   },
   quote: {
-    bg: "from-purple-500/5 via-purple-400/3 to-purple-300/5",
-    icon: "bg-gradient-to-br from-purple-500 to-purple-600",
-    border: "border-purple-200/50 dark:border-purple-800/30",
-    text: "text-purple-700 dark:text-purple-300",
-    accent: "bg-purple-50 dark:bg-purple-950/50",
+    bg: "bg-white",
+    icon: "bg-black",
+    border: "border-black/10",
+    text: "text-black",
+    accent: "bg-zinc-100",
   },
   whatsapp: {
-    bg: "from-green-500/5 via-green-400/3 to-green-300/5",
-    icon: "bg-gradient-to-br from-green-500 to-green-600",
-    border: "border-green-200/50 dark:border-green-800/30",
-    text: "text-green-700 dark:text-green-300",
-    accent: "bg-green-50 dark:bg-green-950/50",
+    bg: "bg-white",
+    icon: "bg-black",
+    border: "border-black/10",
+    text: "text-black",
+    accent: "bg-zinc-100",
   },
   gmail: {
-    bg: "from-red-500/5 via-red-400/3 to-red-300/5",
-    icon: "bg-gradient-to-br from-red-500 to-red-600",
-    border: "border-red-200/50 dark:border-red-800/30",
-    text: "text-red-700 dark:text-red-300",
-    accent: "bg-red-50 dark:bg-red-950/50",
+    bg: "bg-white",
+    icon: "bg-black",
+    border: "border-black/10",
+    text: "text-black",
+    accent: "bg-zinc-100",
   },
   instagram: {
-    bg: "from-pink-500/5 via-pink-400/3 to-pink-300/5",
-    icon: "bg-gradient-to-br from-pink-500 to-pink-600",
-    border: "border-pink-200/50 dark:border-pink-800/30",
-    text: "text-pink-700 dark:text-pink-300",
-    accent: "bg-pink-50 dark:bg-pink-950/50",
+    bg: "bg-white",
+    icon: "bg-black",
+    border: "border-black/10",
+    text: "text-black",
+    accent: "bg-zinc-100",
   },
   github: {
-    bg: "from-gray-500/5 via-gray-400/3 to-gray-300/5",
-    icon: "bg-gradient-to-br from-gray-700 to-gray-800",
-    border: "border-gray-200/50 dark:border-gray-700/30",
-    text: "text-gray-700 dark:text-gray-300",
-    accent: "bg-gray-50 dark:bg-gray-950/50",
+    bg: "bg-white",
+    icon: "bg-black",
+    border: "border-black/10",
+    text: "text-black",
+    accent: "bg-zinc-100",
   },
   linkedin: {
-    bg: "from-blue-600/5 via-blue-500/3 to-blue-400/5",
-    icon: "bg-gradient-to-br from-blue-600 to-blue-700",
-    border: "border-blue-200/50 dark:border-blue-800/30",
-    text: "text-blue-700 dark:text-blue-300",
-    accent: "bg-blue-50 dark:bg-blue-950/50",
+    bg: "bg-white",
+    icon: "bg-black",
+    border: "border-black/10",
+    text: "text-black",
+    accent: "bg-zinc-100",
   },
   discord: {
-    bg: "from-indigo-600/5 via-indigo-500/3 to-indigo-400/5",
-    icon: "bg-gradient-to-br from-indigo-600 to-indigo-700",
-    border: "border-indigo-200/50 dark:border-indigo-800/30",
-    text: "text-indigo-700 dark:text-indigo-300",
-    accent: "bg-indigo-50 dark:bg-indigo-950/50",
+    bg: "bg-white",
+    icon: "bg-black",
+    border: "border-black/10",
+    text: "text-black",
+    accent: "bg-zinc-100",
   },
   call_to_action: {
-    bg: "from-orange-500/5 via-orange-400/3 to-orange-300/5",
-    icon: "bg-gradient-to-br from-orange-500 to-orange-600",
-    border: "border-orange-200/50 dark:border-orange-800/30",
-    text: "text-orange-700 dark:text-orange-300",
-    accent: "bg-orange-50 dark:bg-orange-950/50",
+    bg: "bg-white",
+    icon: "bg-black",
+    border: "border-black/10",
+    text: "text-black",
+    accent: "bg-zinc-100",
   },
 };
 
@@ -226,7 +226,7 @@ export default function AboutCard({
 
   return (
     <div
-      className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${theme.bg} backdrop-blur-sm border ${theme.border} transition-all duration-500 shadow-md hover:shadow-xl hover:scale-[1.02] hover:-translate-y-1`}
+      className="group relative overflow-hidden rounded-2xl bg-white border border-black/10 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
       style={{
         animation: `fadeInUp 0.6s ease-out ${index * 100}ms both`,
       }}
@@ -234,29 +234,15 @@ export default function AboutCard({
       onMouseLeave={() => setIsHovered(false)}
       tabIndex={0}
     >
-      {/* Decorative Background Elements */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        aria-hidden="true"
-      >
-        <div
-          className={`absolute top-0 right-0 w-32 h-32 ${theme.icon} opacity-5 rounded-full blur-3xl transform translate-x-16 -translate-y-16`}
-        ></div>
-        <div
-          className={`absolute bottom-0 left-0 w-24 h-24 ${theme.icon} opacity-3 rounded-full blur-2xl transform -translate-x-12 translate-y-12`}
-        ></div>
-      </div>
-
       <div className="relative p-6 z-10">
-        {" "}
         {/* Header Section */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
             <div
               className={`w-12 h-12 rounded-xl ${
                 theme.icon
-              } flex items-center justify-center text-white shadow-lg transition-transform duration-300 ${
-                isHovered ? "scale-110 rotate-3" : ""
+              } flex items-center justify-center text-white shadow-sm transition-transform duration-200 ${
+                isHovered ? "scale-105" : ""
               }`}
             >
               {ICONS[about.id] || (
@@ -264,12 +250,11 @@ export default function AboutCard({
               )}
             </div>
             <div>
-              <h3 className={`font-bold text-lg ${theme.text} leading-tight`}>
+              <h3 className="font-bold text-lg text-black leading-tight">
                 {label}
               </h3>
               <div className="flex items-center gap-2 mt-1">
-                <div className={`w-2 h-2 rounded-full ${theme.icon}`}></div>
-                <span className="text-xs text-gray-500 dark:text-gray-400">
+                <span className="text-xs text-zinc-500">
                   {about.content.length} karakter
                 </span>
               </div>
@@ -278,21 +263,22 @@ export default function AboutCard({
 
           {/* Content Type Badge */}
           <div
-            className={`px-3 py-1 rounded-full ${theme.accent} ${theme.text} text-xs font-medium border ${theme.border}`}
+            className="px-3 py-1 rounded-full bg-zinc-100 text-zinc-700 text-xs font-medium border border-black/5"
           >
             {variant === "admin" ? "Admin" : "Public"}
           </div>
         </div>
+
         {/* Content Section */}
         <div className="mb-6">
-          <div className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed whitespace-pre-line">
+          <div className="text-zinc-700 text-sm leading-relaxed whitespace-pre-line">
             {displayContent}
           </div>
 
           {shouldTruncate && (
             <button
               onClick={() => setShowFullContent(!showFullContent)}
-              className={`mt-2 text-xs ${theme.text} hover:underline font-medium transition-colors`}
+              className="mt-2 text-xs text-black hover:underline font-semibold transition-colors"
             >
               {showFullContent
                 ? "Tampilkan lebih sedikit"
@@ -300,6 +286,7 @@ export default function AboutCard({
             </button>
           )}
         </div>
+
         {/* Actions Section */}
         {showActions && variant === "admin" && (
           <div className="flex gap-3">
@@ -310,11 +297,10 @@ export default function AboutCard({
                 e.stopPropagation();
                 onEdit(about);
               }}
-              className="flex-1 group/btn relative overflow-hidden inline-flex items-center justify-center px-4 py-2.5 bg-gradient-to-r from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 text-slate-700 dark:text-slate-300 text-sm font-semibold rounded-xl hover:from-slate-200 hover:to-slate-300 dark:hover:from-slate-600 dark:hover:to-slate-500 transition-all duration-300 shadow-md hover:shadow-lg"
+              className="flex-1 inline-flex items-center justify-center px-4 py-2.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-sm font-semibold rounded-xl transition-all duration-200"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700"></div>
               <svg
-                className="relative w-4 h-4 mr-2 group-hover/btn:scale-110 transition-transform duration-200"
+                className="w-4 h-4 mr-2"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -326,7 +312,7 @@ export default function AboutCard({
                   d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                 />
               </svg>
-              <span className="relative">Edit</span>
+              <span>Edit</span>
             </button>
             <button
               type="button"
@@ -335,11 +321,10 @@ export default function AboutCard({
                 e.stopPropagation();
                 onDelete(about);
               }}
-              className="group/btn relative overflow-hidden inline-flex items-center justify-center px-4 py-2.5 bg-gradient-to-r from-red-100 to-red-200 dark:from-red-900/40 dark:to-red-800/40 text-red-700 dark:text-red-400 text-sm font-semibold rounded-xl hover:from-red-200 hover:to-red-300 dark:hover:from-red-800/60 dark:hover:to-red-700/60 transition-all duration-300 shadow-md hover:shadow-lg"
+              className="inline-flex items-center justify-center px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-600 text-sm font-semibold rounded-xl transition-all duration-200"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-red-200/0 via-red-200/40 to-red-200/0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700"></div>
               <svg
-                className="relative w-4 h-4 group-hover/btn:scale-110 transition-transform duration-200"
+                className="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -354,24 +339,22 @@ export default function AboutCard({
             </button>
           </div>
         )}
+
         {/* Public View Footer */}
         {variant === "public" && (
-          <div className="flex items-center justify-between pt-4 mt-4 border-t border-gray-200/50 dark:border-gray-700/50">
-            <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
-              <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+          <div className="flex items-center justify-between pt-4 mt-4 border-t border-black/10">
+            <div className="flex items-center gap-2 text-xs text-zinc-500">
+              <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></div>
               Aktif
             </div>
-            <div className="text-xs text-gray-400 dark:text-gray-500">
+            <div className="text-xs text-zinc-400">
               ID: {about.id}
             </div>
           </div>
         )}
       </div>
 
-      {/* Hover Effect Border */}
-      <div
-        className={`absolute inset-0 rounded-2xl border-2 ${theme.border} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-      ></div>
+      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
 
       <style jsx>{`
         @keyframes fadeInUp {

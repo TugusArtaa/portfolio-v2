@@ -2,14 +2,15 @@ import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { requireAuth } from "@/lib/auth";
 
-type Params = { params: { id: string } };
+type Params = { params: Promise<{ id: string }> };
 
 // Handler GET: Mengambil data tool berdasarkan id
-export async function GET(_: Request, { params }: Params) {
+export async function GET(_: Request, context: Params) {
+  const { id } = await context.params;
   try {
     await requireAuth();
     const tool = await prisma.tool.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
     if (!tool) {
       return NextResponse.json({ message: "Tool not found" }, { status: 404 });
@@ -24,7 +25,8 @@ export async function GET(_: Request, { params }: Params) {
 }
 
 // Handler PUT: Memperbarui data tool berdasarkan id
-export async function PUT(req: Request, { params }: Params) {
+export async function PUT(req: Request, context: Params) {
+  const { id } = await context.params;
   try {
     await requireAuth();
     const body = await req.json();
@@ -37,7 +39,7 @@ export async function PUT(req: Request, { params }: Params) {
       );
     }
     const updated = await prisma.tool.update({
-      where: { id: params.id },
+      where: { id },
       data: { name, level, icon },
     });
     return NextResponse.json(updated);
@@ -50,10 +52,11 @@ export async function PUT(req: Request, { params }: Params) {
 }
 
 // Handler DELETE: Menghapus data tool berdasarkan id
-export async function DELETE(_: Request, { params }: Params) {
+export async function DELETE(_: Request, context: Params) {
+  const { id } = await context.params;
   try {
     await requireAuth();
-    await prisma.tool.delete({ where: { id: params.id } });
+    await prisma.tool.delete({ where: { id } });
     return NextResponse.json({ message: "Deleted" });
   } catch {
     return NextResponse.json(

@@ -36,14 +36,14 @@ export default function AboutIdPicker({
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <label className="text-sm font-semibold text-slate-700 dark:text-slate-300 block">
-          Pilih Bagian About <span className="text-red-500">*</span>
+        <label className="text-sm font-semibold text-zinc-700 block">
+          Pilih Bagian About <span className="text-rose-500">*</span>
         </label>
         {!existing && availableIds.length > 6 && (
           <button
             type="button"
             onClick={() => setShowAllIds(!showAllIds)}
-            className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors"
+            className="text-sm text-black hover:underline font-medium transition-colors"
           >
             {showAllIds
               ? "Tampilkan Sedikit"
@@ -63,8 +63,8 @@ export default function AboutIdPicker({
               relative p-4 rounded-xl border-2 transition-all duration-200
               ${
                 formId === opt.value
-                  ? `${opt.color} ring-2 ring-blue-500 dark:ring-blue-400 shadow-lg transform scale-105`
-                  : `bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-md hover:scale-102`
+                  ? "bg-zinc-100 border-black shadow-sm transform scale-102"
+                  : "bg-white border-zinc-200 hover:border-black/30 hover:shadow-sm"
               }
               ${existing ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
               group
@@ -79,13 +79,13 @@ export default function AboutIdPicker({
               >
                 {opt.icon}
               </div>
-              <div className="text-sm font-medium text-slate-700 dark:text-slate-300 text-center leading-tight">
+              <div className="text-sm font-medium text-black text-center leading-tight">
                 {opt.label}
               </div>
             </div>
 
             {formId === opt.value && (
-              <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-500 dark:bg-blue-400 rounded-full flex items-center justify-center">
+              <div className="absolute -top-2 -right-2 w-6 h-6 bg-black rounded-full flex items-center justify-center">
                 <svg
                   className="w-3 h-3 text-white"
                   fill="none"
@@ -105,7 +105,7 @@ export default function AboutIdPicker({
         ))}
         {/* Dummy card if no ID available */}
         {!existing && availableIds.length === 0 && (
-          <div className="col-span-2 md:col-span-3 flex flex-col items-center justify-center p-6 rounded-xl border-2 border-dashed border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-400 dark:text-slate-500 text-center">
+          <div className="col-span-2 md:col-span-3 flex flex-col items-center justify-center p-6 rounded-xl border-2 border-dashed border-zinc-200 bg-zinc-50 text-zinc-400 text-center">
             <div className="font-semibold">Semua ID sudah digunakan</div>
             <div className="text-xs mt-1">
               Tidak ada ID about yang tersedia untuk ditambahkan
@@ -115,7 +115,7 @@ export default function AboutIdPicker({
       </div>
 
       {touched.id && errors.id && (
-        <div className="flex items-center space-x-2 text-red-600 dark:text-red-400">
+        <div className="flex items-center space-x-2 text-rose-600">
           <svg
             className="w-4 h-4"
             fill="none"
@@ -134,17 +134,17 @@ export default function AboutIdPicker({
       )}
 
       {formId && (
-        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
+        <div className="bg-zinc-100 border border-black/10 rounded-lg p-3">
           <div className="flex items-center space-x-2">
             <div className="text-lg">
               {ABOUT_IDS.find((opt) => opt.value === formId)?.icon}
             </div>
             <div>
-              <p className="text-sm font-medium text-blue-900 dark:text-blue-100">
+              <p className="text-sm font-medium text-black">
                 Bagian about yang di pilih:{" "}
                 {ABOUT_IDS.find((opt) => opt.value === formId)?.label}
               </p>
-              <p className="text-xs text-blue-700 dark:text-blue-300">
+              <p className="text-xs text-zinc-500">
                 {formId}
               </p>
             </div>

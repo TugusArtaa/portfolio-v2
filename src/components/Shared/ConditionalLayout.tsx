@@ -28,7 +28,7 @@ export default function ConditionalLayout({
 
   if (isAdminRoute) {
     return (
-      <div className="min-h-screen bg-white dark:bg-slate-950">{children}</div>
+      <div className="min-h-screen bg-white">{children}</div>
     );
   }
 

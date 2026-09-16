@@ -20,7 +20,7 @@ export default function EmptyState({
 }: EmptyStateProps) {
   const defaultIcon = (
     <svg
-      className="w-12 h-12 lg:w-16 lg:h-16 text-slate-400 dark:text-slate-500"
+      className="w-12 h-12 lg:w-16 lg:h-16 text-zinc-400"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -35,20 +35,20 @@ export default function EmptyState({
   );
 
   return (
-    <div className="bg-white/40 dark:bg-slate-800/40 backdrop-blur-xl rounded-3xl shadow-md border border-white/20 dark:border-slate-700/50 p-12 lg:p-20 text-center">
-      <div className="w-24 h-24 lg:w-32 lg:h-32 mx-auto mb-8 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 rounded-3xl flex items-center justify-center transform rotate-3 hover:rotate-6 transition-transform duration-300">
+    <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-sm border border-black/10 p-12 lg:p-20 text-center">
+      <div className="w-24 h-24 lg:w-32 lg:h-32 mx-auto mb-8 bg-zinc-100 rounded-3xl flex items-center justify-center border border-black/5">
         {icon || defaultIcon}
       </div>
-      <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+      <h3 className="text-2xl lg:text-3xl font-bold text-black mb-4">
         {title}
       </h3>
-      <p className="text-slate-600 dark:text-slate-400 text-lg lg:text-xl max-w-md mx-auto mb-8">
+      <p className="text-zinc-600 text-lg lg:text-xl max-w-md mx-auto mb-8">
         {description}
       </p>
       {actionButton && (
         <Link
           href={actionButton.href}
-          className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300"
+          className="inline-flex items-center px-6 py-3 bg-black hover:bg-zinc-800 text-white font-semibold rounded-xl transition-all duration-200"
         >
           {actionButton.label}
         </Link>

@@ -8,7 +8,44 @@ import {
   ReactNode,
   useEffect,
 } from "react";
-import { useSound } from "react-sounds";
+// Audio notification helper via native Web Audio API (offline-safe, no external CDN fetch)
+export function playNotificationSound(type: "success" | "error" | "warning" | "info") {
+  if (typeof window === "undefined") return;
+  try {
+    const AudioContextClass =
+      window.AudioContext ||
+      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    if (!AudioContextClass) return;
+    const ctx = new AudioContextClass();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    const now = ctx.currentTime;
+    if (type === "success") {
+      osc.frequency.setValueAtTime(587.33, now);
+      osc.frequency.exponentialRampToValueAtTime(880, now + 0.15);
+    } else if (type === "error") {
+      osc.frequency.setValueAtTime(320, now);
+      osc.frequency.exponentialRampToValueAtTime(180, now + 0.2);
+    } else if (type === "warning") {
+      osc.frequency.setValueAtTime(440, now);
+      osc.frequency.exponentialRampToValueAtTime(554.37, now + 0.15);
+    } else {
+      osc.frequency.setValueAtTime(523.25, now);
+      osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.15);
+    }
+
+    gain.gain.setValueAtTime(0.06, now);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.25);
+
+    osc.start(now);
+    osc.stop(now + 0.25);
+  } catch {
+    // Gracefully ignore audio errors so application never crashes
+  }
+}
 
 interface Toast {
   id: string;
@@ -111,34 +148,17 @@ function ToastItem({
   const [isVisible, setIsVisible] = useState(false);
   const [progress, setProgress] = useState(100);
 
-  // Sound hooks for each notification type
-  const { play: playSuccess } = useSound("notification/completed");
-  const { play: playError } = useSound("notification/error");
-  const { play: playInfo } = useSound("notification/info");
-  const { play: playWarning } = useSound("notification/warning");
-
   useEffect(() => {
     if (isVisible) return;
     const timer = setTimeout(() => setIsVisible(true), 50);
     // Play sound after a short delay
-    setTimeout(() => {
-      switch (toast.type) {
-        case "success":
-          playSuccess();
-          break;
-        case "error":
-          playError();
-          break;
-        case "warning":
-          playWarning();
-          break;
-        case "info":
-        default:
-          playInfo();
-          break;
-      }
+    const soundTimer = setTimeout(() => {
+      playNotificationSound(toast.type);
     }, 60);
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(soundTimer);
+    };
   }, []);
 
   useEffect(() => {
@@ -171,44 +191,44 @@ function ToastItem({
     switch (toast.type) {
       case "success":
         return {
-          bg: "bg-gradient-to-r from-emerald-50 via-green-50 to-emerald-50 dark:from-emerald-900/20 dark:via-green-900/20 dark:to-emerald-900/20",
-          border: "border-emerald-200/60 dark:border-emerald-700/50",
+          bg: "bg-gradient-to-r from-emerald-50 via-green-50 to-emerald-50",
+          border: "border-emerald-200/60",
           iconBg: "bg-emerald-500",
           progressBar: "bg-gradient-to-r from-emerald-400 to-emerald-500",
           icon: "text-white",
           iconPath: "M5 13l4 4L19 7",
-          shadow: "shadow-emerald-500/10 dark:shadow-emerald-500/20",
+          shadow: "shadow-emerald-500/10",
         };
       case "error":
         return {
-          bg: "bg-gradient-to-r from-red-50 via-rose-50 to-red-50 dark:from-red-900/20 dark:via-rose-900/20 dark:to-red-900/20",
-          border: "border-red-200/60 dark:border-red-700/50",
+          bg: "bg-gradient-to-r from-red-50 via-rose-50 to-red-50",
+          border: "border-red-200/60",
           iconBg: "bg-red-500",
           progressBar: "bg-gradient-to-r from-red-400 to-red-500",
           icon: "text-white",
           iconPath: "M6 18L18 6M6 6l12 12",
-          shadow: "shadow-red-500/10 dark:shadow-red-500/20",
+          shadow: "shadow-red-500/10",
         };
       case "warning":
         return {
-          bg: "bg-gradient-to-r from-amber-50 via-yellow-50 to-amber-50 dark:from-amber-900/20 dark:via-yellow-900/20 dark:to-amber-900/20",
-          border: "border-amber-200/60 dark:border-amber-700/50",
+          bg: "bg-gradient-to-r from-amber-50 via-yellow-50 to-amber-50",
+          border: "border-amber-200/60",
           iconBg: "bg-amber-500",
           progressBar: "bg-gradient-to-r from-amber-400 to-amber-500",
           icon: "text-white",
           iconPath:
             "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z",
-          shadow: "shadow-amber-500/10 dark:shadow-amber-500/20",
+          shadow: "shadow-amber-500/10",
         };
       default:
         return {
-          bg: "bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50 dark:from-blue-900/20 dark:via-indigo-900/20 dark:to-blue-900/20",
-          border: "border-blue-200/60 dark:border-blue-700/50",
+          bg: "bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50",
+          border: "border-blue-200/60",
           iconBg: "bg-blue-500",
           progressBar: "bg-gradient-to-r from-blue-400 to-blue-500",
           icon: "text-white",
           iconPath: "M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
-          shadow: "shadow-blue-500/10 dark:shadow-blue-500/20",
+          shadow: "shadow-blue-500/10",
         };
     }
   };
@@ -218,7 +238,7 @@ function ToastItem({
   const baseClasses = `
     relative border rounded-lg overflow-hidden pointer-events-auto
     transform transition-all duration-500 ease-out
-    bg-white dark:bg-slate-950
+    bg-white
     ${styles.border} ${styles.shadow}
     ${mobile ? "mx-auto max-w-md shadow-lg" : "w-full shadow-md"}
     ${
@@ -242,7 +262,7 @@ function ToastItem({
         className={`
           absolute top-2 right-2 z-10
           flex-shrink-0 rounded-full
-          hover:bg-slate-100/80 dark:hover:bg-slate-800/80
+          hover:bg-slate-100/80
           active:scale-95
           p-1
         `}
@@ -251,7 +271,7 @@ function ToastItem({
       >
         <svg
           className={`
-            text-slate-400 hover:text-slate-600 dark:hover:text-slate-300
+            text-slate-400 hover:text-slate-600
             transition-colors duration-200
             w-4 h-4
           `}
@@ -303,7 +323,7 @@ function ToastItem({
         <div className="flex-1 min-w-0">
           <h4
             className={`
-              font-bold text-slate-900 dark:text-white leading-tight
+              font-bold text-slate-900 leading-tight
               ${mobile ? "text-xs" : "text-sm"}
             `}
           >
@@ -312,7 +332,7 @@ function ToastItem({
           {toast.message && (
             <p
               className={`
-                text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed
+                text-slate-600 mt-0.5 leading-relaxed
                 ${mobile ? "text-[10px]" : "text-xs"}
               `}
             >
@@ -322,7 +342,7 @@ function ToastItem({
         </div>
       </div>
       {/* Progress Bar */}
-      <div className="w-full h-1 bg-slate-200/30 dark:bg-slate-700/30">
+      <div className="w-full h-1 bg-slate-200/30">
         <div
           className={`h-full transition-all duration-75 ease-linear rounded-r-full ${styles.progressBar}`}
           style={{ width: `${progress}%` }}

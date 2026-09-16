@@ -21,36 +21,20 @@ const customScrollbarStyles = `
     border-radius: 9999px;
   }
   
-  .dark .custom-scrollbar::-webkit-scrollbar-track {
-    background: rgb(30 41 59);
-  }
-  
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgb(125 211 252);
+    background: rgb(161 161 170);
     border-radius: 9999px;
     transition: background-color 0.2s ease;
   }
   
-  .dark .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgb(2 132 199);
-  }
-  
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgb(56 189 248);
-  }
-  
-  .dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgb(14 165 233);
+    background: rgb(113 113 122);
   }
   
   /* Firefox */
   .custom-scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: rgb(125 211 252) rgb(241 245 249);
-  }
-  
-  .dark .custom-scrollbar {
-    scrollbar-color: rgb(2 132 199) rgb(30 41 59);
+    scrollbar-color: rgb(161 161 170) rgb(241 245 249);
   }
 `;
 
@@ -88,10 +72,10 @@ export default function CertificatesSection({
       <style dangerouslySetInnerHTML={{ __html: customScrollbarStyles }} />
       <section className="mb-20 sm:mb-24">
         <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-sky-900 dark:text-white">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-zinc-900">
             Certificates & Achievements
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 dark:text-neutral-300">
+          <p className="text-base sm:text-lg text-slate-600">
             Professional Certifications and Recognitions
           </p>
         </div>
@@ -103,15 +87,15 @@ export default function CertificatesSection({
                 <div
                   key={cert.id}
                   data-about-certificates
-                  className="group relative bg-white/50 dark:bg-slate-800/50 rounded-2xl overflow-hidden shadow-md hover:shadow-lg hover:shadow-sky-400/40 border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02]"
+                  className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-zinc-200 transition-all duration-300 hover:-translate-y-1.5"
                 >
                   {/* Corner borders */}
-                  <div className="absolute top-0 right-0 w-8 h-8 sm:w-12 sm:h-12 border-t-2 border-r-2 rounded-tr-2xl transition-all duration-300 border-muted-foreground/30 group-hover:border-sky-500 group-hover:w-12 group-hover:h-12 sm:group-hover:w-16 sm:group-hover:h-16 z-10" />
-                  <div className="absolute bottom-0 left-0 w-8 h-8 sm:w-12 sm:h-12 border-b-2 border-l-2 rounded-bl-2xl transition-all duration-300 border-muted-foreground/30 group-hover:border-sky-500 group-hover:w-12 group-hover:h-12 sm:group-hover:w-16 sm:group-hover:h-16 z-10" />
+                  <div className="absolute top-0 right-0 w-8 h-8 sm:w-12 sm:h-12 border-t-2 border-r-2 rounded-tr-2xl transition-all duration-300 border-zinc-300 group-hover:border-zinc-900 group-hover:w-12 group-hover:h-12 sm:group-hover:w-16 sm:group-hover:h-16 z-10" />
+                  <div className="absolute bottom-0 left-0 w-8 h-8 sm:w-12 sm:h-12 border-b-2 border-l-2 rounded-bl-2xl transition-all duration-300 border-zinc-300 group-hover:border-zinc-900 group-hover:w-12 group-hover:h-12 sm:group-hover:w-16 sm:group-hover:h-16 z-10" />
 
                   {/* Certificate Image - With padding and A4 landscape ratio */}
                   <div className="p-4 sm:p-6">
-                    <div className="relative overflow-hidden aspect-[297/210] bg-gradient-to-br from-slate-900 to-black rounded-lg group/image">
+                    <div className="relative overflow-hidden aspect-[297/210] bg-zinc-900 rounded-lg group/image">
                       {cert.image ? (
                         <Image
                           src={cert.image || "/placeholder.svg"}
@@ -153,22 +137,22 @@ export default function CertificatesSection({
                   {/* Certificate Info - Compact bottom section */}
                   <div className="px-4 sm:px-6 pb-4 sm:pb-6 relative z-10">
                     {/* Title - Full width */}
-                    <h3 className="font-bold text-base sm:text-lg text-slate-800 dark:text-neutral-100 line-clamp-1 group-hover:text-sky-700 dark:group-hover:text-sky-400 transition-colors duration-300 mb-2">
+                    <h3 className="font-bold text-base sm:text-lg text-zinc-900 line-clamp-1 group-hover:text-zinc-950 transition-colors duration-300 mb-2">
                       {cert.title || "Cert.title"}
                     </h3>
 
                     {/* Issuer and Year - Same line */}
                     <div className="flex items-center justify-between gap-4">
-                      <p className="text-sm text-slate-600 dark:text-neutral-400 truncate flex-1">
+                      <p className="text-sm text-zinc-600 truncate flex-1">
                         {cert.issuer || "cert.issuer"}
                       </p>
 
                       {cert.issueDate ? (
-                        <button className="px-3 py-1.5 bg-sky-500 hover:bg-sky-600 group-hover:bg-sky-600 text-white text-xs font-medium rounded-lg transition-colors duration-200 group-hover:shadow-md flex-shrink-0">
+                        <button className="px-3 py-1.5 bg-zinc-900 text-white text-xs font-medium rounded-lg transition-colors duration-200 shadow-sm flex-shrink-0">
                           {new Date(cert.issueDate).getFullYear()}
                         </button>
                       ) : (
-                        <button className="px-3 py-1.5 bg-sky-500 hover:bg-sky-600 group-hover:bg-sky-600 text-white text-xs font-medium rounded-lg transition-colors duration-200 group-hover:shadow-md flex-shrink-0">
+                        <button className="px-3 py-1.5 bg-zinc-900 text-white text-xs font-medium rounded-lg transition-colors duration-200 shadow-sm flex-shrink-0">
                           2025
                         </button>
                       )}
@@ -182,7 +166,7 @@ export default function CertificatesSection({
               <div className="text-center">
                 <button
                   onClick={() => setShowAll(!showAll)}
-                  className="cursor-pointer inline-flex items-center px-6 py-3 bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 dark:from-sky-500 dark:to-sky-400 dark:hover:from-sky-600 dark:hover:to-sky-500 text-white font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-sky-400/40 transform hover:-translate-y-1"
+                  className="cursor-pointer inline-flex items-center px-6 py-3 bg-zinc-900 hover:bg-black text-white font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-zinc-500/20 transform hover:-translate-y-1"
                 >
                   {showAll
                     ? "Show Less"
@@ -208,7 +192,7 @@ export default function CertificatesSection({
           </div>
         ) : (
           <div className="text-center py-12 sm:py-16">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
               <svg
                 className="w-8 h-8 sm:w-10 sm:h-10 text-slate-400"
                 fill="none"
@@ -223,7 +207,7 @@ export default function CertificatesSection({
                 />
               </svg>
             </div>
-            <p className="text-slate-500 dark:text-slate-400 text-base sm:text-lg">
+            <p className="text-slate-500 text-base sm:text-lg">
               No certificates available.
             </p>
           </div>
@@ -232,12 +216,12 @@ export default function CertificatesSection({
         {/* Certificate Modal */}
         {selectedCertificate && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="relative bg-white dark:bg-slate-800 rounded-xl max-w-4xl w-full max-h-[95vh] overflow-hidden shadow-md">
+            <div className="relative bg-white rounded-xl max-w-4xl w-full max-h-[95vh] overflow-hidden shadow-md">
               {/* Modal Header */}
-              <div className="flex items-center justify-between p-4 sm:p-6 border-b border-slate-200 dark:border-slate-700">
+              <div className="flex items-center justify-between p-4 sm:p-6 border-b border-slate-200">
                 <div className="flex items-center gap-3">
                   <svg
-                    className="w-6 h-6 text-slate-800 dark:text-white"
+                    className="w-6 h-6 text-slate-800"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -249,15 +233,15 @@ export default function CertificatesSection({
                       d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                     />
                   </svg>
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-800">
                     {selectedCertificate.title || "Certificate"}
                   </h3>
                 </div>
                 <button
                   onClick={closeModal}
-                  className="cursor-pointer p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full transition-all duration-200 group"
+                  className="cursor-pointer p-2 hover:bg-slate-100 rounded-full transition-all duration-200 group"
                 >
-                  <X className="w-6 h-6 text-slate-600 dark:text-slate-400 group-hover:rotate-90 transition-transform duration-200" />
+                  <X className="w-6 h-6 text-slate-600 group-hover:rotate-90 transition-transform duration-200" />
                 </button>
               </div>
 
@@ -304,10 +288,10 @@ export default function CertificatesSection({
                 {/* Certificate Info - Simple Layout */}
                 <div className="flex items-start justify-between gap-6">
                   <div className="flex-1">
-                    <h4 className="text-lg font-bold text-slate-800 dark:text-white mb-2">
+                    <h4 className="text-lg font-bold text-slate-800 mb-2">
                       {selectedCertificate.issuer || "Certificate Issuer"}
                     </h4>
-                    <div className="flex items-center gap-4 text-sm text-slate-600 dark:text-slate-400 mb-3">
+                    <div className="flex items-center gap-4 text-sm text-slate-600 mb-3">
                       <span>
                         Issued:{" "}
                         {selectedCertificate.issueDate
@@ -323,13 +307,13 @@ export default function CertificatesSection({
                             className={`${
                               new Date(selectedCertificate.expireDate) <
                               new Date()
-                                ? "text-red-600 dark:text-red-400"
+                                ? "text-red-600"
                                 : new Date(selectedCertificate.expireDate) <
                                   new Date(
                                     Date.now() + 30 * 24 * 60 * 60 * 1000
                                   )
-                                ? "text-amber-600 dark:text-amber-400"
-                                : "text-slate-600 dark:text-slate-400"
+                                ? "text-amber-600"
+                                : "text-slate-600"
                             }`}
                           >
                             Expires:{" "}
@@ -351,7 +335,7 @@ export default function CertificatesSection({
                     {selectedCertificate.expireDate ? (
                       // If expireDate exists, check status
                       new Date(selectedCertificate.expireDate) < new Date() ? (
-                        <span className="inline-flex items-center gap-1 px-3 py-2 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 text-sm font-medium rounded-lg">
+                        <span className="inline-flex items-center gap-1 px-3 py-2 bg-red-100 text-red-700 text-sm font-medium rounded-lg">
                           <svg
                             className="w-4 h-4"
                             fill="none"
@@ -369,7 +353,7 @@ export default function CertificatesSection({
                         </span>
                       ) : new Date(selectedCertificate.expireDate) <
                         new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) ? (
-                        <span className="inline-flex items-center gap-1 px-3 py-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-sm font-medium rounded-lg">
+                        <span className="inline-flex items-center gap-1 px-3 py-2 bg-amber-100 text-amber-700 text-sm font-medium rounded-lg">
                           <svg
                             className="w-4 h-4"
                             fill="none"
@@ -386,7 +370,7 @@ export default function CertificatesSection({
                           Expires Soon
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1 px-3 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-sm font-medium rounded-lg">
+                        <span className="inline-flex items-center gap-1 px-3 py-2 bg-green-100 text-green-700 text-sm font-medium rounded-lg">
                           <svg
                             className="w-4 h-4"
                             fill="none"
@@ -405,7 +389,7 @@ export default function CertificatesSection({
                       )
                     ) : (
                       // If no expireDate, default to Valid
-                      <span className="inline-flex items-center gap-1 px-3 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-sm font-medium rounded-lg">
+                      <span className="inline-flex items-center gap-1 px-3 py-2 bg-green-100 text-green-700 text-sm font-medium rounded-lg">
                         <svg
                           className="w-4 h-4"
                           fill="none"

@@ -16,8 +16,8 @@ export default function ProjectPreview({
   previewImage,
 }: ProjectPreviewProps) {
   return (
-    <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-md border border-white/40 dark:border-slate-700/40 overflow-hidden">
-      <div className="aspect-video relative overflow-hidden">
+    <div className="bg-white rounded-2xl shadow-sm border border-black/10 overflow-hidden">
+      <div className="aspect-video relative overflow-hidden bg-zinc-100">
         {previewImage ? (
           <Image
             src={previewImage}
@@ -29,9 +29,9 @@ export default function ProjectPreview({
             priority={false}
           />
         ) : (
-          <div className="h-full bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100 dark:from-slate-700 dark:via-slate-600 dark:to-slate-500 flex items-center justify-center">
+          <div className="h-full bg-zinc-100 flex items-center justify-center">
             <svg
-              className="w-8 h-8 text-slate-400 dark:text-slate-500"
+              className="w-8 h-8 text-zinc-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -49,10 +49,10 @@ export default function ProjectPreview({
 
       {/* Content Preview */}
       <div className="p-4">
-        <h4 className="font-bold text-slate-900 dark:text-white line-clamp-1 mb-2">
+        <h4 className="font-bold text-black line-clamp-1 mb-2">
           {title || "Judul Proyek"}
         </h4>
-        <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-2 mb-3">
+        <p className="text-zinc-600 text-sm line-clamp-2 mb-3">
           {description || "Deskripsi proyek akan muncul di sini..."}
         </p>
 
@@ -65,13 +65,13 @@ export default function ProjectPreview({
               .map((tech, index) => (
                 <span
                   key={index}
-                  className="inline-block px-2 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-medium rounded-md"
+                  className="inline-block px-2 py-0.5 bg-zinc-100 text-zinc-800 text-xs font-medium rounded-md border border-black/5"
                 >
                   {tech.trim()}
                 </span>
               ))}
             {techStack.split(",").length > 2 && (
-              <span className="inline-block px-2 py-0.5 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 text-xs font-medium rounded-md">
+              <span className="inline-block px-2 py-0.5 bg-zinc-100 text-zinc-500 text-xs font-medium rounded-md border border-black/5">
                 +{techStack.split(",").length - 2}
               </span>
             )}

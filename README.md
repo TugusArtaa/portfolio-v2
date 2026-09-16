@@ -1,28 +1,29 @@
-# 🚀 Portofolio Web – Next.js, Tailwind, Prisma
+# 🚀 Portfolio V2 – Next.js 15, Tailwind, Prisma (Monochrome Edition)
 
-A modern, responsive, and interactive personal portfolio website built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), and [Prisma](https://www.prisma.io/).  
-Showcase your projects, skills, certificates, and more – with beautiful UI, smooth animations, and a delightful user experience.
+A modern, responsive, and minimalist monochrome personal portfolio website built with [Next.js 15](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), and [Prisma](https://www.prisma.io/).  
+Showcase your projects, skills, certificates, and more – with clean light monochrome aesthetics, smooth animations, and a delightful user experience.
 
-> Dibuat sebagai proyek pribadi.
+> Dibuat sebagai proyek pribadi oleh Putu Agus Seniartawan.
 
 ## ✨ Features
 
 - **Next.js 15** – App Router, SSR, fast navigation
-- **Tailwind CSS 4** – Utility-first, dark mode, custom themes
-- **Prisma ORM** – PostgreSQL database, type-safe models
+- **Light Monochrome Aesthetic** – Clean, modern, high-contrast, minimalist design
+- **Tailwind CSS 4** – Modern utility-first styling
+- **Prisma ORM** – PostgreSQL / Supabase database with type-safe models
 - **Admin Dashboard** – Manage projects, skills, tools, certificates, about, and reviews
-- **Animated UI** – Framer Motion, Lottie, and custom transitions
-- **Responsive Design** – Looks great on all devices
+- **Animated UI** – Framer Motion, Lottie, and custom micro-interactions
+- **Responsive Design** – Optimized for mobile, tablet, and desktop
 - **Review & Feedback** – Visitors can leave reviews with sound notifications
-- **GitHub Contribution Calendar** – Show your open-source activity
+- **GitHub Contribution Calendar** – Live contribution activity graph
 - **Downloadable CV** – Let recruiters download your resume
 - **Accessible & SEO-friendly**
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** Next.js, React 19, Tailwind CSS, Framer Motion, Lottie
-- **Backend:** Next.js API routes, Prisma, PostgreSQL
-- **Auth:** NextAuth.js (optional)
+- **Frontend:** Next.js 15, React 19, Tailwind CSS, Framer Motion, Lottie
+- **Backend:** Next.js API routes, Prisma, PostgreSQL (Supabase)
+- **Auth:** NextAuth.js
 - **Other:** Howler, React Sounds, Zustand, GSAP, Three.js
 
 ## 🚦 Getting Started
@@ -30,8 +31,8 @@ Showcase your projects, skills, certificates, and more – with beautiful UI, sm
 1. **Clone this repo:**
 
    ```bash
-   git clone https://github.com/your-username/portofolio-web.git
-   cd portofolio-web
+   git clone https://github.com/TugusArtaa/portfolio-v2.git
+   cd portfolio-v2
    ```
 
 2. **Install dependencies:**

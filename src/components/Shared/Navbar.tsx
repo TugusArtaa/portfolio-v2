@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import ThemeToggle from "./ThemeToggle";
 import { useState, useEffect, useRef } from "react";
 import { useLoading } from "@/context/LoadingContext";
 import { gsap } from "gsap";
@@ -212,7 +211,7 @@ export function Navbar({
       {/* Transparent Header Container */}
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-sm shadow-lg shadow-slate-950/5 dark:shadow-sky-500/10 transition-all duration-300 border-b border-sky-400/40 dark:border-sky-400/40",
+          "fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm shadow-sm transition-all duration-300 border-b border-zinc-200/80",
           className
         )}
         style={style}
@@ -228,7 +227,7 @@ export function Navbar({
               >
                 <div className="w-8 h-8 flex items-center justify-center transform group-hover:rotate-6 group-hover:scale-110 transition-all duration-500 ease-out">
                   <svg
-                    className="w-8 h-8 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 ease-out text-slate-900 dark:text-white group-hover:text-sky-500 dark:group-hover:text-sky-400"
+                    className="w-8 h-8 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 ease-out text-zinc-900 group-hover:text-zinc-600"
                     viewBox="0 0 64 64"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -256,7 +255,7 @@ export function Navbar({
                     />
                   </svg>
                 </div>
-                <span className="text-lg font-bold bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent group-hover:from-sky-500 group-hover:to-sky-400 dark:group-hover:from-sky-500 dark:group-hover:to-sky-400 transition-all duration-300">
+                <span className="text-lg font-bold bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent group-hover:from-zinc-500 group-hover:to-zinc-400 transition-all duration-300">
                   Tuagus
                 </span>
               </Link>
@@ -264,7 +263,7 @@ export function Navbar({
 
             {/* Center Navigation Menu - Rounded Border Container */}
             <div className="hidden md:block absolute pb-0.5 left-1/2 -translate-x-1/2">
-              <nav className="bg-white/80 dark:bg-slate-950/80 backdrop-blur-lg border border-sky-400/40 dark:border-sky-400/40 rounded-full px-4 py-2 shadow-md shadow-sky-400/10 dark:shadow-sky-500/10 hover:shadow-sky-400/20 dark:hover:shadow-sky-500/20 transition-all duration-300">
+              <nav className="bg-white/80 backdrop-blur-lg border border-zinc-200 rounded-full px-4 py-2 shadow-sm hover:border-zinc-300 transition-all duration-300">
                 <div className="flex items-center space-x-1">
                   {links.map((link, index) => (
                     <Link
@@ -274,8 +273,8 @@ export function Navbar({
                       className={cn(
                         "px-4 py-2 rounded-full text-sm font-medium transition-all duration-500 ease-out relative overflow-hidden group",
                         pathname === link.href
-                          ? "bg-sky-500 text-white shadow-lg shadow-sky-500/30 scale-105"
-                          : "text-sky-900 dark:text-white hover:text-sky-900 dark:hover:text-white hover:bg-sky-400/10 dark:hover:bg-sky-400/10 hover:scale-105"
+                          ? "bg-zinc-900 text-white shadow-md scale-105"
+                          : "text-zinc-700 hover:text-zinc-950 hover:bg-zinc-100 hover:scale-105"
                       )}
                       style={{
                         animationDelay: `${index * 100}ms`,
@@ -287,7 +286,7 @@ export function Navbar({
                           "absolute inset-0 rounded-full pointer-events-none transition-opacity duration-500 ease-out",
                           pathname === link.href
                             ? "opacity-0"
-                            : "bg-sky-400/10 opacity-0 group-hover:opacity-100"
+                            : "bg-zinc-100 opacity-0 group-hover:opacity-100"
                         )}
                         aria-hidden="true"
                       />
@@ -298,7 +297,7 @@ export function Navbar({
               </nav>
             </div>
 
-            {/* Right Side - Social Media Icons & Theme Toggle */}
+            {/* Right Side - Social Media Icons */}
             <div className="flex items-center space-x-3">
               {/* Social Media Icons */}
               <div className="hidden sm:flex items-center space-x-2">
@@ -306,7 +305,7 @@ export function Navbar({
                   href="https://www.linkedin.com/in/iputuagusseniartawan/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-full bg-white/20 dark:bg-slate-800/40 backdrop-blur-sm border border-white/30 dark:border-slate-700/40 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/30 dark:hover:bg-slate-700/50 transition-all duration-300 hover:scale-110 hover:rotate-12 hover:shadow-lg hover:shadow-blue-500/25"
+                  className="p-2.5 rounded-full bg-white/40 backdrop-blur-sm border border-zinc-200 text-slate-700 hover:text-blue-600 hover:bg-white/60 transition-all duration-300 hover:scale-110 hover:rotate-12 hover:shadow-lg hover:shadow-blue-500/25"
                 >
                   <LinkedInIcon className="w-4 h-4" />
                 </a>
@@ -314,7 +313,7 @@ export function Navbar({
                   href="https://github.com/TugusArtaa"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-full bg-white/20 dark:bg-slate-800/40 backdrop-blur-sm border border-white/30 dark:border-slate-700/40 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/30 dark:hover:bg-slate-700/50 transition-all duration-300 hover:scale-110 hover:rotate-12 hover:shadow-lg hover:shadow-slate-500/25"
+                  className="p-2.5 rounded-full bg-white/40 backdrop-blur-sm border border-zinc-200 text-slate-700 hover:text-slate-900 hover:bg-white/60 transition-all duration-300 hover:scale-110 hover:rotate-12 hover:shadow-lg hover:shadow-slate-500/25"
                 >
                   <GitHubIcon className="w-4 h-4" />
                 </a>
@@ -322,21 +321,16 @@ export function Navbar({
                   href="https://www.instagram.com/putuaguss?igsh=MWNldDl0MjYyN3o1MA=="
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-full bg-white/20 dark:bg-slate-800/40 backdrop-blur-sm border border-white/30 dark:border-slate-700/40 text-slate-700 dark:text-slate-300 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-white/30 dark:hover:bg-slate-700/50 transition-all duration-300 hover:scale-110 hover:rotate-12 hover:shadow-lg hover:shadow-pink-500/25"
+                  className="p-2.5 rounded-full bg-white/40 backdrop-blur-sm border border-zinc-200 text-zinc-700 hover:text-pink-600 hover:bg-white/60 transition-all duration-300 hover:scale-110 hover:rotate-12 hover:shadow-lg hover:shadow-pink-500/25"
                 >
                   <InstagramIcon className="w-4 h-4" />
                 </a>
               </div>
 
-              {/* Theme Toggle */}
-              <div className="p-0.5 rounded-full bg-white/20 dark:bg-slate-800/40 backdrop-blur-sm border border-white/30 dark:border-slate-700/40 hover:bg-white/30 dark:hover:bg-slate-700/50 transition-all duration-300 hover:scale-110 hover:rotate-12 hover:shadow-lg hover:shadow-slate-500/25">
-                <ThemeToggle />
-              </div>
-
               {/* Mobile Menu Button */}
               <button
                 onClick={handleMobileMenuToggle}
-                className="md:hidden p-2.5 rounded-full bg-white/20 dark:bg-slate-800/40 backdrop-blur-sm border border-white/30 dark:border-slate-700/40 text-slate-700 dark:text-slate-300 hover:bg-white/30 dark:hover:bg-slate-700/50 transition-all duration-300 hover:scale-110"
+                className="md:hidden p-2.5 rounded-full bg-white/40 backdrop-blur-sm border border-zinc-200 text-slate-700 hover:bg-white/60 transition-all duration-300 hover:scale-110"
               >
                 <div className="relative w-5 h-5">
                   <span
@@ -384,7 +378,7 @@ export function Navbar({
           {/* Mobile Menu Container */}
           <div
             ref={menuContainerRef}
-            className="bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl border border-sky-400/40 dark:border-sky-400/40 rounded-2xl shadow-2xl p-6 transform-gpu"
+            className="bg-white/95 backdrop-blur-xl border border-zinc-200 rounded-2xl shadow-2xl p-6 transform-gpu"
           >
             <div className="space-y-2">
               {links.map((link, index) => (
@@ -400,8 +394,8 @@ export function Navbar({
                   className={cn(
                     "block px-6 py-3 rounded-full text-center font-medium transition-colors duration-300 relative overflow-hidden group",
                     pathname === link.href
-                      ? "bg-sky-500 text-white shadow-lg shadow-sky-500/30"
-                      : "text-sky-900 dark:text-white hover:text-sky-900 dark:hover:text-white hover:bg-sky-400/10 dark:hover:bg-sky-400/10"
+                      ? "bg-zinc-900 text-white shadow-md"
+                      : "text-zinc-700 hover:text-zinc-950 hover:bg-zinc-100"
                   )}
                 >
                   {/* Always render the background div for hover effect */}
@@ -410,7 +404,7 @@ export function Navbar({
                       "absolute inset-0 rounded-full pointer-events-none transition-opacity duration-300",
                       pathname === link.href
                         ? "opacity-0"
-                        : "bg-sky-400/10 opacity-0 group-hover:opacity-100"
+                        : "bg-zinc-100 opacity-0 group-hover:opacity-100"
                     )}
                     aria-hidden="true"
                   />
@@ -422,13 +416,13 @@ export function Navbar({
             {/* Mobile Social Media Icons */}
             <div
               ref={socialIconsRef}
-              className="flex justify-center space-x-4 pt-6 mt-6 border-t border-slate-200/50 dark:border-slate-700/50"
+              className="flex justify-center space-x-4 pt-6 mt-6 border-t border-slate-200/50"
             >
               <a
                 href="https://www.linkedin.com/in/iputuagusseniartawan/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-white/30 dark:bg-slate-700/40 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/40 dark:hover:bg-slate-600/50 transition-all duration-300 hover:scale-110 hover:rotate-12"
+                className="p-3 rounded-full bg-white/40 text-slate-700 hover:text-blue-600 hover:bg-white/60 transition-all duration-300 hover:scale-110 hover:rotate-12"
               >
                 <LinkedInIcon className="w-5 h-5" />
               </a>
@@ -436,7 +430,7 @@ export function Navbar({
                 href="https://github.com/TugusArtaa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-white/30 dark:bg-slate-700/40 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-slate-600/50 transition-all duration-300 hover:scale-110 hover:rotate-12"
+                className="p-3 rounded-full bg-white/40 text-slate-700 hover:text-slate-900 hover:bg-white/60 transition-all duration-300 hover:scale-110 hover:rotate-12"
               >
                 <GitHubIcon className="w-5 h-5" />
               </a>
@@ -444,7 +438,7 @@ export function Navbar({
                 href="https://www.instagram.com/putuaguss?igsh=MWNldDl0MjYyN3o1MA=="
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-white/30 dark:bg-slate-700/40 text-slate-700 dark:text-slate-300 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-white/40 dark:hover:bg-slate-600/50 transition-all duration-300 hover:scale-110 hover:rotate-12"
+                className="p-3 rounded-full bg-white/40 text-slate-700 hover:text-pink-600 hover:bg-white/60 transition-all duration-300 hover:scale-110 hover:rotate-12"
               >
                 <InstagramIcon className="w-5 h-5" />
               </a>

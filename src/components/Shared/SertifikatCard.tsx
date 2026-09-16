@@ -25,32 +25,19 @@ export default function SertifikatCard({
 
   return (
     <div
-      className="group relative bg-white dark:bg-slate-800/95 backdrop-blur-xl rounded-3xl shadow-md hover:shadow-lg border border-slate-200/60 dark:border-slate-700/60 transition-all duration-700 overflow-hidden transform hover:-translate-y-3 hover:scale-[1.0]"
+      className="group relative bg-white backdrop-blur-xl rounded-3xl shadow-sm hover:shadow-md border border-black/10 hover:border-black/25 transition-all duration-300 overflow-hidden transform hover:-translate-y-1"
       style={{
         animationDelay: `${index * 150}ms`,
       }}
     >
-      {/* Decorative gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-indigo-50/30 dark:from-blue-950/30 dark:via-transparent dark:to-indigo-950/30 pointer-events-none" />
-
-      {/* Floating particles effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-300/30 rounded-full animate-pulse"></div>
-        <div className="absolute top-3/4 right-1/3 w-1 h-1 bg-indigo-400/40 rounded-full animate-ping"></div>
-        <div
-          className="absolute bottom-1/3 left-2/3 w-1.5 h-1.5 bg-purple-300/30 rounded-full animate-pulse"
-          style={{ animationDelay: "1s" }}
-        ></div>
-      </div>
-
       {/* Status indicator */}
       <div className="absolute top-4 right-4 z-10">
         {isExpired ? (
-          <div className="px-3 py-1 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-xs font-medium border border-red-200 dark:border-red-800/50">
+          <div className="px-3 py-1 rounded-full bg-rose-50 text-rose-600 text-xs font-semibold border border-rose-200">
             Expired
           </div>
         ) : (
-          <div className="px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/80 text-green-600 dark:text-green-400 text-xs font-medium border border-green-200 dark:border-green-800/50">
+          <div className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold border border-emerald-200">
             Valid
           </div>
         )}
@@ -59,10 +46,9 @@ export default function SertifikatCard({
       {/* Image with A4 landscape ratio */}
       {cert.image && (
         <div
-          className="relative w-full bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center overflow-hidden rounded-t-3xl"
+          className="relative w-full bg-zinc-50 flex items-center justify-center overflow-hidden rounded-t-3xl border-b border-black/5"
           style={{ aspectRatio: "297/210" }}
         >
-          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
           <Image
             src={cert.image}
             alt={cert.title}
@@ -72,15 +58,13 @@ export default function SertifikatCard({
             sizes="(max-width: 768px) 100vw, 50vw"
             priority={false}
           />
-          {/* Shimmer effect on hover */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
         </div>
       )}
 
       <div className="relative p-6 space-y-4">
         {/* Certificate icon */}
         <div className="flex items-start gap-3">
-          <div className="p-2 rounded-xl bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 shrink-0">
+          <div className="p-2 rounded-xl bg-zinc-100 text-black shrink-0 border border-black/5">
             <svg
               className="w-5 h-5"
               fill="none"
@@ -96,12 +80,12 @@ export default function SertifikatCard({
             </svg>
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-bold text-xl text-slate-900 dark:text-white mb-1 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+            <h3 className="font-bold text-xl text-black mb-1 leading-tight group-hover:text-zinc-700 transition-colors duration-200">
               {cert.title}
             </h3>
-            <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300 mb-2">
+            <div className="flex items-center gap-2 text-sm text-zinc-600 mb-2">
               <svg
-                className="w-4 h-4 text-slate-400"
+                className="w-4 h-4 text-zinc-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -118,12 +102,12 @@ export default function SertifikatCard({
           </div>
         </div>
 
-        {/* Date information with enhanced styling */}
-        <div className="bg-slate-50 dark:bg-slate-700/50 rounded-2xl p-4 space-y-2">
+        {/* Date information */}
+        <div className="bg-zinc-50 rounded-2xl p-4 space-y-2 border border-black/5">
           <div className="flex items-center justify-between text-sm">
-            <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
+            <div className="flex items-center gap-2 text-zinc-600">
               <svg
-                className="w-4 h-4 text-blue-500"
+                className="w-4 h-4 text-zinc-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -137,7 +121,7 @@ export default function SertifikatCard({
               </svg>
               <span className="font-medium">Tanggal Terbit:</span>
             </div>
-            <span className="text-slate-900 dark:text-white font-semibold">
+            <span className="text-black font-semibold">
               {new Date(cert.issueDate).toLocaleDateString("id-ID", {
                 year: "numeric",
                 month: "short",
@@ -148,9 +132,9 @@ export default function SertifikatCard({
 
           {cert.expireDate && (
             <div className="flex items-center justify-between text-sm">
-              <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
+              <div className="flex items-center gap-2 text-zinc-600">
                 <svg
-                  className="w-4 h-4 text-slate-400"
+                  className="w-4 h-4 text-zinc-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -167,8 +151,8 @@ export default function SertifikatCard({
               <span
                 className={`font-semibold ${
                   isExpired
-                    ? "text-red-600 dark:text-red-400"
-                    : "text-slate-900 dark:text-white"
+                    ? "text-rose-600"
+                    : "text-black"
                 }`}
               >
                 {new Date(cert.expireDate).toLocaleDateString("id-ID", {
@@ -186,11 +170,10 @@ export default function SertifikatCard({
             <button
               type="button"
               onClick={() => onEdit(cert)}
-              className="flex-1 group/btn relative overflow-hidden inline-flex items-center justify-center px-4 py-2.5 bg-gradient-to-r from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 text-slate-700 dark:text-slate-300 text-sm font-semibold rounded-xl hover:from-slate-200 hover:to-slate-300 dark:hover:from-slate-600 dark:hover:to-slate-500 transition-all duration-300 shadow-md hover:shadow-lg"
+              className="flex-1 inline-flex items-center justify-center px-4 py-2.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-sm font-semibold rounded-xl transition-all duration-200"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700"></div>
               <svg
-                className="relative w-4 h-4 mr-2 group-hover/btn:scale-110 transition-transform duration-200"
+                className="w-4 h-4 mr-2"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -202,17 +185,16 @@ export default function SertifikatCard({
                   d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                 />
               </svg>
-              <span className="relative">Edit</span>
+              <span>Edit</span>
             </button>
 
             <button
               type="button"
               onClick={() => onDelete(cert)}
-              className="group/btn relative overflow-hidden inline-flex items-center justify-center px-4 py-2.5 bg-gradient-to-r from-red-100 to-red-200 dark:from-red-900/40 dark:to-red-800/40 text-red-700 dark:text-red-400 text-sm font-semibold rounded-xl hover:from-red-200 hover:to-red-300 dark:hover:from-red-800/60 dark:hover:to-red-700/60 transition-all duration-300 shadow-md hover:shadow-lg"
+              className="inline-flex items-center justify-center px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-600 text-sm font-semibold rounded-xl transition-all duration-200"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-red-200/0 via-red-200/40 to-red-200/0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700"></div>
               <svg
-                className="relative w-4 h-4 group-hover/btn:scale-110 transition-transform duration-200"
+                className="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

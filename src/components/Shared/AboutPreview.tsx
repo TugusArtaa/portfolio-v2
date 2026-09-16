@@ -127,54 +127,54 @@ const ICONS: Record<string, React.ReactNode> = {
 const THEME_COLORS: Record<string, { bg: string; icon: string; text: string }> =
   {
     who_am_i: {
-      bg: "from-blue-500/10 via-blue-400/5 to-blue-300/10",
-      icon: "bg-gradient-to-r from-blue-500 to-blue-600",
-      text: "text-blue-700 dark:text-blue-300",
+      bg: "bg-zinc-50",
+      icon: "bg-black",
+      text: "text-black",
     },
     education: {
-      bg: "from-indigo-500/10 via-indigo-400/5 to-indigo-300/10",
-      icon: "bg-gradient-to-r from-indigo-500 to-indigo-600",
-      text: "text-indigo-700 dark:text-indigo-300",
+      bg: "bg-zinc-50",
+      icon: "bg-black",
+      text: "text-black",
     },
     quote: {
-      bg: "from-purple-500/10 via-purple-400/5 to-purple-300/10",
-      icon: "bg-gradient-to-r from-purple-500 to-purple-600",
-      text: "text-purple-700 dark:text-purple-300",
+      bg: "bg-zinc-50",
+      icon: "bg-black",
+      text: "text-black",
     },
     whatsapp: {
-      bg: "from-green-500/10 via-green-400/5 to-green-300/10",
-      icon: "bg-gradient-to-r from-green-500 to-green-600",
-      text: "text-green-700 dark:text-green-300",
+      bg: "bg-zinc-50",
+      icon: "bg-black",
+      text: "text-black",
     },
     gmail: {
-      bg: "from-red-500/10 via-red-400/5 to-red-300/10",
-      icon: "bg-gradient-to-r from-red-500 to-red-600",
-      text: "text-red-700 dark:text-red-300",
+      bg: "bg-zinc-50",
+      icon: "bg-black",
+      text: "text-black",
     },
     instagram: {
-      bg: "from-pink-500/10 via-pink-400/5 to-pink-300/10",
-      icon: "bg-gradient-to-r from-pink-500 to-pink-600",
-      text: "text-pink-700 dark:text-pink-300",
+      bg: "bg-zinc-50",
+      icon: "bg-black",
+      text: "text-black",
     },
     github: {
-      bg: "from-gray-500/10 via-gray-400/5 to-gray-300/10",
-      icon: "bg-gradient-to-r from-gray-700 to-gray-800",
-      text: "text-gray-700 dark:text-gray-300",
+      bg: "bg-zinc-50",
+      icon: "bg-black",
+      text: "text-black",
     },
     linkedin: {
-      bg: "from-blue-600/10 via-blue-500/5 to-blue-400/10",
-      icon: "bg-gradient-to-r from-blue-600 to-blue-700",
-      text: "text-blue-700 dark:text-blue-300",
+      bg: "bg-zinc-50",
+      icon: "bg-black",
+      text: "text-black",
     },
     discord: {
-      bg: "from-indigo-600/10 via-indigo-500/5 to-indigo-400/10",
-      icon: "bg-gradient-to-r from-indigo-600 to-indigo-700",
-      text: "text-indigo-700 dark:text-indigo-300",
+      bg: "bg-zinc-50",
+      icon: "bg-black",
+      text: "text-black",
     },
     call_to_action: {
-      bg: "from-orange-500/10 via-orange-400/5 to-orange-300/10",
-      icon: "bg-gradient-to-r from-orange-500 to-orange-600",
-      text: "text-orange-700 dark:text-orange-300",
+      bg: "bg-zinc-50",
+      icon: "bg-black",
+      text: "text-black",
     },
   };
 
@@ -188,7 +188,7 @@ export default function AboutPreview({ id, content }: AboutPreviewProps) {
       {/* Header with Icon and Label */}
       <div className="flex items-center gap-3 mb-4">
         <div
-          className={`w-10 h-10 rounded-xl ${theme.icon} flex items-center justify-center text-white shadow-md`}
+          className={`w-10 h-10 rounded-xl ${theme.icon} flex items-center justify-center text-white shadow-sm`}
         >
           {ICONS[id] || (
             <span className="text-lg font-bold">
@@ -198,7 +198,7 @@ export default function AboutPreview({ id, content }: AboutPreviewProps) {
         </div>
         <div>
           <h3 className={`font-semibold text-base ${theme.text}`}>{label}</h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-zinc-500">
             Preview konten
           </p>
         </div>
@@ -206,27 +206,27 @@ export default function AboutPreview({ id, content }: AboutPreviewProps) {
 
       {/* Content Preview Card */}
       <div
-        className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${theme.bg} border border-white/50 dark:border-gray-700/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:scale-[1.02]`}
+        className="relative overflow-hidden rounded-2xl bg-zinc-50 border border-black/10 transition-all duration-300 hover:shadow-sm"
       >
         <div className="p-6">
           {hasContent ? (
             <div className="space-y-3">
-              <div className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-line break-words">
+              <div className="text-sm text-zinc-700 leading-relaxed whitespace-pre-line break-words">
                 {content.length > 150
                   ? `${content.substring(0, 150)}...`
                   : content}
               </div>
               {content.length > 150 && (
-                <div className="text-xs text-gray-500 dark:text-gray-400 italic">
+                <div className="text-xs text-zinc-400 italic">
                   {content.length} karakter total
                 </div>
               )}
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center py-8 text-center">
-              <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-3">
+              <div className="w-12 h-12 rounded-full bg-zinc-100 flex items-center justify-center mb-3">
                 <svg
-                  className="w-6 h-6 text-gray-400"
+                  className="w-6 h-6 text-zinc-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -239,32 +239,14 @@ export default function AboutPreview({ id, content }: AboutPreviewProps) {
                   />
                 </svg>
               </div>
-              <p className="text-sm text-gray-500 dark:text-gray-400 italic">
+              <p className="text-sm text-zinc-500 italic">
                 Belum ada konten
               </p>
-              <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+              <p className="text-xs text-zinc-400 mt-1">
                 Isi form untuk melihat preview
               </p>
             </div>
           )}
-        </div>
-
-        {/* Decorative Elements */}
-        <div className="absolute top-0 right-0 w-20 h-20 opacity-10">
-          <div
-            className={`w-full h-full rounded-full ${theme.icon.replace(
-              "bg-gradient-to-r",
-              "bg-gradient-to-br"
-            )} blur-xl`}
-          ></div>
-        </div>
-        <div className="absolute bottom-0 left-0 w-16 h-16 opacity-5">
-          <div
-            className={`w-full h-full rounded-full ${theme.icon.replace(
-              "bg-gradient-to-r",
-              "bg-gradient-to-tl"
-            )} blur-lg`}
-          ></div>
         </div>
       </div>
 
@@ -272,18 +254,18 @@ export default function AboutPreview({ id, content }: AboutPreviewProps) {
       <div className="flex items-center justify-between mt-3 text-xs">
         <div
           className={`flex items-center gap-2 ${
-            hasContent ? "text-green-600 dark:text-green-400" : "text-gray-400"
+            hasContent ? "text-emerald-600" : "text-zinc-400"
           }`}
         >
           <div
             className={`w-2 h-2 rounded-full ${
-              hasContent ? "bg-green-500" : "bg-gray-300"
+              hasContent ? "bg-emerald-500" : "bg-zinc-300"
             }`}
           ></div>
           {hasContent ? "Konten tersedia" : "Menunggu input"}
         </div>
         {hasContent && (
-          <div className="text-gray-500 dark:text-gray-400">
+          <div className="text-zinc-500">
             {content.length} karakter
           </div>
         )}

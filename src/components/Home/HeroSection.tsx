@@ -34,7 +34,7 @@ const HeroSection = forwardRef<HTMLElement>((props, ref) => {
           {/* Subtitle */}
           <h2
             data-hero-text
-            className="text-md sm:text-sm md:text-base lg:text-lg tracking-[0.1em] text-slate-400 dark:text-slate-400 font-medium uppercase text-left"
+            className="text-md sm:text-sm md:text-base lg:text-lg tracking-[0.1em] text-zinc-500 font-medium uppercase text-left"
           >
             I PUTU AGUS SENIARTAWAN
           </h2>
@@ -47,10 +47,10 @@ const HeroSection = forwardRef<HTMLElement>((props, ref) => {
           {/* Description */}
           <div
             data-hero-text
-            className="text-md sm:text-base md:text-lg lg:text-xl text-slate-600 dark:text-neutral-300 leading-relaxed max-w-2xl text-left"
+            className="text-md sm:text-base md:text-lg lg:text-xl text-zinc-600 leading-relaxed max-w-2xl text-left"
           >
             <p className="mb-2 text-left">
-              <strong className="text-sky-900 dark:text-white">
+              <strong className="text-zinc-900">
                 Hi! I'm Putu Agus
               </strong>{" "}
               — a tech enthusiast with a strong interest in UI/UX design,
@@ -68,7 +68,7 @@ const HeroSection = forwardRef<HTMLElement>((props, ref) => {
             <a
               href="/cv/CV_IPutuAgusSeniartawan.pdf"
               download
-              className="group relative overflow-hidden bg-gradient-to-r from-sky-700 to-sky-400 hover:from-transparent hover:to-transparent dark:bg-gradient-to-r dark:from-sky-500 dark:to-sky-400 dark:hover:from-transparent dark:hover:to-transparent text-white hover:text-sky-900 dark:hover:text-sky-400 font-semibold border-2 border-sky-400 dark:border-sky-400 hover:border-sky-400 hover:dark:border-sky-400 px-4 py-2 sm:px-6 sm:py-3 rounded-xl shadow-md hover:shadow-lg hover:shadow-sky-400/40 transform hover:-translate-y-0.5 transition-all duration-300 text-sm sm:text-base text-left active:translate-y-1 active:scale-95"
+              className="group relative overflow-hidden bg-zinc-900 hover:bg-black text-white font-semibold border-2 border-zinc-900 px-4 py-2 sm:px-6 sm:py-3 rounded-xl shadow-md hover:shadow-lg hover:shadow-zinc-500/20 transform hover:-translate-y-0.5 transition-all duration-300 text-sm sm:text-base text-left active:translate-y-1 active:scale-95"
               onClick={handleDownloadClick}
             >
               <span className="relative z-10">Download CV</span>
@@ -76,7 +76,7 @@ const HeroSection = forwardRef<HTMLElement>((props, ref) => {
 
             <Link
               href="/contact"
-              className="group relative overflow-hidden bg-transparent hover:bg-gradient-to-r hover:from-sky-700 hover:to-sky-400 dark:hover:bg-gradient-to-r dark:hover:from-sky-500 dark:hover:to-sky-400 border-2 border-sky-400 dark:border-sky-400 text-sky-900 dark:text-sky-400 hover:text-white dark:hover:text-white font-semibold px-4 py-2 sm:px-6 sm:py-3 rounded-xl shadow-md hover:shadow-lg hover:shadow-sky-400/40 transform hover:-translate-y-0.5 transition-all duration-300 text-sm sm:text-base text-left active:translate-y-1 active:scale-95"
+              className="group relative overflow-hidden bg-transparent hover:bg-zinc-900 border-2 border-zinc-900 text-zinc-900 hover:text-white font-semibold px-4 py-2 sm:px-6 sm:py-3 rounded-xl shadow-sm hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-300 text-sm sm:text-base text-left active:translate-y-1 active:scale-95"
               onClick={handleContactClick}
             >
               <span className="relative z-10">Contact Me</span>
@@ -86,14 +86,14 @@ const HeroSection = forwardRef<HTMLElement>((props, ref) => {
           {/* Stats */}
           <div
             data-hero-text
-            className="flex flex-row flex-wrap gap-4 sm:gap-6 pt-6 text-xs sm:text-sm text-slate-400 dark:text-slate-400"
+            className="flex flex-row flex-wrap gap-4 sm:gap-6 pt-6 text-xs sm:text-sm text-zinc-500"
           >
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
               <span>Available for work</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-sky-400 rounded-full"></div>
+              <div className="w-2 h-2 bg-zinc-400 rounded-full"></div>
               <span>Based in Bali, Indonesia</span>
             </div>
           </div>
@@ -116,8 +116,8 @@ const HeroSection = forwardRef<HTMLElement>((props, ref) => {
                 iconUrl="/photo/iconpattern.png"
                 avatarUrl="/photo/tuagus_photo.webp"
                 miniAvatarUrl="/photo/tuagus_profil.webp"
-                behindGradient="to-br from-blue-400 via-purple-500 to-pink-600"
-                innerGradient="to-r from-blue-500 to-purple-500"
+                behindGradient="to-br from-zinc-700 via-zinc-900 to-black"
+                innerGradient="to-r from-zinc-800 to-zinc-950"
                 showUserInfo={true}
                 enableTilt={true}
                 onContactClick={() => {

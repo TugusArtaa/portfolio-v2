@@ -20,7 +20,7 @@ export default function AnimatedTitle() {
       animateBy="letters"
       direction="bottom"
       onAnimationComplete={handleAnimationComplete}
-      className="font-bold text-shadow-lg text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-sky-600 dark:text-sky-500"
+      className="font-bold text-shadow-lg text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-zinc-900"
     />
   );
 }

@@ -24,25 +24,22 @@ const LEVEL_OPTIONS = [
   {
     label: "Beginner",
     value: "Beginner",
-    color:
-      "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300",
+    color: "bg-zinc-100 text-zinc-700",
   },
   {
     label: "Intermediate",
     value: "Intermediate",
-    color:
-      "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300",
+    color: "bg-zinc-200 text-zinc-800",
   },
   {
     label: "Advanced",
     value: "Advanced",
-    color: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300",
+    color: "bg-zinc-300 text-zinc-900",
   },
   {
     label: "Expert",
     value: "Expert",
-    color:
-      "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300",
+    color: "bg-black text-white",
   },
 ];
 

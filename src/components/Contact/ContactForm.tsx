@@ -118,10 +118,10 @@ export default function ContactForm() {
         transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
         className="text-center lg:text-left mb-8 sm:mb-12"
       >
-        <h1 className="text-3xl sm:text-3xl lg:text-4xl font-bold text-slate-700 dark:text-slate-200">
+        <h1 className="text-3xl sm:text-3xl lg:text-4xl font-bold text-slate-700">
           Contact
         </h1>
-        <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-sky-500 to-sky-400 rounded-full mx-auto lg:mx-0 mt-3 sm:mt-4"></div>
+        <div className="w-20 sm:w-24 h-1 bg-zinc-900 rounded-full mx-auto lg:mx-0 mt-3 sm:mt-4"></div>
       </motion.div>
       <motion.div
         data-contact-form
@@ -145,12 +145,12 @@ export default function ContactForm() {
                 value={form.name}
                 onChange={handleChange}
                 autoComplete="off"
-                className="peer w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-200 placeholder-transparent focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none transition-colors duration-300 text-base sm:text-lg lg:text-xl"
+                className="peer w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 border-zinc-300 text-zinc-900 placeholder-transparent focus:border-zinc-900 focus:outline-none transition-colors duration-300 text-base sm:text-lg lg:text-xl"
                 placeholder="Your Name"
               />
               <label
                 htmlFor="name"
-                className="absolute left-0 -top-3.5 text-slate-500 dark:text-slate-400 text-sm sm:text-base lg:text-lg transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-sm sm:peer-focus:text-base lg:peer-focus:text-lg peer-focus:text-sky-500 dark:peer-focus:text-sky-400"
+                className="absolute left-0 -top-3.5 text-zinc-500 text-sm sm:text-base lg:text-lg transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-sm sm:peer-focus:text-base lg:peer-focus:text-lg peer-focus:text-zinc-900 font-medium"
               >
                 Your Name
               </label>
@@ -163,12 +163,12 @@ export default function ContactForm() {
                 value={form.email}
                 onChange={handleChange}
                 autoComplete="off"
-                className="peer w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-200 placeholder-transparent focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none transition-colors duration-300 text-base sm:text-lg lg:text-xl"
+                className="peer w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 border-zinc-300 text-zinc-900 placeholder-transparent focus:border-zinc-900 focus:outline-none transition-colors duration-300 text-base sm:text-lg lg:text-xl"
                 placeholder="Your Email"
               />
               <label
                 htmlFor="email"
-                className="absolute left-0 -top-3.5 text-slate-500 dark:text-slate-400 text-sm sm:text-base lg:text-lg transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-sm sm:peer-focus:text-base lg:peer-focus:text-lg peer-focus:text-sky-500 dark:peer-focus:text-sky-400"
+                className="absolute left-0 -top-3.5 text-zinc-500 text-sm sm:text-base lg:text-lg transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-sm sm:peer-focus:text-base lg:peer-focus:text-lg peer-focus:text-zinc-900 font-medium"
               >
                 Your Email
               </label>
@@ -180,12 +180,12 @@ export default function ContactForm() {
                 id="subject"
                 value={form.subject}
                 onChange={handleChange}
-                className="peer w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-200 placeholder-transparent focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none transition-colors duration-300 text-base sm:text-lg lg:text-xl"
+                className="peer w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 border-zinc-300 text-zinc-900 placeholder-transparent focus:border-zinc-900 focus:outline-none transition-colors duration-300 text-base sm:text-lg lg:text-xl"
                 placeholder="Subject"
               />
               <label
                 htmlFor="subject"
-                className="absolute left-0 -top-3.5 text-slate-500 dark:text-slate-400 text-sm sm:text-base lg:text-lg transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-sm sm:peer-focus:text-base lg:peer-focus:text-lg peer-focus:text-sky-500 dark:peer-focus:text-sky-400"
+                className="absolute left-0 -top-3.5 text-zinc-500 text-sm sm:text-base lg:text-lg transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-sm sm:peer-focus:text-base lg:peer-focus:text-lg peer-focus:text-zinc-900 font-medium"
               >
                 Subject
               </label>
@@ -197,12 +197,12 @@ export default function ContactForm() {
                 rows={4}
                 value={form.message}
                 onChange={handleChange}
-                className="peer w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-200 placeholder-transparent focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none transition-colors duration-300 resize-none text-base sm:text-lg lg:text-xl"
+                className="peer w-full px-0 py-3 sm:py-4 bg-transparent border-0 border-b-2 border-zinc-300 text-zinc-900 placeholder-transparent focus:border-zinc-900 focus:outline-none transition-colors duration-300 resize-none text-base sm:text-lg lg:text-xl"
                 placeholder="Your Message"
               />
               <label
                 htmlFor="message"
-                className="absolute left-0 -top-3.5 text-slate-500 dark:text-slate-400 text-sm sm:text-base lg:text-lg transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-sm sm:peer-focus:text-base lg:peer-focus:text-lg peer-focus:text-sky-500 dark:peer-focus:text-sky-400"
+                className="absolute left-0 -top-3.5 text-zinc-500 text-sm sm:text-base lg:text-lg transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-sm sm:peer-focus:text-base lg:peer-focus:text-lg peer-focus:text-zinc-900 font-medium"
               >
                 Your Message
               </label>

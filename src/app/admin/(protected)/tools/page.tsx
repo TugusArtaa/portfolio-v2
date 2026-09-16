@@ -131,7 +131,7 @@ export default function ToolsPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-slate-900">
+      <div className="min-h-screen bg-zinc-50">
         <div className="px-4 sm:px-6 lg:px-8 pt-8 pb-8">
           <div className="max-w-7xl mx-auto">
             <LoadingSkeleton variant="header" />
@@ -144,7 +144,7 @@ export default function ToolsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900">
+    <div className="min-h-screen bg-zinc-50">
       <div className="px-4 sm:px-6 lg:px-8 pt-8 pb-8">
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}

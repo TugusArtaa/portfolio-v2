@@ -39,13 +39,10 @@ export default function FormInput({
 }: FormInputProps) {
   const hasError = !!error;
   const borderColor = hasError
-    ? "border-red-300 dark:border-red-700 focus:border-red-500 dark:focus:border-red-400 focus:ring-red-500/20"
-    : `border-slate-300/50 dark:border-slate-600/50 focus:border-${iconColor} dark:focus:border-${iconColor.replace(
-        "500",
-        "400"
-      )} focus:ring-${iconColor}/20`;
+    ? "border-rose-400 focus:border-rose-500 focus:ring-rose-500/20"
+    : "border-black/10 focus:border-black focus:ring-black/10";
 
-  const inputClasses = `w-full px-4 py-3 bg-white/80 dark:bg-slate-700/80 backdrop-blur-sm border ${borderColor} rounded-xl focus:ring-2 transition-all duration-200 text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 ${
+  const inputClasses = `w-full px-4 py-3 bg-white border ${borderColor} rounded-xl focus:ring-1 transition-all duration-200 text-black placeholder-zinc-400 ${
     type === "textarea" ? "resize-none" : ""
   } ${disabled ? "opacity-50 cursor-not-allowed" : ""} ${
     hasError ? "pr-12" : ""
@@ -53,13 +50,13 @@ export default function FormInput({
 
   return (
     <div className="space-y-2">
-      <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
+      <label className="flex items-center gap-2 text-sm font-semibold text-zinc-700">
         {icon && (
-          <div className={`w-4 h-4 text-${hasError ? "red-500" : iconColor}`}>
+          <div className={`w-4 h-4 ${hasError ? "text-rose-500" : "text-black"}`}>
             {icon}
           </div>
         )}
-        {label} {required && <span className="text-red-500">*</span>}
+        {label} {required && <span className="text-rose-500">*</span>}
       </label>
 
       <div className="relative">
@@ -92,7 +89,7 @@ export default function FormInput({
         {hasError && (
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <svg
-              className="w-5 h-5 text-red-500"
+              className="w-5 h-5 text-rose-500"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -109,7 +106,7 @@ export default function FormInput({
       </div>
 
       {error && (
-        <p className="text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
+        <p className="text-sm text-rose-600 flex items-center gap-1">
           <svg
             className="w-4 h-4"
             fill="none"
@@ -128,7 +125,7 @@ export default function FormInput({
       )}
 
       {helpText && !error && (
-        <p className="text-xs text-slate-500 dark:text-slate-400">{helpText}</p>
+        <p className="text-xs text-zinc-500">{helpText}</p>
       )}
     </div>
   );

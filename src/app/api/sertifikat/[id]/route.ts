@@ -2,14 +2,15 @@ import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { requireAuth } from "@/lib/auth";
 
-type Params = { params: { id: string } };
+type Params = { params: Promise<{ id: string }> };
 
 // Handler GET: Mengambil data sertifikat berdasarkan id
-export async function GET(_: Request, { params }: Params) {
+export async function GET(_: Request, context: Params) {
+  const { id } = await context.params;
   try {
     await requireAuth();
     const cert = await prisma.certificate.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
     if (!cert) {
       return NextResponse.json(
@@ -27,7 +28,8 @@ export async function GET(_: Request, { params }: Params) {
 }
 
 // Handler PUT: Memperbarui data sertifikat berdasarkan id
-export async function PUT(req: Request, { params }: Params) {
+export async function PUT(req: Request, context: Params) {
+  const { id } = await context.params;
   try {
     await requireAuth();
     const body = await req.json();
@@ -40,7 +42,7 @@ export async function PUT(req: Request, { params }: Params) {
       );
     }
     const updated = await prisma.certificate.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         title,
         issuer,
@@ -61,10 +63,11 @@ export async function PUT(req: Request, { params }: Params) {
 }
 
 // Handler DELETE: Menghapus data sertifikat berdasarkan id
-export async function DELETE(_: Request, { params }: Params) {
+export async function DELETE(_: Request, context: Params) {
+  const { id } = await context.params;
   try {
     await requireAuth();
-    await prisma.certificate.delete({ where: { id: params.id } });
+    await prisma.certificate.delete({ where: { id } });
     return NextResponse.json({ message: "Deleted" });
   } catch {
     return NextResponse.json(

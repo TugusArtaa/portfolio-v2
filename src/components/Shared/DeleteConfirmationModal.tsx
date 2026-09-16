@@ -42,10 +42,9 @@ export default function DeleteConfirmationModal({
       ></div>
 
       {/* Modal */}
-      <div className="relative bg-white dark:bg-slate-800/90 backdrop-blur-xl rounded-3xl shadow-2xl w-full max-w-md mx-4 overflow-hidden transform transition-all duration-300">
+      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-md mx-4 overflow-hidden transform transition-all duration-300 border border-black/10">
         {/* Header */}
-        <div className="relative bg-gradient-to-r from-red-600 to-red-700 p-6 text-white">
-          <div className="absolute inset-0 bg-black/10"></div>
+        <div className="relative bg-rose-600 p-6 text-white">
           <div className="relative flex items-center gap-4">
             <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center">
               <svg
@@ -64,7 +63,7 @@ export default function DeleteConfirmationModal({
             </div>
             <div>
               <h3 className="text-xl font-bold">{title}</h3>
-              <p className="text-red-100 text-sm">
+              <p className="text-rose-100 text-sm">
                 Baca dengan seksama sebelum melanjutkan
               </p>
             </div>
@@ -76,9 +75,9 @@ export default function DeleteConfirmationModal({
           {/* Main Question */}
           <div className="mb-6">
             <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-rose-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-rose-100">
                 <svg
-                  className="w-8 h-8 text-red-600 dark:text-red-400"
+                  className="w-8 h-8 text-rose-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -91,20 +90,20 @@ export default function DeleteConfirmationModal({
                   />
                 </svg>
               </div>
-              <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3 leading-tight">
+              <h4 className="text-xl font-bold text-black mb-3 leading-tight">
                 Konfirmasi Tindakan
               </h4>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-lg">
+              <p className="text-zinc-600 leading-relaxed text-lg">
                 {description}
               </p>
             </div>
           </div>
 
           {/* Warning */}
-          <div className="border border-amber-400 dark:border-amber-800 rounded-xl p-4 mb-6">
+          <div className="border border-amber-300 bg-amber-50/50 rounded-xl p-4 mb-6">
             <div className="flex items-start gap-3">
               <svg
-                className="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0"
+                className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -117,10 +116,10 @@ export default function DeleteConfirmationModal({
                 />
               </svg>
               <div>
-                <p className="text-amber-800 dark:text-amber-200 text-sm font-medium">
+                <p className="text-amber-900 text-sm font-semibold">
                   Perhatian!
                 </p>
-                <p className="text-amber-700 dark:text-amber-300 text-xs mt-1">
+                <p className="text-amber-800 text-xs mt-1">
                   {warningMessage}
                 </p>
               </div>
@@ -132,7 +131,7 @@ export default function DeleteConfirmationModal({
             <button
               onClick={onClose}
               disabled={isDeleting}
-              className="flex-1 px-4 py-3 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold rounded-xl hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors duration-200 disabled:opacity-50"
+              className="flex-1 px-4 py-3 bg-zinc-100 text-zinc-700 font-semibold rounded-xl hover:bg-zinc-200 transition-colors duration-200 disabled:opacity-50"
             >
               Batal
             </button>

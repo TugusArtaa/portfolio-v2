@@ -36,7 +36,7 @@ export default function TimeDisplay({
 
   return (
     <div
-      className={`hidden lg:flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 px-3 py-2 rounded-lg ${className}`}
+      className={`hidden lg:flex items-center gap-2 text-sm text-zinc-600 px-3 py-2 rounded-lg ${className}`}
     >
       {showIcon && (
         <svg
