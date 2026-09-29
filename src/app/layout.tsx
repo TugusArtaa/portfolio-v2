@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | Tuagus",
   },
   description:
-    "Personal portfolio of I Putu Agus Seniartawan (Tuagus) — Web Developer & Creative Enthusiast based in Bali, Indonesia. Specializing in modern web development using React, Next.js, and Laravel, alongside impactful branding and balanced graphic design.",
+    "Portfolio of I Putu Agus Seniartawan (Tuagus) — Web Developer & Creative Enthusiast in Bali. Crafting modern web apps with React, Next.js, and Laravel.",
   keywords: [
     // Primary Identity & Roles
     "Tuagus",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     siteName: "Tuagus Portfolio",
     title: "Tuagus | Web Developer & Creative Enthusiast",
     description:
-      "Personal portfolio of I Putu Agus Seniartawan (Tuagus) — Web Developer & Creative Enthusiast based in Bali, Indonesia. Specializing in modern web development using React, Next.js, and Laravel, alongside impactful branding and balanced graphic design.",
+      "Web Developer & Creative Enthusiast based in Bali. Crafting high-performance web apps with React, Next.js, and clean engineering.",
     images: [
       {
         url: "/og-image.png",
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Tuagus | Web Developer & Creative Enthusiast",
     description:
-      "Personal portfolio of I Putu Agus Seniartawan (Tuagus) — Web Developer & Creative Enthusiast based in Bali, Indonesia. Specializing in modern web development using React, Next.js, and Laravel, alongside impactful branding and balanced graphic design.",
+      "Web Developer & Creative Enthusiast based in Bali. Crafting high-performance web apps with React, Next.js, and clean engineering.",
     images: ["/og-image.png"],
   },
   alternates: {
