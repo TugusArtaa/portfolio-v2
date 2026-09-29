@@ -50,7 +50,15 @@ export const metadata: Metadata = {
   authors: [{ name: "I Putu Agus Seniartawan (Tuagus)" }],
   creator: "I Putu Agus Seniartawan",
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
   },
   openGraph: {
     type: "website",
@@ -61,10 +69,10 @@ export const metadata: Metadata = {
       "Personal portfolio of I Putu Agus Seniartawan (Tuagus) — Web Developer & Creative Enthusiast based in Bali, Indonesia. Specializing in modern web development using React, Next.js, and Laravel, alongside impactful branding and balanced graphic design.",
     images: [
       {
-        url: "/photo/tuagus_photo.webp",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Tuagus - Portfolio",
+        alt: "Tuagus | Web Developer & Creative Enthusiast",
       },
     ],
   },
@@ -73,7 +81,7 @@ export const metadata: Metadata = {
     title: "Tuagus | Web Developer & Creative Enthusiast",
     description:
       "Personal portfolio of I Putu Agus Seniartawan (Tuagus) — Web Developer & Creative Enthusiast based in Bali, Indonesia. Specializing in modern web development using React, Next.js, and Laravel, alongside impactful branding and balanced graphic design.",
-    images: ["/photo/tuagus_photo.webp"],
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: "/",
