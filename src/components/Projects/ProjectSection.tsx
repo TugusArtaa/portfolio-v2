@@ -1,11 +1,25 @@
 "use client";
+
 import type React from "react";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { useLoading } from "@/context/LoadingContext";
-import useProjectSectionAnimations from "@/hooks/useProjectSectionAnimations";
+import { motion, AnimatePresence } from "framer-motion";
+import TransitionLink from "@/components/UI/PageTransition/TransitionLink";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import dynamic from "next/dynamic";
+import { cn } from "@/lib/utils";
+import Magnetic from "@/components/UI/Magnetic";
+import { REACTBITS_EASE } from "@/lib/motion";
+
+const React3DLogo = dynamic(() => import("@/components/UI/React3DLogo"), {
+  ssr: false,
+  loading: () => (
+    <div
+      className="w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[340px] md:h-[340px] lg:w-[380px] lg:h-[380px] shrink-0"
+      aria-hidden="true"
+    />
+  ),
+});
 
 type ProjectPublic = {
   title: string;
@@ -14,434 +28,440 @@ type ProjectPublic = {
   techStack: string[] | null;
   coverImage: string;
   url?: string | null;
+  category?: string | null;
 };
 
 interface ProjectSectionProps {
   projects: ProjectPublic[];
 }
 
-const GitHubCalendar = dynamic(() => import("react-github-calendar"), {
-  ssr: false,
-});
+const CATEGORIES = [
+  { id: "all", label: "All Projects" },
+  { id: "web-dev", label: "Web Development" },
+  { id: "branding", label: "Branding" },
+  { id: "graphic-design", label: "Graphic Design" },
+] as const;
 
-const Lottie = dynamic(() => import("lottie-react"), {
-  ssr: false,
-});
+type CategoryId = (typeof CATEGORIES)[number]["id"];
 
 export default function ProjectSection({ projects }: ProjectSectionProps) {
-  const [displayedProjects, setDisplayedProjects] = useState<ProjectPublic[]>(
-    []
-  );
+  const [activeCategory, setActiveCategory] = useState<CategoryId>("all");
   const [showAll, setShowAll] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(0);
-  const [animationData, setAnimationData] = useState(null);
-  const { startLoading } = useLoading();
   const sectionRef = useRef<HTMLElement>(null) as React.RefObject<HTMLElement>;
-  useProjectSectionAnimations(sectionRef);
+
   const MAX_PROJECTS = 6;
 
-  // Load Lottie animation
-  useEffect(() => {
-    const loadAnimation = async () => {
-      try {
-        const response = await fetch("/animations/Animation-Project.json");
-        if (response.ok) {
-          const data = await response.json();
-          setAnimationData(data);
-        }
-      } catch {
-        console.log("Animation file not found, using fallback");
-      }
-    };
-    loadAnimation();
-  }, []);
-
-  // Track window width for responsive calendar
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    setDisplayedProjects(projects.slice(0, MAX_PROJECTS));
-    setShowAll(false);
-  }, [projects]);
-
-  const handleShowMore = () => {
-    setDisplayedProjects(projects);
-    setShowAll(true);
+  // Category counts computed dynamically from data
+  const counts = {
+    all: projects.length,
+    "web-dev": projects.filter(
+      (p) => !p.category || p.category.toLowerCase().includes("web")
+    ).length,
+    branding: projects.filter((p) =>
+      p.category?.toLowerCase().includes("brand")
+    ).length,
+    "graphic-design": projects.filter(
+      (p) =>
+        p.category?.toLowerCase().includes("graphic") ||
+        p.category?.toLowerCase().includes("design")
+    ).length,
   };
 
-  const handleShowLess = () => {
-    setDisplayedProjects(projects.slice(0, MAX_PROJECTS));
-    setShowAll(false);
-  };
+  // Filter projects by active category
+  const filteredProjects = projects.filter((project) => {
+    if (activeCategory === "all") return true;
+    if (activeCategory === "web-dev") {
+      return !project.category || project.category.toLowerCase().includes("web");
+    }
+    if (activeCategory === "branding") {
+      return project.category?.toLowerCase().includes("brand");
+    }
+    if (activeCategory === "graphic-design") {
+      return (
+        project.category?.toLowerCase().includes("graphic") ||
+        project.category?.toLowerCase().includes("design")
+      );
+    }
+    return true;
+  });
 
-  // Responsive calendar settings
-  const getCalendarSettings = () => {
-    if (windowWidth < 480) {
-      // Extra small screens - very large size
-      return {
-        blockSize: 18,
-        blockMargin: 4,
-        fontSize: 13,
-        showWeekdayLabels: false,
-        hideColorLegend: false,
-      };
-    } else if (windowWidth < 640) {
-      // Small screens - large size
-      return {
-        blockSize: 16,
-        blockMargin: 4,
-        fontSize: 13,
-        showWeekdayLabels: false,
-        hideColorLegend: false,
-      };
-    } else if (windowWidth < 768) {
-      // Medium screens
-      return {
-        blockSize: 15,
-        blockMargin: 3,
-        fontSize: 12,
-        showWeekdayLabels: true,
-        hideColorLegend: false,
-      };
-    } else if (windowWidth < 1024) {
-      // Large screens
-      return {
-        blockSize: 15,
-        blockMargin: 3,
-        fontSize: 12,
-        showWeekdayLabels: true,
-        hideColorLegend: false,
-      };
-    } else {
-      // Extra large screens
-      return {
-        blockSize: 16,
-        blockMargin: 4,
-        fontSize: 13,
-        showWeekdayLabels: true,
-        hideColorLegend: false,
-      };
+  const displayedProjects = showAll
+    ? filteredProjects
+    : filteredProjects.slice(0, MAX_PROJECTS);
+
+  const handleCategoryChange = (
+    catId: CategoryId,
+    e?: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    setActiveCategory(catId);
+    setShowAll(false);
+    if (e?.currentTarget) {
+      e.currentTarget.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
     }
   };
-  const calendarSettings = getCalendarSettings();
 
-  // Calculate real data for statistics
+  // Refresh ScrollTrigger when displayed items change
+  useEffect(() => {
+    if (typeof window !== "undefined" && ScrollTrigger) {
+      const timer = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 60);
+      return () => clearTimeout(timer);
+    }
+  }, [displayedProjects.length, activeCategory]);
+
   const totalProjects = projects.length;
-  const uniqueTechStack = new Set(projects.flatMap((p) => p.techStack || []))
-    .size;
 
   if (!projects) return null;
 
   return (
     <section
       ref={sectionRef}
-      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 gap-8 lg:gap-12"
       data-projects-section
+      className="relative w-full pt-32 sm:pt-36 lg:pt-44 pb-16 sm:pb-20 lg:pb-24 px-6 sm:px-8 lg:px-16 bg-[#FAFAF9] text-zinc-950 overflow-hidden"
     >
-      {/* Header Section with Two Column Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-center mb-6 sm:mb-8 lg:mb-12">
-        {/* Left Column - Text Content and Statistics */}
-        <div
-          className="order-2 lg:order-1 space-y-4 sm:space-y-5 text-left"
-          data-projects-content
+      {/* Full-width hairline tactile anchor connecting from top */}
+      <div
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-zinc-300/80 to-transparent pointer-events-none"
+        aria-hidden="true"
+      />
+
+      {/* Full-width hairline tactile anchor connecting to footer */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-zinc-300/80 to-transparent pointer-events-none"
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* =====================================================================
+            SECTION HEADER: Brutalist Editorial Style with 3D React Logo
+            Left: Typography with space-y-6 | Right: 3D React Logo
+           ===================================================================== */}
+        <div className="flex flex-col-reverse md:flex-row md:items-center justify-between gap-8 sm:gap-10 mb-12 sm:mb-16 lg:mb-20">
+          {/* Typography Column: Below 3D logo on mobile, on left on desktop */}
+          <div className="flex flex-col space-y-6 sm:space-y-7 text-left max-w-2xl">
+            {/* Eyebrow: Clean Architectural Coordinate */}
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, ease: REACTBITS_EASE }}
+            >
+              <h2 className="font-mono text-xs font-semibold tracking-[0.2em] text-zinc-500 uppercase">
+                PROJECT // ARCHIVE &amp; CRAFT
+              </h2>
+            </motion.div>
+
+            {/* Title */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, ease: REACTBITS_EASE, delay: 0.08 }}
+            >
+              <h1 className="font-brutal text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-extrabold tracking-[-0.035em] text-zinc-950 leading-[1.05] text-left">
+                Featured Projects
+              </h1>
+            </motion.div>
+
+            {/* Subtitle: Focused Measure with Comfortable Leading matching Home SummarySection */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: REACTBITS_EASE, delay: 0.16 }}
+              className="text-base sm:text-lg text-zinc-600 leading-[1.7] max-w-xl text-left font-sans"
+            >
+              A curated showcase of my work as a Web Developer &amp; Creative Enthusiast — featuring projects across web development, branding, and graphic design.
+            </motion.p>
+          </div>
+
+          {/* Right Column: 3D React Logo placed cleanly on the right with smooth scale reveal */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.88 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, ease: REACTBITS_EASE, delay: 0.1 }}
+            className="flex items-center justify-center md:justify-end shrink-0 -my-4 md:my-0"
+          >
+            <React3DLogo size="large" />
+          </motion.div>
+        </div>
+
+        {/* Scoped style to guarantee zero scrollbar leaks on tabs across all browser engines */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          .no-scrollbar::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }
+          .no-scrollbar::-webkit-scrollbar-track,
+          .no-scrollbar::-webkit-scrollbar-thumb,
+          .no-scrollbar::-webkit-scrollbar-button { display: none !important; background: transparent !important; }
+        ` }} />
+
+        {/* =====================================================================
+            CATEGORY FILTER TABS & COUNT BADGE (Tactile ReactBits Standalone Chips)
+           ===================================================================== */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, ease: REACTBITS_EASE, delay: 0.22 }}
+          className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-6 sm:mb-8"
         >
-          {/* Main Title (My Projects) and Subtitle */}
-          <div className="space-y-2 sm:space-y-3">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-zinc-900 leading-tight">
-              My Projects
-            </h2>
-            <p className="text-slate-600 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed">
-              List of my projects that I have done and currently working on.
-            </p>
+          {/* Mobile-only status row */}
+          <div className="flex sm:hidden items-center justify-between text-zinc-500 font-mono text-[11px] uppercase tracking-wider px-0.5">
+            <span>Filter Discipline</span>
+            <span>[{totalProjects} Projects]</span>
           </div>
 
-          {/* Statistics Section (using real data from projects prop) */}
-          <div className="flex flex-wrap gap-2 sm:gap-3 pt-2 sm:pt-3">
-            <div className="flex items-center gap-2 sm:gap-3 bg-white/80 px-3 sm:px-4 py-2 sm:py-3 rounded-full shadow-sm border border-zinc-200">
-              <div className="flex-shrink-0 w-6 sm:w-8 h-6 sm:h-8 bg-zinc-100 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-3 sm:w-4 h-3 sm:h-4 text-zinc-900"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+          {/* Swipeable Tabs Container with smooth touch scrolling */}
+          <div
+            role="tablist"
+            aria-label="Filter projects by discipline"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              WebkitOverflowScrolling: "touch",
+            }}
+            className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto sm:overflow-x-visible no-scrollbar py-1 -mx-6 px-6 sm:mx-0 sm:px-0 w-[calc(100%+3rem)] sm:w-auto min-w-0 scroll-smooth touch-pan-x overscroll-x-contain"
+          >
+            {CATEGORIES.map((cat) => {
+              const isActive = activeCategory === cat.id;
+              const count = counts[cat.id];
+
+              return (
+                <button
+                  key={cat.id}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={(e) => handleCategoryChange(cat.id, e)}
+                  className={cn(
+                    "shrink-0 relative px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full font-mono text-[11px] sm:text-xs uppercase tracking-wider font-semibold transition-colors duration-200 cursor-pointer whitespace-nowrap active:scale-95 border",
+                    isActive
+                      ? "text-white border-zinc-950 shadow-xs"
+                      : "bg-white text-zinc-600 hover:text-zinc-950 border-zinc-200/90 hover:border-zinc-300 shadow-2xs hover:bg-zinc-50/80"
+                  )}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                  />
-                </svg>
-              </div>
-              <span className="text-base sm:text-lg lg:text-xl font-bold text-zinc-900">
-                {totalProjects}
-              </span>
-              <span className="text-sm sm:text-base lg:text-lg text-slate-600">
-                Total Projects
-              </span>
-            </div>
-            <div className="flex items-center gap-2 sm:gap-3 bg-white/80 px-3 sm:px-4 py-2 sm:py-3 rounded-full shadow-sm border border-zinc-200">
-              <div className="flex-shrink-0 w-6 sm:w-8 h-6 sm:h-8 bg-zinc-100 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-3 sm:w-4 h-3 sm:h-4 text-zinc-900"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                  />
-                </svg>
-              </div>
-              <span className="text-base sm:text-lg lg:text-xl font-bold text-zinc-900">
-                {uniqueTechStack}
-              </span>
-              <span className="text-sm sm:text-base lg:text-lg text-zinc-600">
-                Technologies Used
-              </span>
-            </div>
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeCategoryPill"
+                      className="absolute inset-0 bg-zinc-950 rounded-full -z-10"
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10 flex items-center gap-2">
+                    <span>{cat.label}</span>
+                    <span
+                      className={cn(
+                        "text-[10px] font-mono px-1.5 py-0.5 rounded-full transition-colors",
+                        isActive
+                          ? "bg-zinc-800 text-zinc-300"
+                          : "bg-zinc-100 text-zinc-500 border border-zinc-200/60"
+                      )}
+                    >
+                      {count}
+                    </span>
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Scroll Down Button - Hidden on mobile */}
-          <div className="pt-3 sm:pt-4 lg:pt-6 hidden sm:block">
-            <button
-              onClick={() => {
-                // This selector already targets the "Github Contribution Calendar Section"
-                document
-                  .querySelector("[data-projects-section] > div:nth-child(2)")
-                  ?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                  });
-              }}
-              className="group inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-950 transition-all duration-300 font-medium text-sm border-b border-transparent hover:border-zinc-900 pb-1"
-            >
-              View Projects Below
-              <svg
-                className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-        {/* Right Column - Clean Lottie Animation */}
-        <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
-          <div className="w-80 h-80 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[28rem] lg:h-[28rem] xl:w-[32rem] xl:h-[32rem] 2xl:w-[36rem] 2xl:h-[36rem] flex items-center justify-center">
-            {animationData && Lottie && (
-              <Lottie
-                animationData={animationData}
-                loop={true}
-                autoplay={true}
-                className="w-full h-full"
-              />
-            )}
-          </div>
-        </div>
-      </div>
-      {/* Github Contribution Calendar Section */}
-      <div className="w-full mb-6">
-        <div className="relative w-full max-w-7xl mx-auto bg-white rounded-2xl border border-black/10 shadow-sm overflow-hidden">
-          {/* Calendar Header */}
-          <div className="text-center pt-6 px-4">
-            <h3 className="text-xl sm:text-2xl font-bold text-black">
-              GitHub Contribution Activity
+          {/* Desktop Count Badge aligned with tabs */}
+          <span className="hidden sm:inline-block font-mono text-xs text-zinc-500 tracking-wider uppercase font-medium shrink-0">
+            [{totalProjects} Projects]
+          </span>
+        </motion.div>
+
+        {/* =====================================================================
+            PROJECTS GRID WITH TACTILE ANIMATIONS & MINIMALIST EMPTY STATE
+           ===================================================================== */}
+        {filteredProjects.length === 0 ? (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: REACTBITS_EASE }}
+            className="min-h-[380px] sm:min-h-[420px] lg:min-h-[460px] flex flex-col items-center justify-center text-center max-w-2xl mx-auto py-8"
+          >
+            {/* Display Headline */}
+            <h3 className="font-brutal text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-[-0.03em] text-zinc-950 leading-[1.15] mb-3">
+              The {CATEGORIES.find((c) => c.id === activeCategory)?.label} archive is currently being prepared.
             </h3>
-          </div>
 
-          {/* Calendar Container with moderate height and responsive padding */}
-          <div className="w-full px-3 py-4 xs:px-4 xs:py-5 sm:px-6 sm:py-6 md:px-8 md:py-8">
-            <div className="overflow-x-auto">
-              <div className="min-w-fit flex justify-center items-center min-h-[160px] sm:min-h-[180px] md:min-h-[200px]">
-                {windowWidth > 0 && (
-                  <GitHubCalendar
-                    username="TugusArtaa"
-                    blockSize={calendarSettings.blockSize}
-                    blockMargin={calendarSettings.blockMargin}
-                    fontSize={calendarSettings.fontSize}
-                    hideTotalCount={false}
-                    hideColorLegend={calendarSettings.hideColorLegend}
-                    showWeekdayLabels={calendarSettings.showWeekdayLabels}
-                    maxLevel={4}
-                    colorScheme="light"
-                    theme={{
-                      light: [
-                        "#f4f4f5",
-                        "#d4d4d8",
-                        "#a1a1aa",
-                        "#52525b",
-                        "#18181b",
-                      ],
-                    }}
-                    labels={{
-                      totalCount:
-                        "{{count}} contributions in the last year (Public Repo)",
-                    }}
-                  />
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {projects.length === 0 ? (
-        <div className="text-center py-12 sm:py-16">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-            <svg
-              className="w-8 h-8 sm:w-10 sm:h-10 text-slate-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-              />
-            </svg>
-          </div>
-          <p className="text-slate-500 text-base sm:text-lg">
-            Tidak ada project.
-          </p>
-        </div>
-      ) : (
-        <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mt-8">
-            {displayedProjects.map(
-              ({ title, slug, description, techStack, coverImage }) => (
-                <div
-                  key={slug}
-                  className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-zinc-200 transition-all duration-300 hover:-translate-y-1.5 flex flex-col h-full"
-                  data-project-card
+            {/* Subtitle */}
+            <p className="text-zinc-500 text-xs sm:text-sm font-normal leading-relaxed max-w-md mb-7">
+              Selected case studies, brand identity guides, and design artifacts are currently being documented for presentation.
+            </p>
+
+            {/* ReactBits Magnetic Button */}
+            <Magnetic strength={0.3}>
+              <button
+                type="button"
+                onClick={() => handleCategoryChange("all")}
+                className="group cursor-pointer inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-950 text-white font-mono text-xs uppercase tracking-wider font-semibold hover:bg-zinc-800 transition-all duration-200 active:scale-95 shadow-sm hover:shadow-md border border-zinc-800"
+              >
+                <svg
+                  className="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  {/* Corner borders */}
-                  <div className="absolute top-0 right-0 w-8 h-8 sm:w-12 sm:h-12 border-t-2 border-r-2 rounded-tr-2xl transition-all duration-300 border-zinc-300 group-hover:border-zinc-900 group-hover:w-12 group-hover:h-12 sm:group-hover:w-16 sm:group-hover:h-16 z-10" />
-                  <div className="absolute bottom-0 left-0 w-8 h-8 sm:w-12 sm:h-12 border-b-2 border-l-2 rounded-bl-2xl transition-all duration-300 border-zinc-300 group-hover:border-zinc-900 group-hover:w-12 group-hover:h-12 sm:group-hover:w-16 sm:group-hover:h-16 z-10" />
-                  {/* Project Image */}
-                  <div className="p-4 sm:p-5">
-                    <div className="relative overflow-hidden aspect-video bg-zinc-900 rounded-lg group/image">
-                      <Image
-                        src={coverImage || "/placeholder.svg"}
-                        alt={title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        priority
-                        className="object-cover group-hover:scale-105 transition-transform duration-500 rounded-lg"
-                      />
-                    </div>
-                  </div>
-                  {/* Project Info */}
-                  <div className="px-4 sm:px-5 pb-4 sm:pb-5 relative z-10 flex flex-col flex-grow">
-                    {/* Title */}
-                    <h3 className="font-bold text-sm sm:text-base lg:text-lg text-slate-800 line-clamp-2 group-hover:text-zinc-950 transition-colors duration-300 mb-2">
-                      {title}
-                    </h3>
-                    {/* Description */}
-                    <p className="text-xs sm:text-sm text-slate-600 line-clamp-3 mb-3 flex-grow">
-                      {description}
-                    </p>
-                    {/* Tech Stack */}
-                    {techStack && techStack.length > 0 && (
-                      <div className="mb-4">
-                        <div className="flex flex-wrap gap-1.5">
-                          {techStack.slice(0, 2).map((tech, index) => (
-                            <span
-                              key={index}
-                              className="inline-flex items-center px-2 py-0.5 bg-zinc-100 text-zinc-800 border border-zinc-200/60 text-xs font-medium rounded-md"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                          {techStack.length > 2 && (
-                            <span className="inline-flex items-center px-2 py-0.5 bg-zinc-100 text-zinc-600 text-xs font-medium rounded-md">
-                              +{techStack.length - 2}
-                            </span>
-                          )}
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Back to All Projects</span>
+              </button>
+            </Magnetic>
+          </motion.div>
+        ) : (
+          <div id="projects-grid">
+            <motion.div
+              layout
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+            >
+              <AnimatePresence mode="popLayout">
+                {displayedProjects.map(
+                  (
+                    { title, slug, description, techStack, coverImage, category },
+                    index
+                  ) => (
+                    <motion.div
+                      key={slug}
+                      layout
+                      initial={{ opacity: 0, y: 18 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-60px" }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{
+                        duration: 0.65,
+                        ease: REACTBITS_EASE,
+                        delay: (index % 3) * 0.06,
+                      }}
+                      className="group relative bg-white rounded-2xl overflow-hidden shadow-xs hover:shadow-lg border border-zinc-200/90 hover:border-zinc-300/90 hover:-translate-y-0.5 transition-all duration-500 ease-out flex flex-col h-full transform-gpu"
+                    >
+                      {/* Corner architectural accents */}
+                      <div className="absolute top-0 right-0 w-8 h-8 sm:w-10 sm:h-10 border-t-2 border-r-2 rounded-tr-2xl transition-all duration-300 border-zinc-200 group-hover:border-zinc-900 group-hover:w-12 group-hover:h-12 z-10 pointer-events-none" />
+                      <div className="absolute bottom-0 left-0 w-8 h-8 sm:w-10 sm:h-10 border-b-2 border-l-2 rounded-bl-2xl transition-all duration-300 border-zinc-200 group-hover:border-zinc-900 group-hover:w-12 group-hover:h-12 z-10 pointer-events-none" />
+
+                      {/* Project Cover Image */}
+                      <div className="p-4 sm:p-5 pb-0">
+                        <div className="relative overflow-hidden aspect-video bg-zinc-900 rounded-xl group/image">
+                          <Image
+                            src={coverImage || "/placeholder.svg"}
+                            alt={title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500 rounded-xl"
+                          />
+                          <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                         </div>
                       </div>
-                    )}
-                    {/* Action Button */}
-                    <div className="flex justify-end mt-auto">
-                      {/* Detail Button */}
-                      <Link
-                        href={`/projects/${slug}`}
-                        onClick={startLoading}
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-zinc-900 hover:bg-black text-white text-xs font-semibold rounded-lg transition-all duration-300 shadow-sm hover:shadow-md transform hover:-translate-y-0.5"
-                      >
-                        <svg
-                          className="w-3 h-3"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                          />
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                          />
-                        </svg>
-                        Lihat Detail
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              )
+
+                      {/* Project Info */}
+                      <div className="p-4 sm:p-5 relative z-10 flex flex-col flex-grow">
+                        {/* Eyebrow: Discipline badge & Index counter */}
+                        <div className="flex items-center justify-between gap-2 mb-2.5">
+                          <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-zinc-100 text-zinc-700 border border-zinc-200/70 font-semibold">
+                            {category || "Web Development"}
+                          </span>
+                          <span className="font-mono text-[10px] text-zinc-400">
+                            0{index + 1}
+                          </span>
+                        </div>
+
+                        <h3 className="font-bold text-base sm:text-lg text-zinc-900 group-hover:text-black transition-colors duration-200 mb-2 line-clamp-1">
+                          {title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-zinc-600 line-clamp-2 mb-4 leading-relaxed flex-grow">
+                          {description}
+                        </p>
+
+                        {/* Tech Stack Pills */}
+                        {techStack && techStack.length > 0 && (
+                          <div className="mb-5">
+                            <div className="flex flex-wrap gap-1.5">
+                              {techStack.slice(0, 3).map((tech, techIndex) => (
+                                <span
+                                  key={techIndex}
+                                  className="inline-flex items-center px-2 py-0.5 bg-zinc-100/90 text-zinc-700 border border-zinc-200/70 text-[11px] font-mono font-medium rounded-md"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                              {techStack.length > 3 && (
+                                <span className="inline-flex items-center px-2 py-0.5 bg-zinc-100/90 text-zinc-500 text-[11px] font-mono font-medium rounded-md">
+                                  +{techStack.length - 3}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Footer Row: Meta & CTA Button */}
+                        <div className="flex items-center justify-between pt-3 border-t border-zinc-100 mt-auto">
+                          <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider font-medium">
+                            Case Study
+                          </span>
+                          <TransitionLink
+                            href={`/projects/${slug}`}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-zinc-950 hover:bg-black text-white text-xs font-mono font-medium uppercase tracking-wider rounded-lg transition-all duration-200 group/btn active:scale-95 shadow-2xs hover:shadow-xs"
+                          >
+                            <span>Explore</span>
+                            <svg
+                              className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 5l7 7-7 7"
+                              />
+                            </svg>
+                          </TransitionLink>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )
+                )}
+              </AnimatePresence>
+            </motion.div>
+
+            {/* Show More / Show Less Button */}
+            {filteredProjects.length > MAX_PROJECTS && (
+              <div className="text-center pt-10 sm:pt-14">
+                <button
+                  type="button"
+                  onClick={() => setShowAll(!showAll)}
+                  className="group cursor-pointer inline-flex items-center gap-3 px-6 py-3 rounded-full bg-zinc-950 text-white hover:bg-zinc-800 active:scale-95 transition-all duration-200 shadow-sm hover:shadow-md border border-zinc-800"
+                >
+                  <span className="font-mono text-xs font-semibold tracking-wider uppercase">
+                    {showAll
+                      ? "Show Less"
+                      : `View More Projects (${filteredProjects.length - MAX_PROJECTS})`}
+                  </span>
+                  <span className="w-5 h-5 rounded-full bg-zinc-800 flex items-center justify-center group-hover:bg-zinc-700 transition-colors">
+                    <svg
+                      className={`w-3 h-3 text-zinc-300 transition-transform duration-300 ${
+                        showAll ? "rotate-180" : ""
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
             )}
           </div>
-          {/* Show More/Less Button */}
-          {projects.length > MAX_PROJECTS && (
-            <div className="text-center mt-8">
-              <button
-                onClick={showAll ? handleShowLess : handleShowMore}
-                className="cursor-pointer inline-flex items-center px-6 py-3 bg-zinc-900 hover:bg-black text-white font-semibold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-zinc-500/20 transform hover:-translate-y-1"
-              >
-                {showAll
-                  ? "Show Less"
-                  : `Show More (${projects.length - MAX_PROJECTS})`}
-                <svg
-                  className={`ml-2 w-4 h-4 transition-transform duration-300 ${
-                    showAll ? "rotate-180" : ""
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-            </div>
-          )}
-        </>
-      )}
+        )}
+      </div>
     </section>
   );
 }

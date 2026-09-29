@@ -1,18 +1,112 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+// Simple in-memory IP rate limiter (5 requests per 10 minutes per IP)
+const rateLimitMap = new Map<string, number[]>();
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const MAX_REQUESTS_PER_WINDOW = 5;
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const timestamps = rateLimitMap.get(ip) || [];
+  const validTimestamps = timestamps.filter(
+    (time) => now - time < RATE_LIMIT_WINDOW_MS
+  );
+
+  if (validTimestamps.length >= MAX_REQUESTS_PER_WINDOW) {
+    return true;
+  }
+
+  validTimestamps.push(now);
+  rateLimitMap.set(ip, validTimestamps);
+  return false;
+}
+
+// HTML escape helper to prevent HTML Injection / XSS in email clients
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+// Strip CR/LF to prevent email header injection
+function sanitizeHeader(str: string): string {
+  return str.replace(/[\r\n]+/g, " ").trim();
+}
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, subject, message } = await req.json();
-
-    if (!name || !email || !subject || !message) {
+    // 1. IP Rate Limiting check
+    const forwardedFor = req.headers.get("x-forwarded-for");
+    const clientIp = forwardedFor ? forwardedFor.split(",")[0].trim() : "anonymous";
+    if (isRateLimited(clientIp)) {
       return NextResponse.json(
-        { error: "All fields are required." },
+        { error: "Too many requests. Please wait a few minutes before trying again." },
+        { status: 429 }
+      );
+    }
+
+    const body = await req.json();
+    const { name, email, subject, message, honeypot } = body;
+
+    // 2. Honeypot check (silently drop bot submissions)
+    if (honeypot) {
+      return NextResponse.json({ ok: true });
+    }
+
+    // 3. Presence validation
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { error: "Name, email, and message are required." },
         { status: 400 }
       );
     }
 
-    // Konfigurasi transporter (gunakan env)
+    // 4. Type & length validation
+    if (
+      typeof name !== "string" ||
+      typeof email !== "string" ||
+      typeof message !== "string" ||
+      (subject && typeof subject !== "string")
+    ) {
+      return NextResponse.json(
+        { error: "Invalid field format." },
+        { status: 400 }
+      );
+    }
+
+    if (name.length > 100 || email.length > 200 || message.length > 5000) {
+      return NextResponse.json(
+        { error: "Input exceeds allowed character limits." },
+        { status: 400 }
+      );
+    }
+
+    if (!EMAIL_REGEX.test(email.trim())) {
+      return NextResponse.json(
+        { error: "Please enter a valid email address." },
+        { status: 400 }
+      );
+    }
+
+    // 5. Sanitization
+    const safeName = sanitizeHeader(name);
+    const safeEmail = sanitizeHeader(email);
+    const rawSubject =
+      subject?.trim() || `New Message from ${safeName} via Portfolio`;
+    const safeSubject = sanitizeHeader(rawSubject);
+
+    const escapedName = escapeHtml(safeName);
+    const escapedEmail = escapeHtml(safeEmail);
+    const escapedSubject = escapeHtml(safeSubject);
+    const escapedMessage = escapeHtml(message).replace(/\n/g, "<br/>");
+
+    // 6. Transporter setup
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT) || 465,
@@ -23,10 +117,14 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    const recipientEmail = process.env.CONTACT_EMAIL || "ptaguss2@gmail.com";
+    const senderEmail = process.env.SMTP_USER || "portfolio@localhost";
+
     await transporter.sendMail({
-      from: `"${name}" <${email}>`,
-      to: "ptaguss2@gmail.com",
-      subject: `[Contact Form] ${subject}`,
+      from: `"${safeName} via Portfolio" <${senderEmail}>`,
+      replyTo: `"${safeName}" <${safeEmail}>`,
+      to: recipientEmail,
+      subject: `[Contact Form] ${safeSubject}`,
       html: `
     <!DOCTYPE html>
     <html>
@@ -57,9 +155,9 @@ export async function POST(req: NextRequest) {
               <span style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">From</span>
             </div>
             <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px;">
-              <div style="font-size: 18px; font-weight: 600; color: #1e293b; margin-bottom: 4px;">${name}</div>
+              <div style="font-size: 18px; font-weight: 600; color: #1e293b; margin-bottom: 4px;">${escapedName}</div>
               <div style="font-size: 14px; color: #0ea5e9;">
-                <a href="mailto:${email}" style="color: #0ea5e9; text-decoration: none;">${email}</a>
+                <a href="mailto:${escapedEmail}" style="color: #0ea5e9; text-decoration: none;">${escapedEmail}</a>
               </div>
             </div>
           </div>
@@ -70,7 +168,7 @@ export async function POST(req: NextRequest) {
               <span style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Subject</span>
             </div>
             <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px;">
-              <div style="font-size: 16px; font-weight: 500; color: #1e293b;">${subject}</div>
+              <div style="font-size: 16px; font-weight: 500; color: #1e293b;">${escapedSubject}</div>
             </div>
           </div>
 
@@ -80,14 +178,14 @@ export async function POST(req: NextRequest) {
               <span style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;">Message</span>
             </div>
             <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; line-height: 1.6; color: #374151; font-size: 15px;">
-              ${message.replace(/\n/g, "<br/>")}
+              ${escapedMessage}
             </div>
           </div>
 
           <!-- Action Button -->
           <div style="text-align: center; margin-bottom: 24px;">
-            <a href="mailto:${email}?subject=Re: ${subject}" style="display: inline-block; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 10px; font-weight: 600; font-size: 14px; box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.4); transition: all 0.2s ease;">
-              Reply to ${name}
+            <a href="mailto:${escapedEmail}?subject=Re: ${encodeURIComponent(safeSubject)}" style="display: inline-block; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 10px; font-weight: 600; font-size: 14px; box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.4); transition: all 0.2s ease;">
+              Reply to ${escapedName}
             </a>
           </div>
 
@@ -117,8 +215,8 @@ export async function POST(req: NextRequest) {
       text: `
 New Contact Message
 
-From: ${name} (${email})
-Subject: ${subject}
+From: ${safeName} (${safeEmail})
+Subject: ${safeSubject}
 
 Message:
 ${message}
@@ -137,3 +235,4 @@ Portfolio Contact Form
     );
   }
 }
+

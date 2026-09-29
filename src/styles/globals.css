@@ -4,8 +4,13 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Poppins", Arial, sans-serif;
-  --font-mono: "Poppins", Arial, sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Clash Display", "Space Grotesk", sans-serif;
+  --font-editorial: "Instrument Serif", Georgia, serif;
+  --font-brutal: "Albert Sans", "Bricolage Grotesque", sans-serif;
+  --font-albert: "Albert Sans", sans-serif;
+  --font-anton: "Anton", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -52,10 +57,34 @@
   --radius-xl: calc(var(--radius) + 4px);
   --animate-scroll: scroll var(--animation-duration, 40s)
     var(--animation-direction, forwards) linear infinite;
+  --animate-star-movement-bottom: star-movement-bottom linear infinite alternate;
+  --animate-star-movement-top: star-movement-top linear infinite alternate;
 
   @keyframes scroll {
     to {
       transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+
+  @keyframes star-movement-bottom {
+    0% {
+      transform: translate(0%, 0%);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-100%, 0%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes star-movement-top {
+    0% {
+      transform: translate(0%, 0%);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(100%, 0%);
+      opacity: 0;
     }
   }
 }
@@ -96,10 +125,102 @@
 }
 
 @layer base {
+  html {
+    scrollbar-gutter: stable;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #27272a #09090b;
+    font-family: var(--font-sans);
+  }
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
+
+.druk-text {
+  font-family: var(--font-brutal);
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.font-brutal {
+  font-family: var(--font-brutal);
+}
+
+.font-albert {
+  font-family: var(--font-albert);
+}
+
+.font-anton {
+  font-family: var(--font-anton);
+}
+
+.font-editorial {
+  font-family: var(--font-editorial);
+}
+
+/* Sleek custom scrollbar — main page window only, preventing leakage into inner UI components */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 10px;
+}
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: #09090b;
+}
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 5px;
+  border: 2px solid #09090b;
+}
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* ReactBits StarBorder Utilities */
+.animate-star-movement-bottom {
+  animation: star-movement-bottom linear infinite alternate;
+}
+
+.animate-star-movement-top {
+  animation: star-movement-top linear infinite alternate;
+}
+
+/* Utility to completely hide scrollbars on horizontal tab strips and carousels */
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+.no-scrollbar::-webkit-scrollbar,
+.no-scrollbar *::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+.no-scrollbar::-webkit-scrollbar-track,
+.no-scrollbar::-webkit-scrollbar-thumb,
+.no-scrollbar::-webkit-scrollbar-button {
+  display: none !important;
+  background: transparent !important;
+}
+
+/* Lightbox active state - hide fixed navigation & hamburger elements */
+body.lightbox-open header,
+body.lightbox-open [data-navbar-toggle],
+body.lightbox-open .fixed.z-\[100\] {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+

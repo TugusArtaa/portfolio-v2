@@ -18,8 +18,8 @@ export default function useContactSectionAnimations() {
     const ctx = gsap.context(() => {
       // Contact Title & Divider
       gsap.utils
-        .toArray("[data-contact-title]")
-        .forEach((el: any, i: number) => {
+        .toArray<HTMLElement>("[data-contact-title]")
+        .forEach((el, i: number) => {
           gsap.fromTo(
             el,
             {
@@ -47,8 +47,8 @@ export default function useContactSectionAnimations() {
 
       // Contact Form
       gsap.utils
-        .toArray("[data-contact-form]")
-        .forEach((el: any, i: number) => {
+        .toArray<HTMLElement>("[data-contact-form]")
+        .forEach((el, i: number) => {
           gsap.fromTo(
             el,
             {
@@ -76,8 +76,8 @@ export default function useContactSectionAnimations() {
 
       // Contact Social Media
       gsap.utils
-        .toArray("[data-contact-social]")
-        .forEach((el: any, i: number) => {
+        .toArray<HTMLElement>("[data-contact-social]")
+        .forEach((el, i: number) => {
           gsap.fromTo(
             el,
             {

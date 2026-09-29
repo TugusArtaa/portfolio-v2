@@ -1,6 +1,6 @@
 "use client";
 
-import {
+import React, {
   createContext,
   useContext,
   useState,
@@ -8,7 +8,15 @@ import {
   ReactNode,
   useEffect,
 } from "react";
-// Audio notification helper via native Web Audio API (offline-safe, no external CDN fetch)
+import { motion, AnimatePresence } from "framer-motion";
+import { Check, X, AlertCircle, AlertTriangle, Info } from "lucide-react";
+
+/* Hallmark · component: toast-system · genre: apple-dynamic-island / sf-symbols
+ * layout: centered top floating capsule with glassmorphic depth & tactile spring physics
+ * features: bare Apple SF glyphs, web audio chimes, swipe-up to dismiss
+ */
+
+// Subtle Apple-style chime using Web Audio API (offline-safe, no external assets needed)
 export function playNotificationSound(type: "success" | "error" | "warning" | "info") {
   if (typeof window === "undefined") return;
   try {
@@ -24,30 +32,42 @@ export function playNotificationSound(type: "success" | "error" | "warning" | "i
 
     const now = ctx.currentTime;
     if (type === "success") {
-      osc.frequency.setValueAtTime(587.33, now);
-      osc.frequency.exponentialRampToValueAtTime(880, now + 0.15);
+      // Pleasant high-pitch Apple haptic chime (F#5 -> C#6)
+      osc.frequency.setValueAtTime(739.99, now);
+      osc.frequency.exponentialRampToValueAtTime(1108.73, now + 0.12);
+      gain.gain.setValueAtTime(0.04, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
+      osc.start(now);
+      osc.stop(now + 0.22);
     } else if (type === "error") {
-      osc.frequency.setValueAtTime(320, now);
-      osc.frequency.exponentialRampToValueAtTime(180, now + 0.2);
+      // Soft gentle low warning tone (A3 -> E3)
+      osc.frequency.setValueAtTime(220, now);
+      osc.frequency.exponentialRampToValueAtTime(164.81, now + 0.16);
+      gain.gain.setValueAtTime(0.05, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.2);
+      osc.start(now);
+      osc.stop(now + 0.2);
     } else if (type === "warning") {
       osc.frequency.setValueAtTime(440, now);
-      osc.frequency.exponentialRampToValueAtTime(554.37, now + 0.15);
+      osc.frequency.exponentialRampToValueAtTime(554.37, now + 0.12);
+      gain.gain.setValueAtTime(0.04, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.2);
+      osc.start(now);
+      osc.stop(now + 0.2);
     } else {
       osc.frequency.setValueAtTime(523.25, now);
-      osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.15);
+      osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.12);
+      gain.gain.setValueAtTime(0.04, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.2);
+      osc.start(now);
+      osc.stop(now + 0.2);
     }
-
-    gain.gain.setValueAtTime(0.06, now);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.25);
-
-    osc.start(now);
-    osc.stop(now + 0.25);
   } catch {
     // Gracefully ignore audio errors so application never crashes
   }
 }
 
-interface Toast {
+export interface Toast {
   id: string;
   type: "success" | "error" | "warning" | "info";
   title: string;
@@ -66,21 +86,29 @@ const ToastContext = createContext<ToastContextType | undefined>(undefined);
 export function ToastProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
-  const addToast = useCallback((toast: Omit<Toast, "id">) => {
-    const id = Math.random().toString(36).substr(2, 9);
-    const newToast = { ...toast, id };
-
-    setToasts((prev) => [...prev, newToast]);
-
-    // Auto remove after duration
-    setTimeout(() => {
-      removeToast(id);
-    }, toast.duration || 5000);
-  }, []);
-
   const removeToast = useCallback((id: string) => {
     setToasts((prev) => prev.filter((toast) => toast.id !== id));
   }, []);
+
+  const addToast = useCallback(
+    (toast: Omit<Toast, "id">) => {
+      const id = Math.random().toString(36).substring(2, 9);
+      const newToast: Toast = { ...toast, id };
+
+      setToasts((prev) => [...prev, newToast]);
+
+      // Play soft chime
+      playNotificationSound(toast.type);
+
+      // Auto remove
+      const timeout = setTimeout(() => {
+        removeToast(id);
+      }, toast.duration || 4500);
+
+      return () => clearTimeout(timeout);
+    },
+    [removeToast]
+  );
 
   return (
     <ToastContext.Provider value={{ toasts, addToast, removeToast }}>
@@ -109,9 +137,8 @@ function ToastContainer() {
   if (!isMounted) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[9999]">
-      {/* Desktop/Tablet Container */}
-      <div className="absolute top-4 right-4 w-full max-w-sm space-y-3 hidden sm:block">
+    <div className="fixed top-5 sm:top-6 inset-x-0 z-[9999] pointer-events-none flex flex-col items-center gap-2.5 px-4 max-w-lg mx-auto">
+      <AnimatePresence mode="popLayout">
         {toasts.map((toast) => (
           <ToastItem
             key={toast.id}
@@ -119,19 +146,7 @@ function ToastContainer() {
             onClose={() => removeToast(toast.id)}
           />
         ))}
-      </div>
-
-      {/* Mobile Container */}
-      <div className="absolute top-4 left-4 right-4 space-y-3 sm:hidden">
-        {toasts.map((toast) => (
-          <ToastItem
-            key={toast.id}
-            toast={toast}
-            onClose={() => removeToast(toast.id)}
-            mobile
-          />
-        ))}
-      </div>
+      </AnimatePresence>
     </div>
   );
 }
@@ -139,215 +154,80 @@ function ToastContainer() {
 function ToastItem({
   toast,
   onClose,
-  mobile = false,
 }: {
   toast: Toast;
   onClose: () => void;
-  mobile?: boolean;
 }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const [progress, setProgress] = useState(100);
-
-  useEffect(() => {
-    if (isVisible) return;
-    const timer = setTimeout(() => setIsVisible(true), 50);
-    // Play sound after a short delay
-    const soundTimer = setTimeout(() => {
-      playNotificationSound(toast.type);
-    }, 60);
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(soundTimer);
-    };
-  }, []);
-
-  useEffect(() => {
-    // Animate in
-    const timer = setTimeout(() => setIsVisible(true), 50);
-
-    // Progress bar animation
-    const duration = toast.duration || 5000;
-    const interval = 50;
-    const decrement = (interval / duration) * 100;
-
-    const progressTimer = setInterval(() => {
-      setProgress((prev) => {
-        const newProgress = prev - decrement;
-        if (newProgress <= 0) {
-          clearInterval(progressTimer);
-          return 0;
-        }
-        return newProgress;
-      });
-    }, interval);
-
-    return () => {
-      clearTimeout(timer);
-      clearInterval(progressTimer);
-    };
-  }, [toast.duration]);
-
-  const getToastStyles = () => {
+  const getIconConfig = () => {
     switch (toast.type) {
       case "success":
         return {
-          bg: "bg-gradient-to-r from-emerald-50 via-green-50 to-emerald-50",
-          border: "border-emerald-200/60",
-          iconBg: "bg-emerald-500",
-          progressBar: "bg-gradient-to-r from-emerald-400 to-emerald-500",
-          icon: "text-white",
-          iconPath: "M5 13l4 4L19 7",
-          shadow: "shadow-emerald-500/10",
+          icon: <Check className="w-4 h-4 text-emerald-400 stroke-[2.5]" />,
         };
       case "error":
         return {
-          bg: "bg-gradient-to-r from-red-50 via-rose-50 to-red-50",
-          border: "border-red-200/60",
-          iconBg: "bg-red-500",
-          progressBar: "bg-gradient-to-r from-red-400 to-red-500",
-          icon: "text-white",
-          iconPath: "M6 18L18 6M6 6l12 12",
-          shadow: "shadow-red-500/10",
+          icon: <AlertCircle className="w-4 h-4 text-rose-400 stroke-[2.2]" />,
         };
       case "warning":
         return {
-          bg: "bg-gradient-to-r from-amber-50 via-yellow-50 to-amber-50",
-          border: "border-amber-200/60",
-          iconBg: "bg-amber-500",
-          progressBar: "bg-gradient-to-r from-amber-400 to-amber-500",
-          icon: "text-white",
-          iconPath:
-            "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z",
-          shadow: "shadow-amber-500/10",
+          icon: <AlertTriangle className="w-4 h-4 text-amber-400 stroke-[2.2]" />,
         };
       default:
         return {
-          bg: "bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50",
-          border: "border-blue-200/60",
-          iconBg: "bg-blue-500",
-          progressBar: "bg-gradient-to-r from-blue-400 to-blue-500",
-          icon: "text-white",
-          iconPath: "M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
-          shadow: "shadow-blue-500/10",
+          icon: <Info className="w-4 h-4 text-sky-400 stroke-[2.2]" />,
         };
     }
   };
 
-  const styles = getToastStyles();
-
-  const baseClasses = `
-    relative border rounded-lg overflow-hidden pointer-events-auto
-    transform transition-all duration-500 ease-out
-    bg-white
-    ${styles.border} ${styles.shadow}
-    ${mobile ? "mx-auto max-w-md shadow-lg" : "w-full shadow-md"}
-    ${
-      isVisible
-        ? "translate-x-0 opacity-100 scale-100"
-        : mobile
-        ? "translate-y-[-100%] opacity-0 scale-95"
-        : "translate-x-full opacity-0 scale-95"
-    }
-    hover:scale-[1.01] hover:shadow-md
-    group
-  `
-    .trim()
-    .replace(/\s+/g, " ");
+  const config = getIconConfig();
 
   return (
-    <div className={baseClasses}>
-      {/* Close Button (X) */}
-      <button
-        onClick={onClose}
-        className={`
-          absolute top-2 right-2 z-10
-          flex-shrink-0 rounded-full
-          hover:bg-slate-100/80
-          active:scale-95
-          p-1
-        `}
-        aria-label="Close"
-        tabIndex={0}
-      >
-        <svg
-          className={`
-            text-slate-400 hover:text-slate-600
-            transition-colors duration-200
-            w-4 h-4
-          `}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </button>
-
-      <div
-        className={
-          mobile
-            ? "p-3 sm:p-4 flex items-center"
-            : "p-3 lg:p-4 flex items-center"
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: -24, scale: 0.9, filter: "blur(6px)" }}
+      animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+      exit={{ opacity: 0, y: -16, scale: 0.92, filter: "blur(4px)" }}
+      transition={{ type: "spring", stiffness: 420, damping: 28, mass: 0.8 }}
+      drag="y"
+      dragConstraints={{ top: 0, bottom: 0 }}
+      dragElastic={{ top: 0.5, bottom: 0.1 }}
+      onDragEnd={(_, info) => {
+        if (info.offset.y < -20) {
+          onClose();
         }
-      >
-        {/* Icon */}
-        <div
-          className={`
-            ${styles.iconBg}
-            rounded-full flex items-center justify-center
-            ${mobile ? "w-6 h-6 mr-3" : "w-7 h-7 mr-3"}
-            flex-shrink-0
-          `}
-        >
-          <svg
-            className={`${styles.icon} ${mobile ? "w-3.5 h-3.5" : "w-4 h-4"}`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d={styles.iconPath}
-            />
-          </svg>
-        </div>
+      }}
+      className="pointer-events-auto group relative w-full sm:w-auto inline-flex items-center gap-3 pl-4 pr-3 py-2.5 sm:py-3 rounded-2xl sm:rounded-full bg-zinc-950/92 hover:bg-zinc-950 text-white backdrop-blur-2xl border border-white/[0.12] shadow-[0_16px_40px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.06)] transition-colors select-none cursor-grab active:cursor-grabbing"
+    >
+      {/* Bare Apple SF Glyph without enclosing circle */}
+      <div className="shrink-0 flex items-center justify-center">
+        {config.icon}
+      </div>
 
-        {/* Content */}
-        <div className="flex-1 min-w-0">
-          <h4
-            className={`
-              font-bold text-slate-900 leading-tight
-              ${mobile ? "text-xs" : "text-sm"}
-            `}
-          >
-            {toast.title}
-          </h4>
-          {toast.message && (
-            <p
-              className={`
-                text-slate-600 mt-0.5 leading-relaxed
-                ${mobile ? "text-[10px]" : "text-xs"}
-              `}
-            >
+      {/* Text Content */}
+      <div className="flex-1 sm:flex-initial min-w-0 flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-2 text-left pr-1">
+        <span className="font-semibold text-xs sm:text-[13px] text-white tracking-tight leading-tight">
+          {toast.title}
+        </span>
+        {toast.message && (
+          <>
+            <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-zinc-600 shrink-0" />
+            <span className="text-[11px] sm:text-xs text-zinc-400 font-normal leading-tight break-words sm:truncate sm:max-w-xs">
               {toast.message}
-            </p>
-          )}
-        </div>
+            </span>
+          </>
+        )}
       </div>
-      {/* Progress Bar */}
-      <div className="w-full h-1 bg-slate-200/30">
-        <div
-          className={`h-full transition-all duration-75 ease-linear rounded-r-full ${styles.progressBar}`}
-          style={{ width: `${progress}%` }}
-        />
-      </div>
-    </div>
+
+      {/* Dismiss Button */}
+      <button
+        type="button"
+        onClick={onClose}
+        className="p-1 rounded-full text-zinc-500 hover:text-white hover:bg-white/10 transition-colors shrink-0 cursor-pointer ml-auto sm:ml-1"
+        aria-label="Close notification"
+      >
+        <X className="w-3.5 h-3.5" />
+      </button>
+    </motion.div>
   );
 }
+export default ToastProvider;

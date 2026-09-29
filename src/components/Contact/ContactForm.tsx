@@ -97,11 +97,13 @@ export default function ContactForm() {
       setForm({ name: "", email: "", subject: "", message: "" });
       setSuccess(true);
       setTimeout(() => setSuccess(false), 2000);
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Something went wrong.";
       addToast({
         type: "error",
         title: "Failed to Send",
-        message: err.message || "Something went wrong.",
+        message: errorMessage,
       });
     } finally {
       setLoading(false);

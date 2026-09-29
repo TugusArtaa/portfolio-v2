@@ -6,7 +6,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function useHomePageAnimations() {
   const heroRef = useRef<HTMLElement>(null);
-  const aboutRef = useRef<HTMLElement>(null);
+  const summaryRef = useRef<HTMLElement>(null);
+  const servicesRef = useRef<HTMLElement>(null);
   const projectsRef = useRef<HTMLElement>(null);
   const connectRef = useRef<HTMLElement>(null);
 
@@ -14,245 +15,237 @@ export default function useHomePageAnimations() {
     const ctx = gsap.context(() => {
       const isMobile = window.innerWidth < 768;
 
-      const mobileSettings = {
-        duration: isMobile ? 0.8 : 1.2,
-        stagger: isMobile ? 0.1 : 0.15,
-        yOffset: isMobile ? 30 : 60,
-        xOffset: isMobile ? 40 : 80,
-        scale: isMobile ? 0.98 : 0.95,
-        ease: "power2.out",
+      // ReactBits-inspired calm & comfortable scroll reveal configuration
+      // Subtle 14-20px elevation, pure opacity transition, zero scale distortion
+      const config = {
+        yOffset: isMobile ? 14 : 20,
+        duration: isMobile ? 0.7 : 0.85,
+        stagger: isMobile ? 0.05 : 0.08,
+        ease: "power3.out", // silky smooth quintic deceleration curve
+        start: isMobile ? "top 92%" : "top 86%", // triggers right as item enters natural eye comfort zone
       };
 
-      // Hero Section Animation
-      gsap.utils.toArray("[data-hero-text]").forEach((el: any) => {
+      // -----------------------------------------------------------------------
+      // 01 // ABOUT ME (Summary Section Animation)
+      // -----------------------------------------------------------------------
+      const summaryTexts = gsap.utils.toArray("[data-hero-text]") as HTMLElement[];
+      if (summaryTexts.length) {
         gsap.fromTo(
-          el,
+          summaryTexts,
           {
             opacity: 0,
-            y: mobileSettings.yOffset,
-            scale: mobileSettings.scale,
+            y: config.yOffset,
           },
           {
             opacity: 1,
             y: 0,
-            scale: 1,
-            duration: mobileSettings.duration,
-            ease: mobileSettings.ease,
+            duration: config.duration,
+            stagger: config.stagger,
+            ease: config.ease,
             scrollTrigger: {
-              trigger: el,
-              start: isMobile ? "top 90%" : "top 80%",
-              end: "bottom 20%",
+              trigger: summaryTexts[0],
+              start: config.start,
               toggleActions: "play none none none",
+              once: true,
+            },
+          }
+        );
+      }
+
+      const summaryCard = document.querySelector("[data-hero-card]");
+      if (summaryCard) {
+        gsap.fromTo(
+          summaryCard,
+          {
+            opacity: 0,
+            y: config.yOffset * 1.2,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: config.duration * 1.05,
+            ease: config.ease,
+            delay: isMobile ? 0 : 0.1,
+            scrollTrigger: {
+              trigger: summaryCard,
+              start: config.start,
+              toggleActions: "play none none none",
+              once: true,
+            },
+          }
+        );
+      }
+
+      // -----------------------------------------------------------------------
+      // 02 // SERVICES & EXPERTISE (Services Section Animation)
+      // -----------------------------------------------------------------------
+      const servicesTexts = gsap.utils.toArray("[data-services-text]") as HTMLElement[];
+      if (servicesTexts.length) {
+        gsap.fromTo(
+          servicesTexts,
+          {
+            opacity: 0,
+            y: config.yOffset,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: config.duration,
+            stagger: config.stagger,
+            ease: config.ease,
+            scrollTrigger: {
+              trigger: servicesTexts[0],
+              start: config.start,
+              toggleActions: "play none none none",
+              once: true,
+            },
+          }
+        );
+      }
+
+      const serviceCards = gsap.utils.toArray("[data-service-card]") as HTMLElement[];
+      serviceCards.forEach((card) => {
+        gsap.fromTo(
+          card,
+          {
+            opacity: 0,
+            y: config.yOffset * 1.15,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: config.duration,
+            ease: config.ease,
+            scrollTrigger: {
+              trigger: card,
+              start: config.start,
+              toggleActions: "play none none none",
+              once: true,
             },
           }
         );
       });
-      gsap.fromTo(
-        "[data-hero-card]",
-        {
-          opacity: 0,
-          y: isMobile ? 40 : 80,
-          scale: isMobile ? 0.95 : 0.9,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: mobileSettings.duration * 0.9,
-          ease: mobileSettings.ease,
-          scrollTrigger: {
-            trigger: "[data-hero-card]",
-            start: isMobile ? "top 90%" : "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none none",
+
+      // -----------------------------------------------------------------------
+      // 03 // SELECTED PROJECTS (Projects Section Animation)
+      // -----------------------------------------------------------------------
+      const projectsTexts = gsap.utils.toArray("[data-projects-text]") as HTMLElement[];
+      if (projectsTexts.length) {
+        gsap.fromTo(
+          projectsTexts,
+          {
+            opacity: 0,
+            y: config.yOffset,
           },
-        }
-      );
+          {
+            opacity: 1,
+            y: 0,
+            duration: config.duration,
+            stagger: config.stagger,
+            ease: config.ease,
+            scrollTrigger: {
+              trigger: projectsTexts[0],
+              start: config.start,
+              toggleActions: "play none none none",
+              once: true,
+            },
+          }
+        );
+      }
 
-      // About Section Animation
-      gsap.fromTo(
-        "[data-about-image]",
-        {
-          opacity: 0,
-          x: isMobile ? 0 : -80,
-          y: isMobile ? 40 : 0,
-          scale: isMobile ? 0.9 : 0.8,
-        },
-        {
-          opacity: 1,
-          x: 0,
-          y: 0,
-          scale: 1,
-          duration: mobileSettings.duration,
-          ease: mobileSettings.ease,
-          scrollTrigger: {
-            trigger: "[data-about-image]",
-            start: isMobile ? "top 85%" : "top 75%",
-            end: "bottom 25%",
-            toggleActions: "play none none none",
+      const projectCards = gsap.utils.toArray("[data-project-card]") as HTMLElement[];
+      projectCards.forEach((card, index) => {
+        gsap.fromTo(
+          card,
+          {
+            opacity: 0,
+            y: config.yOffset,
           },
-        }
-      );
-      gsap.utils
-        .toArray("[data-about-content]")
-        .forEach((el: any, i: number) => {
-          gsap.fromTo(
-            el,
-            {
-              opacity: 0,
-              y: mobileSettings.yOffset,
-              scale: mobileSettings.scale,
+          {
+            opacity: 1,
+            y: 0,
+            duration: config.duration * 0.95,
+            ease: config.ease,
+            delay: isMobile ? 0 : index * 0.06,
+            scrollTrigger: {
+              trigger: card,
+              start: isMobile ? "top 94%" : "top 88%",
+              toggleActions: "play none none none",
+              once: true,
             },
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: mobileSettings.duration * 0.9,
-              ease: mobileSettings.ease,
-              delay: i * (mobileSettings.stagger * 1.2),
-              scrollTrigger: {
-                trigger: el,
-                start: isMobile ? "top 85%" : "top 75%",
-                end: "bottom 25%",
-                toggleActions: "play none none none",
-              },
-            }
-          );
-        });
+          }
+        );
+      });
 
-      // Projects Section Animation
-      gsap.utils
-        .toArray("[data-projects-content]")
-        .forEach((el: any, i: number) => {
-          gsap.fromTo(
-            el,
-            {
-              opacity: 0,
-              y: mobileSettings.yOffset,
-              scale: mobileSettings.scale,
-            },
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: mobileSettings.duration * 0.9,
-              ease: mobileSettings.ease,
-              delay: i * (mobileSettings.stagger * 1.3),
-              scrollTrigger: {
-                trigger: el,
-                start: isMobile ? "top 85%" : "top 75%",
-                end: "bottom 25%",
-                toggleActions: "play none none none",
-              },
-            }
-          );
-        });
-      gsap.utils
-        .toArray("[data-projects-images]")
-        .forEach((el: any, i: number) => {
-          gsap.fromTo(
-            el,
-            {
-              opacity: 0,
-              x: isMobile ? 0 : 80,
-              y: isMobile ? 40 : 0,
-              scale: isMobile ? 0.9 : 0.8,
-            },
-            {
-              opacity: 1,
-              x: 0,
-              y: 0,
-              scale: 1,
-              duration: mobileSettings.duration,
-              ease: mobileSettings.ease,
-              delay: i * (mobileSettings.stagger * 0.8),
-              scrollTrigger: {
-                trigger: el,
-                start: isMobile ? "top 85%" : "top 75%",
-                end: "bottom 25%",
-                toggleActions: "play none none none",
-              },
-            }
-          );
-        });
-
-      // Connect Section Animation
-      const connectEls = gsap.utils.toArray(
-        "[data-connect-content]"
-      ) as HTMLElement[];
-      connectEls.forEach((el: HTMLElement) => {
-        // Skip animasi jika elemen hidden di mobile
+      // -----------------------------------------------------------------------
+      // 04 // FOOTER / CONNECT (Connect Section Animation)
+      // -----------------------------------------------------------------------
+      const connectEls = gsap.utils.toArray("[data-connect-content]") as HTMLElement[];
+      connectEls.forEach((el, index) => {
+        // Skip animating elements that are intentionally hidden on mobile
         if (
           isMobile &&
           el.classList.contains("hidden") &&
-          el.classList.contains("sm:block")
+          (el.classList.contains("sm:block") || el.classList.contains("md:block"))
         ) {
-          gsap.set(el, { opacity: 1, y: 0, scale: 1 });
+          gsap.set(el, { opacity: 1, y: 0 });
           return;
         }
+
         gsap.fromTo(
           el,
           {
             opacity: 0,
-            y: isMobile ? 20 : 50,
-            scale: isMobile ? 0.98 : 0.9,
+            y: config.yOffset * 1.1,
           },
           {
             opacity: 1,
             y: 0,
-            scale: 1,
-            duration: mobileSettings.duration * 0.9,
-            ease: mobileSettings.ease,
-            delay: 0,
+            duration: config.duration,
+            ease: config.ease,
+            delay: isMobile ? 0 : index * 0.08,
             scrollTrigger: {
               trigger: el,
-              start: isMobile ? "top 98%" : "top 90%",
-              end: "bottom 20%",
+              start: isMobile ? "top 95%" : "top 88%",
               toggleActions: "play none none none",
+              once: true,
             },
           }
         );
       });
 
+      // -----------------------------------------------------------------------
+      // Performance: Respect Reduced Motion Preferences
+      // -----------------------------------------------------------------------
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
 
-      // Mobile-specific performance optimization
-      if (isMobile) {
-        const prefersReducedMotion = window.matchMedia(
-          "(prefers-reduced-motion: reduce)"
-        ).matches;
-
-        if (prefersReducedMotion) {
-          gsap.set(
-            "[data-hero-text], [data-hero-card], [data-about-image], [data-about-content], [data-projects-content], [data-projects-images], [data-connect-content]",
-            {
-              opacity: 1,
-              x: 0,
-              y: 0,
-              scale: 1,
-            }
-          );
-        }
+      if (prefersReducedMotion) {
+        gsap.set(
+          "[data-hero-text], [data-hero-card], [data-services-text], [data-service-card], [data-projects-text], [data-project-card], [data-connect-content]",
+          {
+            opacity: 1,
+            y: 0,
+            clearProps: "all",
+          }
+        );
       }
 
-      // Handle orientation change on mobile
+      // Handle orientation change smoothly
       const handleOrientationChange = () => {
-        if (isMobile) {
-          ScrollTrigger.refresh();
-        }
+        ScrollTrigger.refresh();
       };
 
       window.addEventListener("orientationchange", handleOrientationChange);
 
       return () => {
-        window.removeEventListener(
-          "orientationchange",
-          handleOrientationChange
-        );
+        window.removeEventListener("orientationchange", handleOrientationChange);
       };
     });
 
     return () => ctx.revert();
   }, []);
 
-  return { heroRef, aboutRef, projectsRef, connectRef };
+  return { heroRef, summaryRef, servicesRef, projectsRef, connectRef };
 }

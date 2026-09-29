@@ -106,7 +106,7 @@ export default function ContactSocialMedia({ contacts }: Props) {
     <div data-contact-social className="relative z-20 mt-12 sm:mt-16">
       <div className="text-center mb-6 sm:mb-8">
         <h3 className="text-xl sm:text-xl lg:text-2xl font-semibold text-zinc-900 mb-2">
-          Let's Connect
+          Let&apos;s Connect
         </h3>
         <div className="w-12 sm:w-16 h-0.5 bg-zinc-900 rounded-full mx-auto"></div>
       </div>

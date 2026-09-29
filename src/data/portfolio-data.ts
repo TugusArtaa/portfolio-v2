@@ -53,6 +53,7 @@ export type Project = {
   image1: string | null;
   image2: string | null;
   image3: string | null;
+  category?: "Web Development" | "Branding" | "Graphic Design" | string;
 };
 
 export type Experience = {
@@ -73,57 +74,99 @@ export const skills: Skill[] = [
     id: "html-j991dr",
     name: "HTML",
     level: "Expert",
-    icon: "https://cdn-icons-png.flaticon.com/512/732/732212.png",
+    icon: "/icons/html.svg",
     createdAt: "2025-06-28T05:02:55.936Z",
   },
   {
     id: "css-ec801m",
     name: "CSS",
     level: "Expert",
-    icon: "https://cdn-icons-png.flaticon.com/512/732/732190.png",
+    icon: "/icons/css.svg",
     createdAt: "2025-06-28T05:03:35.069Z",
   },
   {
-    id: "laravel-rfg9jw",
-    name: "Laravel",
+    id: "javascript-js89kd",
+    name: "JavaScript",
     level: "Advanced",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/1969px-Laravel.svg.png",
-    createdAt: "2025-06-28T05:09:06.633Z",
+    icon: "/icons/javascript.svg",
+    createdAt: "2025-06-28T05:04:12.000Z",
+  },
+  {
+    id: "typescript-ts42op",
+    name: "TypeScript",
+    level: "Advanced",
+    icon: "/icons/typescript.svg",
+    createdAt: "2025-06-28T05:05:00.000Z",
+  },
+  {
+    id: "php-ph71mn",
+    name: "PHP",
+    level: "Advanced",
+    icon: "/icons/php.svg",
+    createdAt: "2025-06-28T05:06:00.000Z",
   },
   {
     id: "react-cc2duf",
     name: "React",
-    level: "Beginner",
-    icon: "https://cdn-icons-png.flaticon.com/512/1126/1126012.png",
+    level: "Advanced",
+    icon: "/icons/react.svg",
     createdAt: "2025-06-28T05:09:40.573Z",
   },
   {
     id: "next-js-fv1n7k",
     name: "Next.js",
-    level: "Intermediate",
-    icon: "https://images.icon-icons.com/2148/PNG/512/nextjs_icon_132160.png",
+    level: "Advanced",
+    icon: "/icons/nextjs.svg",
     createdAt: "2025-06-28T05:11:05.943Z",
-  },
-  {
-    id: "tailwind-css-icghcl",
-    name: "Tailwind CSS",
-    level: "Advanced",
-    icon: "https://www.ayoadesanya.com/_next/static/media/tailwind.01004e3d.png",
-    createdAt: "2025-06-28T05:12:19.747Z",
-  },
-  {
-    id: "bootstrap-s85wkl",
-    name: "Bootstrap",
-    level: "Advanced",
-    icon: "https://images.seeklogo.com/logo-png/38/2/bootstrap-5-logo-png_seeklogo-386607.png",
-    createdAt: "2025-06-28T05:14:52.384Z",
   },
   {
     id: "vue-js-i2odii",
     name: "Vue.js",
     level: "Intermediate",
-    icon: "https://cdn.iconscout.com/icon/free/png-256/free-vue-dot-js-logo-icon-download-in-svg-png-gif-file-formats--technology-social-media-vol-7-pack-logos-icons-3030285.png?f=webp",
+    icon: "/icons/vue.svg",
     createdAt: "2025-06-28T05:16:19.001Z",
+  },
+  {
+    id: "laravel-rfg9jw",
+    name: "Laravel",
+    level: "Advanced",
+    icon: "/icons/laravel.svg",
+    createdAt: "2025-06-28T05:09:06.633Z",
+  },
+  {
+    id: "tailwind-css-icghcl",
+    name: "Tailwind CSS",
+    level: "Advanced",
+    icon: "/icons/tailwindcss.svg",
+    createdAt: "2025-06-28T05:12:19.747Z",
+  },
+  {
+    id: "nodejs-nd83pl",
+    name: "Node.js",
+    level: "Intermediate",
+    icon: "/icons/nodejs.svg",
+    createdAt: "2025-06-28T05:17:00.000Z",
+  },
+  {
+    id: "mysql-my92qw",
+    name: "MySQL",
+    level: "Advanced",
+    icon: "/icons/mysql.svg",
+    createdAt: "2025-06-28T05:18:00.000Z",
+  },
+  {
+    id: "wordpress-wp38ct",
+    name: "WordPress",
+    level: "Intermediate",
+    icon: "/icons/wordpress.svg",
+    createdAt: "2025-06-28T05:23:00.000Z",
+  },
+  {
+    id: "framer-motion-fm82pq",
+    name: "Framer Motion",
+    level: "Advanced",
+    icon: "/icons/framer.svg",
+    createdAt: "2025-06-28T05:25:00.000Z",
   },
 ];
 
@@ -132,66 +175,87 @@ export const skills: Skill[] = [
 export const tools: Tool[] = [
   {
     id: "vscode-jurrpp",
-    name: "VSCode",
+    name: "VS Code",
     level: "Expert",
-    icon: "https://cdn-icons-png.flaticon.com/512/906/906324.png",
+    icon: "/icons/vscode.svg",
     createdAt: "2025-06-28T04:51:10.537Z",
+  },
+  {
+    id: "antigravity-ag92kd",
+    name: "Antigravity",
+    level: "Expert",
+    icon: "/icons/antigravity.svg",
+    createdAt: "2025-06-28T04:51:20.000Z",
   },
   {
     id: "figma-ck8mcs",
     name: "Figma",
     level: "Advanced",
-    icon: "https://cdn-icons-png.flaticon.com/512/5968/5968705.png",
+    icon: "/icons/figma.svg",
     createdAt: "2025-06-28T04:51:34.640Z",
   },
   {
     id: "github-uiwcep",
     name: "GitHub",
     level: "Intermediate",
-    icon: "https://cdn-icons-png.flaticon.com/512/733/733553.png",
+    icon: "/icons/github.svg",
     createdAt: "2025-06-28T04:52:14.710Z",
   },
   {
     id: "postman-z3ehd0",
     name: "Postman",
     level: "Intermediate",
-    icon: "https://cdn.iconscout.com/icon/free/png-256/free-postman-logo-icon-download-in-svg-png-gif-file-formats--technology-social-media-company-brand-vol-5-pack-logos-icons-2945092.png",
+    icon: "/icons/postman.svg",
     createdAt: "2025-06-28T04:55:12.697Z",
   },
   {
     id: "docker-spknqs",
     name: "Docker",
     level: "Intermediate",
-    icon: "https://cdn-icons-png.flaticon.com/512/919/919853.png",
+    icon: "/icons/docker.svg",
     createdAt: "2025-06-28T04:55:43.558Z",
+  },
+  {
+    id: "laragon-lg82pw",
+    name: "Laragon",
+    level: "Advanced",
+    icon: "/icons/laragon.svg",
+    createdAt: "2025-06-28T04:56:00.000Z",
+  },
+  {
+    id: "adobe-photoshop-6nzre9",
+    name: "Photoshop",
+    level: "Advanced",
+    icon: "/icons/photoshop.svg",
+    createdAt: "2025-06-28T04:58:40.446Z",
+  },
+  {
+    id: "affinity-af83kp",
+    name: "Affinity",
+    level: "Intermediate",
+    icon: "/icons/affinity.svg",
+    createdAt: "2025-06-28T04:57:00.000Z",
   },
   {
     id: "canva-osa1fg",
     name: "Canva",
     level: "Expert",
-    icon: "https://freepnglogo.com/images/all_img/1691829322canva-app-logo-png.png",
+    icon: "/icons/canva.svg",
     createdAt: "2025-06-28T04:57:32.935Z",
   },
   {
-    id: "adobe-photoshop-6nzre9",
-    name: "Adobe Photoshop",
+    id: "capcut-cc91mp",
+    name: "CapCut",
     level: "Advanced",
-    icon: "https://w7.pngwing.com/pngs/587/253/png-transparent-adobe-photoshop-hd-logo-thumbnail.png",
-    createdAt: "2025-06-28T04:58:40.446Z",
+    icon: "/icons/capcut.svg",
+    createdAt: "2025-06-28T04:59:00.000Z",
   },
   {
-    id: "microsoft-word-jocmrz",
-    name: "Microsoft Word",
-    level: "Expert",
-    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Microsoft_Office_Word_%282019%E2%80%93present%29.svg/2203px-Microsoft_Office_Word_%282019%E2%80%93present%29.svg.png",
-    createdAt: "2025-06-28T04:59:41.599Z",
-  },
-  {
-    id: "microsoft-excel-tqrthb",
-    name: "Microsoft Excel",
-    level: "Expert",
-    icon: "https://static.vecteezy.com/system/resources/thumbnails/027/179/363/small/microsoft-excel-icon-logo-symbol-free-png.png",
-    createdAt: "2025-06-28T05:00:25.650Z",
+    id: "adobe-lightroom-lr84kd",
+    name: "Adobe Lightroom",
+    level: "Intermediate",
+    icon: "/icons/lightroom.svg",
+    createdAt: "2025-06-28T05:00:00.000Z",
   },
 ];
 
@@ -200,10 +264,11 @@ export const tools: Tool[] = [
 export const projects: Project[] = [
   {
     id: "portofolio-website-yhe3dc",
-    title: "Portofolio Website",
+    title: "Portfolio Website",
     slug: "portofolio-website",
+    category: "Web Development",
     description:
-      "Portfolio Website is a React and Next.js-based web application designed to showcase your work, experience, and skills professionally. This system provides comprehensive features such as project management, certificates, skills, tools, and a personal profile that can be managed through the admin dashboard. With a modern, responsive, and easy-to-use interface, this website helps enhance personal branding and facilitates dynamic content management for users. Data on this website is managed using Supabase and Prisma as databases and ORM, making data storage and retrieval processes more efficient and secure.",
+      "A modern web application built with React and Next.js, designed to showcase projects, professional experience, and technical skills with high visual fidelity. The platform features dynamic project archives, certificate showcases, interactive skill matrices, and a customized administration dashboard. Data management is powered by Supabase and Prisma ORM, ensuring robust security, seamless content updates, and optimal query performance.",
     techStack: [
       "Next.js",
       "React",
@@ -230,8 +295,9 @@ export const projects: Project[] = [
     id: "startfolio-l1q1ln",
     title: "Startfolio",
     slug: "startfolio",
+    category: "Web Development",
     description:
-      "StartFolio is a Next.js based web application designed to simplify the creation and management of digital portfolios and CVs. The platform offers comprehensive features such as project, certificate, and skills creation, with interactive and responsive previews. StartFolio supports CV export to PDF format, making it easy for users to share their results professionally. With modern technology and a user-friendly interface, StartFolio helps users efficiently build attractive and ATS-friendly portfolios.",
+      "StartFolio is a Next.js-based web application designed to streamline the creation and management of digital portfolios and professional CVs. The platform features intuitive tools for curating projects, certifications, and technical proficiencies, paired with real-time responsive previews and ATS-friendly PDF export capabilities. Built with modern web architecture, StartFolio empowers developers and creators to present their career achievements cleanly and effectively.",
     techStack: [
       "Next.js",
       "TypeScript",
@@ -253,8 +319,9 @@ export const projects: Project[] = [
     id: "sipkl-website-fno5wx",
     title: "SIPKL Website",
     slug: "sipkl-website",
+    category: "Web Development",
     description:
-      "SIPKL (Field Work Practice Information System) is a Laravel-based web application designed to simplify the management of the internship process on campus. This system provides comprehensive features, from internship registration and guidance requests to report uploads, to final assessment by the supervising lecturer. With a modern and responsive interface, SIPKL facilitates students, lecturers, and administrators in managing the entire internship process digitally and efficiently.",
+      "SIPKL (Internship Management Information System) is a Laravel-based web application engineered to streamline collegiate internship workflows. The platform digitizes the entire academic lifecycle—from initial student registration and faculty advisory requests to report submissions and final supervisor evaluations—enabling students, lecturers, and academic administrators to collaborate seamlessly within a unified, responsive interface.",
     techStack: [
       "Laravel 11",
       "Laravel Breeze",
@@ -275,8 +342,9 @@ export const projects: Project[] = [
     id: "s-mes-website-nnwau7",
     title: "S-MES Website",
     slug: "s-mes-website",
+    category: "Web Development",
     description:
-      "The Web Service Email System is a web-based email delivery management application that supports bulk email delivery, priority queues using RabbitMQ, and real-time delivery status monitoring. This application allows users to manage integrated applications, send individual or bulk emails (via Excel upload), and monitor delivery logs with retry and error notification features. This system is designed for enterprises that require scheduled, integrated, and secure email delivery, with an analytical dashboard to monitor delivery performance.",
+      "S-MES (Web Service Email System) is an enterprise email delivery management platform engineered for scheduled, high-volume messaging. Powered by Laravel, Vue.js, and RabbitMQ priority message queues, it provides real-time transmission monitoring, automated retry mechanisms, error alerting, and bulk recipient imports via spreadsheet upload, backed by an intuitive analytics dashboard for delivery performance tracking.",
     techStack: [
       "Vue",
       "TailwindCSS",
@@ -301,8 +369,9 @@ export const projects: Project[] = [
     id: "tapyta-furniture-qhc569",
     title: "Tapyta Furniture",
     slug: "tapyta-furniture",
+    category: "Web Development",
     description:
-      "Tapyta Furniture is a PHP-based e-commerce application designed to make it easier for users to search, select, and purchase furniture products online. This website offers comprehensive features, from a product catalog, product details, a shopping cart, checkout with Midtrans payment integration, to order management and user profiles. It also includes an admin panel for managing products, categories, customers, orders, FAQs, and database import and export features. Tapyta Furniture is designed with a modern and responsive design, making it comfortable to access on various devices.",
+      "Tapyta Furniture is a full-featured e-commerce platform built with PHP and MySQL, offering a seamless online shopping experience for bespoke furniture. It integrates a dynamic product catalog, interactive cart, automated checkout via the Midtrans payment gateway, and customer order tracking. An integrated administrator dashboard enables efficient inventory control, category management, and sales reporting across desktop and mobile devices.",
     techStack: [
       "PHP",
       "MySQL",
@@ -327,8 +396,9 @@ export const projects: Project[] = [
     id: "coffee-talk-lm7afy",
     title: "Coffee Talk",
     slug: "coffee-talk",
+    category: "Web Development",
     description:
-      "Semester 3 Project - CoffeeTalk is a company profile website for a modern coffee shop located in Bali. This website displays comprehensive information about services, drink and food menus, barista team profiles, customer testimonials, and the coffee shop's contact information and location. With a responsive and interactive design, CoffeeTalk makes it easy for customers to learn about and contact the coffee shop online.",
+      "CoffeeTalk is a contemporary brand identity and company profile website for an artisanal Bali coffee house. The platform presents digital food and beverage menus, barista team spotlights, customer testimonials, and location details through a responsive, mobile-first design crafted to enhance customer engagement and in-store visits.",
     techStack: ["HTML", "CSS", "JavaScript", "Bootstrap", "jQuery"],
     coverImage: "/uploads/1753752488104-Cover-CoffeTalk.png",
     url: "https://github.com/TugusArtaa/CoffeTalk.git",
@@ -343,8 +413,9 @@ export const projects: Project[] = [
     id: "electrical-engineering-6mzthq",
     title: "Electrical Engineering",
     slug: "electrical-engineering",
+    category: "Web Development",
     description:
-      "Semester 2 Project - Static website for the Electrical Engineering Department of Bali State Polytechnic, featuring study program information, department profiles, a photo gallery of activities, and contact information. This website is designed as the department's official information medium with a simple appearance and easy-to-use navigation.",
+      "An official departmental web portal developed for the Electrical Engineering Department at Politeknik Negeri Bali. It delivers academic program overviews, faculty profiles, campus activity galleries, and departmental announcements with a clean architectural layout and intuitive navigation.",
     techStack: ["HTML", "CSS"],
     coverImage: "/uploads/1753752052622-Cover-TeknikElektro.png",
     url: "https://github.com/TugusArtaa/JurusanTeknikElektro.git",
@@ -411,13 +482,8 @@ export const certificates: Certificate[] = [
 export const aboutEntries: About[] = [
   {
     id: "who_am_i",
-    content: `<strong>Hi! I'm Putu Agus</strong>, a recent <strong>Diploma 3 Informatics Management</strong> graduate from Bali State Polytechnic. I have a strong interest in <strong>UI/UX design, front-end development, and graphic design.</strong>\n\nDuring my studies, I was actively involved in student organizations, managing their official accounts. I also completed a <strong>13-month internship as a Front-end Web Developer at Bank BPD Bali</strong>, where I focused on creating internal application interfaces and testing.\n\nI enjoy building clean, functional, and user-centered digital products. With a user-first mindset and attention to detail, <strong>I'm ready to contribute to a creative and development team.</strong> Let's build something great together!`,
-    updatedAt: "2025-06-26T11:45:25.340Z",
-  },
-  {
-    id: "quote",
-    content: `"Code is like poetry. Simple, elegant, and built to solve." — Tugus Arta`,
-    updatedAt: "2025-06-26T11:50:45.873Z",
+    content: `<strong>Hi! I'm Putu Agus</strong> — a <strong>Web Developer & Creative Enthusiast</strong> based in Bali. Currently in my 7th semester of <strong>Digital Business at Politeknik Negeri Bali</strong>, I build high-performance web applications where clean engineering meets bold visual craft.\n\nWith a <strong>13-month frontend tenure at PT. Bank BPD Bali</strong> developing enterprise systems and <strong>1 year directing media & visual content at BIM University</strong>, I don't just write code — I craft intuitive, conversion-focused digital experiences that leave a lasting impression.`,
+    updatedAt: "2026-09-20T01:01:00.000Z",
   },
   {
     id: "gmail",
@@ -456,11 +522,6 @@ export const aboutEntries: About[] = [
       "Always open to new collaborations, freelance projects, or full-time opportunities. Let's build something great!",
     updatedAt: "2025-06-26T11:56:26.599Z",
   },
-  {
-    id: "education",
-    content: `Aspiring to become a professional Frontend Developer with a strong foundation in UI/UX design, I recently completed my Diploma in Informatics Management at Politeknik Negeri Bali (2022–2025), graduating Magna Cum Laude with a GPA of 3.98.\n\nMy academic journey has been shaped by a deep passion for designing user-centric digital products that not only function smoothly but also feel intuitive and visually compelling. Rather than treating design and development as separate silos, I see them as a continuous creative process — one that transforms ideas into interactive, meaningful experiences.\n\nThroughout my studies, I've worked on various real-world projects and design prototypes that emphasized responsiveness, accessibility, and clarity. This experience, combined with a strong design sense and problem-solving mindset, has driven me to explore the intersection between frontend engineering and human-centered design.\n\nI'm continuously learning, experimenting, and building — excited to bring ideas to life, improve the way people interact with technology, and shape digital experiences that truly matter.`,
-    updatedAt: "2025-06-30T20:15:53.597Z",
-  },
 ];
 
 // ----- Experiences Data -----
@@ -468,113 +529,58 @@ export const aboutEntries: About[] = [
 export const experiences: Experience[] = [
   {
     id: 1,
-    title: "System Analyst & UI/UX Designer",
-    company: "Smart Camping Bali - Case Study Project",
-    startDate: "Sept 2023",
-    endDate: "Feb 2024",
+    title: "Social Media & Content Specialist",
+    company: "BIM University",
+    startDate: "2024",
+    endDate: "2025",
     location: "Bali, Indonesia",
     description:
-      "Analyzed and designed the tent reservation system using SDLC. Created UI/UX prototypes with Figma and designed the system database using MySQL Workbench.",
-    logo: "/logo/SmartCamping.svg",
+      "Directed digital content strategy, brand visual identity, and multimedia campaign production to enhance institutional visibility and audience engagement.",
+    logo: "/logo/Web-logo.svg",
   },
   {
     id: 2,
-    title: "E-Commerce Website Developer",
-    company: "Tapyta Furniture - Final Project",
-    startDate: "Sept 2023",
-    endDate: "Feb 2024",
-    location: "Bali, Indonesia",
-    description:
-      "Developed an e-commerce website for furniture sales with Midtrans payment gateway integration using PHP Native and MySQL.",
-    logo: "/logo/Ecommerce.svg",
-  },
-  {
-    id: 3,
     title: "Web Developer Intern",
     company: "PT. Bank Pembangunan Daerah Bali",
     startDate: "May 2024",
     endDate: "Jul 2025",
     location: "Denpasar, Bali",
     description:
-      "Designed and developed a centralized email management system dashboard using Vue.js and Laravel. Built email template features, approval flows, and integrated frontend with API services.",
+      "Architected and engineered a centralized email management dashboard using Vue.js and Laravel, implementing dynamic template builders, multi-tier approval workflows, and secure REST API integrations.",
     logo: "/logo/BPD-Bali.svg",
   },
   {
-    id: 4,
+    id: 3,
     title: "API Tester - SNAP BPD Bali",
     company: "Collaboration Project with PT. Bank BPD Bali",
     startDate: "May 2024",
     endDate: "Jun 2024",
     location: "Bali, Indonesia",
     description:
-      "Performed testing of SNAP Payment API for 88 Bank BPD partners. Created API signature authorization using PHP and conducted system testing via Postman.",
+      "Conducted end-to-end SNAP Payment API integration testing across 88 institutional banking partners, developing cryptographic signature authorization scripts in PHP and validating transaction payloads via Postman.",
     logo: "/logo/BPD-Bali.svg",
   },
   {
-    id: 5,
-    title: "Website Developer for Competition Registration",
+    id: 4,
+    title: "Lead Web Developer – Event Registration Platform",
     company: "PNBITC X ECO 2024",
     startDate: "Jul 2024",
     endDate: "Jul 2024",
     location: "Bali, Indonesia",
     description:
-      "Built a registration website using WordPress with custom CSS, JavaScript adjustments, and Lottie animations to enhance user experience.",
+      "Developed a dedicated event registration platform using WordPress, engineered with custom CSS, dynamic JavaScript interactivity, and lightweight Lottie animations for a seamless user onboarding flow.",
     logo: "/logo/PNBITC.svg",
   },
   {
-    id: 6,
-    title: "Poster Designer",
-    company: "SIGUNA Team - PIMNAS",
-    startDate: "Jul 2024",
-    endDate: "Jul 2024",
-    location: "Bali, Indonesia",
-    description:
-      "Designed an informative and graphical poster for the final stage of the Indonesian Student Scientific Week (PIMNAS). Managed layout, color palette, and visual content.",
-    logo: "/logo/PIMNAS.svg",
-  },
-  {
-    id: 7,
-    title: "Finalist of National Poster Creation Competition",
-    company: "HMJ Pendidikan Dasar - Undiksha",
-    startDate: "Nov 2024",
-    endDate: "Nov 2024",
-    location: "Singaraja, Bali",
-    description:
-      "Participated as a finalist in the National Poster Creation Competition 2024, organized individually. Achieved 5th place in the competition organized by the Elementary Education Student Association of Universitas Pendidikan Ganesha.",
-    logo: "/logo/Undiksha.svg",
-  },
-  {
-    id: 8,
-    title: "Head of Division 1 Reasoning and Science",
+    id: 5,
+    title: "Head of Division I – Academic Research & Reasoning",
     company: "Student Association of Information Technology",
     startDate: "Feb 2024",
     endDate: "Feb 2025",
     location: "Bali, Indonesia",
     description:
-      "Led programs to improve academic and scientific achievements among students, including organizing national seminars and competitions.",
+      "Spearheaded academic and scientific development initiatives across the department, directing large-scale national technology seminars and student competitions to cultivate technical excellence.",
     logo: "/logo/HMJ-TI.svg",
-  },
-  {
-    id: 9,
-    title: "1st Winner of Poster Design Competition",
-    company: "CITICE 2024",
-    startDate: "Jun 2024",
-    endDate: "Jun 2024",
-    location: "Bali, Indonesia",
-    description:
-      "Won the first place in poster design competition during the Creative Competition of Information Technology X Intern Competition of Electro.",
-    logo: "/logo/CITICE.svg",
-  },
-  {
-    id: 10,
-    title: "PKL Management Web Application Developer",
-    company: "Personal - Freelance",
-    startDate: "May 2025",
-    endDate: "May 2025",
-    location: "Bali, Indonesia",
-    description:
-      "Developed a web application to simplify the internship (PKL) management process on campus. This system includes PKL registration, submission of guidelines, report upload, and final assessment by the supervising lecturer. The system was built using Laravel 11, Laravel Breeze (Auth), Tailwind CSS, Vite, and MySQL.",
-    logo: "/logo/Web-logo.svg",
   },
 ];
 
