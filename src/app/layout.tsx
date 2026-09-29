@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     siteName: "Tuagus Portfolio",
     title: "Tuagus | Web Developer & Creative Enthusiast",
     description:
-      "Web Developer & Creative Enthusiast based in Bali. Crafting high-performance web apps with React, Next.js, and clean engineering.",
+      "Web Developer & Creative Enthusiast in Bali. Crafting modern web apps with React, Next.js, and clean engineering.",
     images: [
       {
         url: "/og-image.png",
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Tuagus | Web Developer & Creative Enthusiast",
     description:
-      "Web Developer & Creative Enthusiast based in Bali. Crafting high-performance web apps with React, Next.js, and clean engineering.",
+      "Web Developer & Creative Enthusiast in Bali. Crafting modern web apps with React, Next.js, and clean engineering.",
     images: ["/og-image.png"],
   },
   alternates: {
