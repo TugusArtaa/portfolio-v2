@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import React, { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
 import Providers from "@/components/Shared/Providers";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.tuagus.web.id"),
@@ -241,6 +242,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body>
         <Providers>{children}</Providers>
+        <Analytics />
       </body>
     </html>
   );
