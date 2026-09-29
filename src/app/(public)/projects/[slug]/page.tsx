@@ -59,7 +59,7 @@ export default async function ProjectDetailPage({
     }
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tuagus.dev";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.tuagus.web.id";
   const projectJsonLd = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",

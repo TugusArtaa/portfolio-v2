@@ -4,7 +4,7 @@ import type { Metadata, Viewport } from "next";
 import Providers from "@/components/Shared/Providers";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://tuagus.dev"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.tuagus.web.id"),
   title: {
     default: "Tuagus | Web Developer & Creative Enthusiast",
     template: "%s | Tuagus",
@@ -111,11 +111,11 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://tuagus.dev/#person",
+      "@id": "https://www.tuagus.web.id/#person",
       name: "I Putu Agus Seniartawan",
       alternateName: ["Tuagus", "Putu Agus", "I Putu Agus Seniartawan"],
-      url: "https://tuagus.dev",
-      image: "https://tuagus.dev/photo/tuagus_photo.webp",
+      url: "https://www.tuagus.web.id",
+      image: "https://www.tuagus.web.id/photo/tuagus_photo.webp",
       jobTitle: "Web Developer & Creative Enthusiast",
       description:
         "Web Developer & Creative Enthusiast based in Bali, Indonesia. Specializing in modern web development (React, Next.js, Laravel), branding (social media direction, videography, photography, logo design), and graphic design (promotional visuals, digital assets, poster illustrations).",
@@ -202,13 +202,13 @@ const jsonLd = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://tuagus.dev/#website",
-      url: "https://tuagus.dev",
+      "@id": "https://www.tuagus.web.id/#website",
+      url: "https://www.tuagus.web.id",
       name: "Tuagus Portfolio",
       description:
         "Personal portfolio of I Putu Agus Seniartawan (Tuagus) — Web Developer & Creative Enthusiast based in Bali, Indonesia. Specializing in modern web development using React, Next.js, and Laravel, alongside impactful branding and balanced graphic design.",
       publisher: {
-        "@id": "https://tuagus.dev/#person",
+        "@id": "https://www.tuagus.web.id/#person",
       },
       inLanguage: "en-US",
     },

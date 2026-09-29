@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { projects } from "@/data/portfolio-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tuagus.dev";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.tuagus.web.id";
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
