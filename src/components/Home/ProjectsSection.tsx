@@ -35,7 +35,7 @@ const FEATURED_PROJECTS: FeaturedProject[] = [
     year: "2025",
     description:
       "Modern web application and digital platform engineering built with high-performance architecture and responsive UX.",
-    coverImage: "/uploads/1753757148467-Cover-StartFolio.png",
+    coverImage: "/projects/big-impact/cover.webp",
     link: "/projects",
   },
   {
@@ -47,7 +47,7 @@ const FEATURED_PROJECTS: FeaturedProject[] = [
     year: "2025",
     description:
       "Cinematic promotional videography, visual storytelling, and cultural documentary capturing the identity of Tenganan.",
-    coverImage: "/photo/about_hero_1.webp",
+    coverImage: "/projects/tenganan/cover.webp",
     link: "/projects",
   },
   {
@@ -59,7 +59,7 @@ const FEATURED_PROJECTS: FeaturedProject[] = [
     year: "2025",
     description:
       "Creative social media design feeds, promotional marketing campaigns, and branded digital visual assets.",
-    coverImage: "/photo/photo_project_right_2.webp",
+    coverImage: "/projects/bim-university/cover.webp",
     link: "/projects",
   },
 ];

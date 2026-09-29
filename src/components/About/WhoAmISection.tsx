@@ -209,7 +209,7 @@ export default function WhoAmISection({ whoAmI }: WhoAmISectionProps) {
                 <div className="relative w-full h-full rounded-[13px] sm:rounded-[20px] overflow-hidden bg-zinc-950">
                   {/* Full-bleed Photo inside the frame */}
                   <Image
-                    src="/photo/about_hero_1.webp"
+                    src="/photo/about_hero_1.webp?v=2"
                     alt="Putu Agus - Milestone & Archive"
                     fill
                     sizes="(max-width: 640px) 70vw, 350px"
@@ -274,7 +274,7 @@ export default function WhoAmISection({ whoAmI }: WhoAmISectionProps) {
                 <div className="relative w-full h-full rounded-[13px] sm:rounded-[20px] overflow-hidden bg-zinc-950">
                   {/* Full-bleed Photo inside the frame */}
                   <Image
-                    src="/photo/about_hero_2.webp"
+                    src="/photo/about_hero_2.webp?v=2"
                     alt="Putu Agus - Formal Studio Portrait"
                     fill
                     priority
